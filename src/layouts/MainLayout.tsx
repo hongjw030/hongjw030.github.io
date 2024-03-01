@@ -1,11 +1,16 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { Box } from "@mui/material";
 
-export default function MainLayout({ children }: PropsWithChildren) {
+interface MainLayoutProps {
+  selected: string;
+  children: ReactNode;
+}
+
+export default function MainLayout({ selected, children }: MainLayoutProps) {
   return (
     <Box sx={{ width: "100%", height: "100%" }}>
-      <Sidebar />
+      <Sidebar selected={selected} />
       <div>{children}</div>
     </Box>
   );
