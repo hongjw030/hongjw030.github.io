@@ -1,6 +1,19 @@
-import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import { createTheme, ThemeProvider } from "@mui/material";
+
+import "@/styles/globals.scss";
+import "@/styles/mixin.scss";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: "'Noto Sans KR', 'Roboto', 'sans-serif'",
+  },
+});
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <ThemeProvider theme={theme}>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
 }
