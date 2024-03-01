@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import { createTheme, ThemeProvider } from "@mui/material";
 
 import "@/styles/globals.scss";
+import "@/styles/mixin.scss";
 
 const theme = createTheme({
   typography: {
