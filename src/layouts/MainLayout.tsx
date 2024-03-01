@@ -1,6 +1,8 @@
-import { PropsWithChildren, ReactNode } from "react";
+import { ReactNode } from "react";
+import { Box, Grid } from "@mui/material";
+
 import Sidebar from "@/components/sidebar/Sidebar";
-import { Box } from "@mui/material";
+import Nav from "@/components/nav/Nav";
 
 interface MainLayoutProps {
   selected: string;
@@ -9,9 +11,19 @@ interface MainLayoutProps {
 
 export default function MainLayout({ selected, children }: MainLayoutProps) {
   return (
-    <Box sx={{ width: "100%", height: "100%" }}>
-      <Sidebar selected={selected} />
-      <div>{children}</div>
-    </Box>
+    <Grid
+      container
+      direction="row"
+      sx={{ width: "100%", height: "100%" }}
+      position="relative"
+    >
+      <Grid item>
+        <Sidebar selected={selected} />
+      </Grid>
+      <Grid item sx={{ flexGrow: 1 }} display="flex" flexDirection="column">
+        <Nav />
+        <Box p={2}>{children}</Box>
+      </Grid>
+    </Grid>
   );
 }
