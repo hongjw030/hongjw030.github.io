@@ -1,9 +1,9 @@
-import MainLayout from "@/layouts/mainLayout/MainLayout";
+import MainLayout from "@/layouts/MainLayout";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <MainLayout>
-      <div>가나ㅏㄷ</div>
+    <MainLayout selected="">
+      <div>메인 홈피! 헤더랑 전체 글들 보여줌</div>
     </MainLayout>
   );
 }
