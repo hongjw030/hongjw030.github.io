@@ -2,8 +2,8 @@ import MainLayout from "@/layouts/MainLayout";
 
 export default function Home() {
   return (
-    <MainLayout selected="">
-      <div>메인 홈피! 헤더랑 전체 글들 보여줌</div>
+    <MainLayout selected="category">
+      <div>카테고리 페이지!</div>
     </MainLayout>
   );
 }
