@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import MainContainer from "@/components/mainDrawer/MainContainer";
 import MainNav from "@/components/mainDrawer/MainNav";
-import MainDrawer from "@/components/mainDrawer/MainDrawer.1";
+import MainDrawer from "@/components/mainDrawer/MainDrawer";
 import StyledSpacing from "@/components/common/StyledSpacing";
 
 interface MainLayoutProps {
