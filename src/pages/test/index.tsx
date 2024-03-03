@@ -1,5 +1,5 @@
 import MainLayout from "@/layouts/MainLayout";
 
-export default function HomePage() {
+export default function TestPage() {
   return <MainLayout />;
 }
