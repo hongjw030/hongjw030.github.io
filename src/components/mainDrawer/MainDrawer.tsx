@@ -2,7 +2,7 @@ import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { drawerWidth } from "@/constants";
+import { drawerWidth, navHeight } from "@/constants";
 import StyledSpacing from "../common/StyledSpacing";
 import CommonList from "./CommonList";
 import BlogList from "./BlogList";
@@ -35,7 +35,7 @@ export default function MainDrawer({
       anchor="left"
       open={open}
     >
-      <StyledSpacing justifyContent="flex-end" height={64}>
+      <StyledSpacing justifyContent="flex-end" height={navHeight}>
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeftIcon />
         </IconButton>

@@ -41,10 +41,10 @@ export default function CommonList({ current }: CommonListProps) {
       }}
     >
       {COMMON_ARRAY.map((el) => (
-        <Link href={el.id} color="inherit" underline="none" key={el.id}>
+        <Link href={el.id} color="inherit" underline="none" key={el.name}>
           <ListItem disablePadding>
             <ListItemButton
-              selected={current ? el.key === current : el.key === "home"}
+              selected={current ? el.name === current : el.name === "HOME"}
             >
               <ListItemIcon>{el.icon}</ListItemIcon>
               <ListItemText primary={el.name} />
