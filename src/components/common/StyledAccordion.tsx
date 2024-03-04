@@ -6,15 +6,18 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { List, ListItem, ListItemButton } from "@mui/material";
 import Link from "next/link";
 
+import { CategoryGroupType } from "@/types/CategoryType";
+
 interface CustomAccordionProps {
-  title: string;
-  subTitles: string[];
+  categoryGroup: CategoryGroupType;
 }
 
 export default function StyledAccordion({
-  title,
-  subTitles,
+  categoryGroup,
 }: CustomAccordionProps) {
+  const mainCategory = categoryGroup[0];
+  const subCategoryList = categoryGroup[1];
+
   return (
     <div>
       <Accordion elevation={0} disableGutters>
@@ -25,10 +28,13 @@ export default function StyledAccordion({
             justifyContent: "space-between",
           }}
         >
-          <Link href={`/${title}`} style={{ fontSize: "14px" }}>
-            {title}
+          <Link
+            href={`/blog/${mainCategory.mainId}`}
+            style={{ fontSize: "14px" }}
+          >
+            {mainCategory.title}
           </Link>
-          {subTitles.length > 0 && (
+          {subCategoryList.length > 0 && (
             <AccordionSummary
               expandIcon={<ArrowDropDownIcon />}
               aria-controls="panel1a-content"
@@ -42,15 +48,22 @@ export default function StyledAccordion({
             ></AccordionSummary>
           )}
         </ListItemButton>
-        {subTitles.length > 0 && (
+        {subCategoryList.length > 0 && (
           <AccordionDetails>
             <List disablePadding>
-              {subTitles.map((el) => {
+              {subCategoryList.map((subCategory) => {
                 return (
-                  <ListItem disablePadding>
-                    <ListItemButton>
-                      <Typography fontSize={13}>{el}</Typography>
-                    </ListItemButton>
+                  <ListItem disablePadding key={subCategory.subId}>
+                    <Link
+                      href={`/blog/${mainCategory.mainId}/${subCategory.subId}`}
+                      style={{ fontSize: "14px" }}
+                    >
+                      <ListItemButton>
+                        <Typography fontSize={13}>
+                          {subCategory.title}
+                        </Typography>
+                      </ListItemButton>
+                    </Link>
                   </ListItem>
                 );
               })}
