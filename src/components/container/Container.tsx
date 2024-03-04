@@ -1,7 +1,7 @@
 import { drawerWidth } from "@/constants";
 import { styled } from "@mui/material/styles";
 
-const MainContainer = styled("main", {
+const Container = styled("main", {
   shouldForwardProp: (prop) => prop !== "open",
 })<{
   open?: boolean;
@@ -22,4 +22,4 @@ const MainContainer = styled("main", {
   }),
 }));
 
-export default MainContainer;
+export default Container;

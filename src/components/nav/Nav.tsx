@@ -6,11 +6,9 @@ interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
 
-const MainNav = styled(MuiAppBar, {
+const Nav = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme, open }) => ({
-  background: "#3f5a79",
-  color: "#efefef",
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -25,4 +23,4 @@ const MainNav = styled(MuiAppBar, {
   }),
 }));
 
-export default MainNav;
+export default Nav;

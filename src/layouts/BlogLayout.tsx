@@ -12,12 +12,11 @@ import MainDrawer from "@/components/mainDrawer/MainDrawer";
 import StyledSpacing from "@/components/common/StyledSpacing";
 import { navHeight } from "@/constants";
 
-interface MainLayoutProps {
+interface BlogLayoutProps {
   children?: ReactNode;
-  current?: string;
 }
-export default function MainLayout({ children, current }: MainLayoutProps) {
-  const [open, setOpen] = useState(true);
+export default function BlogLayout({ children }: BlogLayoutProps) {
+  const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -42,13 +41,13 @@ export default function MainLayout({ children, current }: MainLayoutProps) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            {current ?? "HOME"}
+            BLOG {">"}
           </Typography>
         </Toolbar>
       </Nav>
 
       <MainDrawer
-        current={current}
+        current="blogs"
         open={open}
         handleDrawerClose={handleDrawerClose}
       />

@@ -29,17 +29,7 @@ interface CommonListProps {
 
 export default function CommonList({ current }: CommonListProps) {
   return (
-    <List
-      sx={{
-        "&& .Mui-selected, && .Mui-selected:hover": {
-          bgcolor: "#a5afb8",
-          color: "#373737",
-          "&, & .muilistitemicon-root": {
-            color: "373737",
-          },
-        },
-      }}
-    >
+    <List>
       {COMMON_ARRAY.map((el) => (
         <Link href={el.id} color="inherit" underline="none" key={el.name}>
           <ListItem disablePadding>

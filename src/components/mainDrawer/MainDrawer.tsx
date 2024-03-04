@@ -2,6 +2,7 @@ import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+
 import { drawerWidth, navHeight } from "@/constants";
 import StyledSpacing from "../common/StyledSpacing";
 import CommonList from "./CommonList";
@@ -27,8 +28,6 @@ export default function MainDrawer({
         "& .MuiDrawer-paper": {
           width: drawerWidth,
           boxSizing: "border-box",
-          background: "#3f5a79",
-          color: "#efefef",
         },
       }}
       variant="persistent"
