@@ -1,11 +1,12 @@
-export interface MainCategoryType {
-  mainId: string;
+export interface MainCategoryApiType {
+  id: number;
+  pathName: string;
   title: string;
   description?: string;
 }
 
-export interface SubCategoryType extends MainCategoryType{
-  subId: string;
+export interface SubCategoryApiType extends MainCategoryApiType{
+  mainId: number;
 }
 
-export type CategoryGroupType = [MainCategoryType, SubCategoryType[]];
+export type CategoryGroupApiType = [MainCategoryApiType, SubCategoryApiType[]] ;

@@ -6,10 +6,10 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { List, ListItem, ListItemButton } from "@mui/material";
 import Link from "next/link";
 
-import { CategoryGroupType } from "@/types/CategoryType";
+import { CategoryGroupApiType } from "@/types/CategoryType";
 
 interface CustomAccordionProps {
-  categoryGroup: CategoryGroupType;
+  categoryGroup: CategoryGroupApiType;
 }
 
 export default function StyledAccordion({
@@ -29,7 +29,7 @@ export default function StyledAccordion({
           }}
         >
           <Link
-            href={`/blog/${mainCategory.mainId}`}
+            href={`/blog/${mainCategory.pathName}`}
             style={{ fontSize: "14px" }}
           >
             {mainCategory.title}
@@ -53,9 +53,9 @@ export default function StyledAccordion({
             <List disablePadding>
               {subCategoryList.map((subCategory) => {
                 return (
-                  <ListItem disablePadding key={subCategory.subId}>
+                  <ListItem disablePadding key={subCategory.id}>
                     <Link
-                      href={`/blog/${mainCategory.mainId}/${subCategory.subId}`}
+                      href={`/blog/${mainCategory.pathName}/${subCategory.pathName}`}
                       style={{ fontSize: "14px" }}
                     >
                       <ListItemButton>
