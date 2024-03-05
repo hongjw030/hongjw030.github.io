@@ -6,15 +6,18 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { List, ListItem, ListItemButton } from "@mui/material";
 import Link from "next/link";
 
+import { CategoryGroupApiType } from "@/types/CategoryType";
+
 interface CustomAccordionProps {
-  title: string;
-  subTitles: string[];
+  categoryGroup: CategoryGroupApiType;
 }
 
-export default function CustomAccordion({
-  title,
-  subTitles,
+export default function StyledAccordion({
+  categoryGroup,
 }: CustomAccordionProps) {
+  const mainCategory = categoryGroup[0];
+  const subCategoryList = categoryGroup[1];
+
   return (
     <div>
       <Accordion elevation={0} disableGutters>
@@ -25,10 +28,13 @@ export default function CustomAccordion({
             justifyContent: "space-between",
           }}
         >
-          <Link href={`/${title}`} style={{ fontSize: "14px" }}>
-            {title}
+          <Link
+            href={`/blog/${mainCategory.pathName}`}
+            style={{ fontSize: "13px" }}
+          >
+            {mainCategory.title}
           </Link>
-          {subTitles.length > 0 && (
+          {subCategoryList.length > 0 && (
             <AccordionSummary
               expandIcon={<ArrowDropDownIcon />}
               aria-controls="panel1a-content"
@@ -42,15 +48,22 @@ export default function CustomAccordion({
             ></AccordionSummary>
           )}
         </ListItemButton>
-        {subTitles.length > 0 && (
+        {subCategoryList.length > 0 && (
           <AccordionDetails>
             <List disablePadding>
-              {subTitles.map((el) => {
+              {subCategoryList.map((subCategory) => {
                 return (
-                  <ListItem disablePadding>
-                    <ListItemButton>
-                      <Typography fontSize={13}>{el}</Typography>
-                    </ListItemButton>
+                  <ListItem disablePadding key={subCategory.id}>
+                    <Link
+                      href={`/blog/${mainCategory.pathName}/${subCategory.pathName}`}
+                      style={{ fontSize: "14px" }}
+                    >
+                      <ListItemButton>
+                        <Typography fontSize={13}>
+                          {subCategory.title}
+                        </Typography>
+                      </ListItemButton>
+                    </Link>
                   </ListItem>
                 );
               })}

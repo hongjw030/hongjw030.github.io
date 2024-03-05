@@ -1,10 +1,10 @@
-import ProfileImg from "/public/profile.jpg";
-
-import Styles from "./Profile.module.scss";
 import Image from "next/image";
 import { Box, Typography } from "@mui/material";
 
-export default function Profile() {
+import ProfileImg from "/public/profile.jpg";
+import { BLOG_TITLE, JOB, NICKNAME } from "@/constants/user";
+
+export default function SideProfile() {
   return (
     <Box
       display="flex"
@@ -30,11 +30,11 @@ export default function Profile() {
         />
       </Box>
       <Typography fontSize={20} sx={{ fontWeight: "bold" }}>
-        홍장군의 개발 일지
+        {BLOG_TITLE}
       </Typography>
       <Box display="flex" flexDirection="column" alignItems="center">
-        <Typography>Frontend Developer</Typography>
-        <Typography fontSize={13}>Hongjw</Typography>
+        <Typography>{JOB}</Typography>
+        <Typography fontSize={13}>{NICKNAME}</Typography>
       </Box>
     </Box>
   );

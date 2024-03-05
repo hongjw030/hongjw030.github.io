@@ -1,34 +1,26 @@
-import { Box, Typography } from "@mui/material";
-import { useRouter } from "next/router";
-import CustomInput from "../common/CustomInput";
+import { styled } from "@mui/material/styles";
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import { drawerWidth } from "@/constants";
 
-export default function Nav() {
-  const router = useRouter();
-  const pathname = router.pathname;
-  const { mainCategory, subCategory } = router.query;
-
-  const currentLocation = mainCategory
-    ? `Blog > ${mainCategory}${subCategory ? ` > ${subCategory}` : ""}`
-    : pathname.slice(1);
-
-  return (
-    <Box
-      position="sticky"
-      display="flex"
-      justifyContent="space-between"
-      alignItems="center"
-      sx={{ width: "100%", height: "50px" }}
-      top={0}
-      right={0}
-      left={0}
-      borderBottom="1px solid #d9d9d9"
-      p={1}
-      bgcolor="#ffffff"
-    >
-      <Typography color="#333236" fontSize={13}>
-        {currentLocation}
-      </Typography>
-      <CustomInput />
-    </Box>
-  );
+interface AppBarProps extends MuiAppBarProps {
+  open?: boolean;
 }
+
+const Nav = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})<AppBarProps>(({ theme, open }) => ({
+  transition: theme.transitions.create(["margin", "width"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: `${drawerWidth}px`,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+export default Nav;
