@@ -30,7 +30,7 @@ export default function StyledAccordion({
         >
           <Link
             href={`/blog/${mainCategory.pathName}`}
-            style={{ fontSize: "14px" }}
+            style={{ fontSize: "13px" }}
           >
             {mainCategory.title}
           </Link>
