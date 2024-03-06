@@ -28,10 +28,7 @@ export default function StyledAccordion({
             justifyContent: "space-between",
           }}
         >
-          <Link
-            href={`/blog/${mainCategory.pathName}`}
-            style={{ fontSize: "13px" }}
-          >
+          <Link href={`/blog/${mainCategory.id}`} style={{ fontSize: "13px" }}>
             {mainCategory.title}
           </Link>
           {subCategoryList.length > 0 && (
@@ -55,7 +52,7 @@ export default function StyledAccordion({
                 return (
                   <ListItem disablePadding key={subCategory.id}>
                     <Link
-                      href={`/blog/${mainCategory.pathName}/${subCategory.pathName}`}
+                      href={`/blog/${mainCategory.id}/${subCategory.id}`}
                       style={{ fontSize: "14px" }}
                     >
                       <ListItemButton>
