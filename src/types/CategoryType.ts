@@ -9,4 +9,10 @@ export interface SubCategoryApiType extends MainCategoryApiType{
   mainId: number;
 }
 
-export type CategoryGroupApiType = [MainCategoryApiType, SubCategoryApiType[]] ;
+export interface CategoryApiType {
+  id: string;
+  title: string;
+  description?: string;
+}
+
+export type CategoryGroupApiType = [CategoryApiType, CategoryApiType[]] ;
