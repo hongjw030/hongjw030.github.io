@@ -15,8 +15,6 @@
     "@mui/material": "^5.15.11",
     "@tanstack/react-query": "^5.24.8",
     "axios": "^1.6.7",
-    "express": "^4.18.3",
-    "firebase": "^10.8.1",
     "jotai": "^2.7.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.9.2",

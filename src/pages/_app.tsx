@@ -4,7 +4,6 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import "@/styles/globals.scss";
 import "@/styles/mixin.scss";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import InitialFetcher from "@/components/initialFetcher/InitialFetcher";
 import { Provider } from "jotai";
 import { Suspense } from "react";
 
@@ -22,7 +21,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider>
         <Suspense fallback="Loading...">
           <ThemeProvider theme={theme}>
-            <InitialFetcher />
             <Component {...pageProps} />
           </ThemeProvider>
         </Suspense>

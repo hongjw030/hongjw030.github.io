@@ -8,9 +8,6 @@ import StyledSpacing from "../common/StyledSpacing";
 import CommonList from "./CommonList";
 import BlogList from "./BlogList";
 import SideProfile from "./SideProfile";
-import useGetCategoryData from "@/hooks/InitialFetcher";
-import { CategoryListAtom } from "@/store/category";
-import { useAtom } from "jotai";
 
 export interface MainDrawerProp {
   current?: string;
@@ -23,9 +20,6 @@ export default function MainDrawer({
   open = true,
   handleDrawerClose,
 }: MainDrawerProp) {
-  const { categoryData } = useGetCategoryData();
-  const [atom, setAtom] = useAtom(CategoryListAtom);
-
   return (
     <Drawer
       sx={{
@@ -53,7 +47,7 @@ export default function MainDrawer({
       <CommonList current={current} />
 
       <Divider />
-      {atom && <BlogList categoryData={atom} />}
+      {/* <BlogList categoryData={atom} /> */}
     </Drawer>
   );
 }
