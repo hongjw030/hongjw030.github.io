@@ -2,8 +2,8 @@
 title: "나의 첫 글!!"
 mainCategory: "algorithm"
 subCategory: "algorithm_study"
-profileImg: "/logo.png"
 date: "2024-02-06"
+description: ""
 toc: true
 ---
 

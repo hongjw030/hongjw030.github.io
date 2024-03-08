@@ -4,27 +4,34 @@ import fs from "fs";
 import matter from "gray-matter";
 import { POST_DIR } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
+import PostingCard from "@/components/card/Card";
 
-export default function BlogPage({ posts }: any) {
+export default function BlogPage({ sortedPosts }: any) {
   return (
     <BlogLayout>
       <div>블로그 전체 글 리스트를 보여주는 페이지</div>
-      {posts?.map(
+      {sortedPosts?.map(
         ({
-          frontmatter: { title, date, mainCategory, subCategory },
+          frontmatter: {
+            title,
+            date,
+            mainCategory,
+            subCategory,
+            coverImg,
+            description,
+          },
         }: {
           frontmatter: PostFrontMatterType;
         }) => (
-          <article key={title}>
-            <header>
-              <h3>{title}</h3>
-              <span>{date}</span>
-            </header>
-            <section>
-              <p>{mainCategory}</p>
-              <p>{subCategory}</p>
-            </section>
-          </article>
+          <PostingCard
+            title={title}
+            date={date}
+            coverImg={coverImg}
+            mainCategory={mainCategory}
+            subCategory={subCategory}
+            description={description}
+            key={title}
+          />
         )
       )}
     </BlogLayout>
@@ -50,8 +57,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({
   params,
 }: {
-  params: { subId: string };
+  params: { mainId: string; subId: string };
 }) {
+  const mainId = params.mainId;
   const subId = params.subId;
   const files = fs.readdirSync(POST_DIR);
 
@@ -73,13 +81,17 @@ export async function getStaticProps({
     } else return null;
   });
 
-  if (posts.length == 1 && posts[0] == null) {
+  let sortedPosts = posts.filter((el) => el !== null);
+  if ((posts.length == 1 && posts[0] == null) || !posts) {
     return {
       props: {},
     };
+  } else {
+    sortedPosts = posts.sort((a, b) =>
+      a.frontmatter.date < b.frontmatter.date ? 1 : -1
+    );
+    return {
+      props: { sortedPosts, mainId, subId },
+    };
   }
-
-  return {
-    props: { posts },
-  };
 }
