@@ -1,6 +1,10 @@
+import path from 'path';
+
 const DRAWER_WIDTH = 210;
 const NAV_HEIGHT = 64;
 
 const THEME_VALUE = 'light';
 
-export {DRAWER_WIDTH, NAV_HEIGHT, THEME_VALUE};
+const POST_DIR = path.join('src/_posts');
+
+export {DRAWER_WIDTH, NAV_HEIGHT, THEME_VALUE, POST_DIR};
