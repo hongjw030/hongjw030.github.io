@@ -5,3 +5,7 @@ export interface CategoryType{
   note: number;
   coverImg?: string;
 }
+export interface CategoryGroupType{
+  mainCategory: CategoryType;
+  subCategory: Array<CategoryType>;
+}

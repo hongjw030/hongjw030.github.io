@@ -1,4 +1,6 @@
-const drawerWidth = 210;
-const navHeight = 64;
+const DRAWER_WIDTH = 210;
+const NAV_HEIGHT = 64;
 
-export {drawerWidth, navHeight};
+const THEME_VALUE = 'light';
+
+export {DRAWER_WIDTH, NAV_HEIGHT, THEME_VALUE};

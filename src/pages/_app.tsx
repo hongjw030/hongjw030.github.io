@@ -6,6 +6,7 @@ import "@/styles/mixin.scss";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "jotai";
 import { Suspense } from "react";
+import InitialComponent from "@/components/initialComponent/InitialComponent";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider>
         <Suspense fallback="Loading...">
           <ThemeProvider theme={theme}>
+            <InitialComponent />
             <Component {...pageProps} />
           </ThemeProvider>
         </Suspense>

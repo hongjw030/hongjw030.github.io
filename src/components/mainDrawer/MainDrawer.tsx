@@ -3,7 +3,7 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
-import { drawerWidth, navHeight } from "@/constants";
+import { DRAWER_WIDTH, NAV_HEIGHT } from "@/constants";
 import StyledSpacing from "../common/StyledSpacing";
 import CommonList from "./CommonList";
 import BlogList from "./BlogList";
@@ -23,10 +23,10 @@ export default function MainDrawer({
   return (
     <Drawer
       sx={{
-        width: drawerWidth,
+        width: DRAWER_WIDTH,
         flexShrink: 0,
         "& .MuiDrawer-paper": {
-          width: drawerWidth,
+          width: DRAWER_WIDTH,
           boxSizing: "border-box",
         },
       }}
@@ -34,7 +34,7 @@ export default function MainDrawer({
       anchor="left"
       open={open}
     >
-      <StyledSpacing justifyContent="flex-end" height={navHeight}>
+      <StyledSpacing justifyContent="flex-end" height={NAV_HEIGHT}>
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeftIcon />
         </IconButton>
@@ -47,7 +47,7 @@ export default function MainDrawer({
       <CommonList current={current} />
 
       <Divider />
-      {/* <BlogList categoryData={atom} /> */}
+      <BlogList />
     </Drawer>
   );
 }
