@@ -2,6 +2,7 @@ import { HEADER_HEIGHT, MIN_WIDTH } from "@/constants";
 import { Box, Divider, Paper, Typography } from "@mui/material";
 import StyledChip from "../common/StyledChip";
 import { useRouter } from "next/router";
+import formatDate from "@/utils/formatDate";
 
 interface PostHeaderProps {
   title: string;
@@ -40,7 +41,7 @@ export default function PostHeader({
         {title}
       </Box>
       <Box fontSize={12}>
-        {birthTime} / {mTime}{" "}
+        작성일: {formatDate(birthTime)} / 수정일: {formatDate(mTime)}
       </Box>
       <Box
         sx={{

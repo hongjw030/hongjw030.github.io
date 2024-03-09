@@ -7,6 +7,7 @@ import { CardActionArea } from "@mui/material";
 import { PostFrontMatterType } from "@/types/PostType";
 import { useRouter } from "next/router";
 import { MIN_WIDTH } from "@/constants";
+import formatDate from "@/utils/formatDate";
 
 interface PostingCardProps extends PostFrontMatterType {
   birthTime: string;
@@ -56,8 +57,8 @@ export default function PostingCard({
           >
             {title}
           </Typography>
-          <Typography variant="body1" component="div">
-            {birthTime}
+          <Typography variant="body2" component="div">
+            작성일: {formatDate(birthTime)}
           </Typography>
           <Typography color="text.secondary" fontSize={12}>
             {description
