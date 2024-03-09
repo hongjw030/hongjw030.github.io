@@ -1,4 +1,4 @@
-import { MIN_WIDTH } from "@/constants";
+import { HEADER_HEIGHT, MIN_WIDTH } from "@/constants";
 import { Box, Divider, Paper, Typography } from "@mui/material";
 import React from "react";
 
@@ -24,7 +24,7 @@ export default function BlogHeader({
         backgroundImage: imgUrl,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        height: "130px",
+        height: HEADER_HEIGHT,
         width: "100%",
         display: "flex",
         flexDirection: "column",

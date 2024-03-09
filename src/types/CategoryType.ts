@@ -9,3 +9,11 @@ export interface CategoryGroupType{
   mainCategory: CategoryType;
   subCategory: Array<CategoryType>;
 }
+
+export interface CategoryParamsType {
+  params: {mainId: string}
+}
+
+export interface CategorySubParamsType {
+  params: {mainId: string; subId: string;}
+}

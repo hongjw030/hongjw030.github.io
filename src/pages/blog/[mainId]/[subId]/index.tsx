@@ -6,6 +6,7 @@ import { POST_DIR } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
 import CATEGORY_ARRAY from "@/constants/category";
 import CardList from "@/components/card/CardList";
+import { CategorySubParamsType } from "@/types/CategoryType";
 
 export default function BlogPage({ sortedPosts, mainId, subId }: any) {
   const currentMainObject = mainId
@@ -36,17 +37,20 @@ export default function BlogPage({ sortedPosts, mainId, subId }: any) {
 }
 
 export async function getStaticPaths() {
+  const paths: CategorySubParamsType[] = [];
+  CATEGORY_ARRAY.forEach((main) => {
+    main.subCategory.forEach((sub) => {
+      paths.push({
+        params: {
+          mainId: main.mainCategory.id,
+          subId: sub.id,
+        },
+      });
+    });
+  });
+
   return {
-    paths: [
-      { params: { mainId: "TIL", subId: "TIL_blog" } },
-      { params: { mainId: "algorithm", subId: "algorithm_study" } },
-      { params: { mainId: "algorithm", subId: "algorithm_problem" } },
-      { params: { mainId: "study", subId: "study_cs" } },
-      { params: { mainId: "study", subId: "study_book" } },
-      { params: { mainId: "diary", subId: "diary_daily" } },
-      { params: { mainId: "diary", subId: "diary_weekly" } },
-      { params: { mainId: "diary", subId: "diary_monthly" } },
-    ],
+    paths: paths,
     fallback: false,
   };
 }
@@ -59,7 +63,6 @@ export async function getStaticProps({
   const mainId = params.mainId;
   const subId = params.subId;
   const files = fs.readdirSync(POST_DIR);
-
   const posts = files.map((filename) => {
     const markdownWithMetadata = fs
       .readFileSync(`src/_posts/${filename}`)
