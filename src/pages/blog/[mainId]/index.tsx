@@ -36,7 +36,7 @@ export async function getStaticPaths() {
       { params: { mainId: "troubleshooting" } },
       { params: { mainId: "diary" } },
     ],
-    fallback: "blocking",
+    fallback: false,
   };
 }
 

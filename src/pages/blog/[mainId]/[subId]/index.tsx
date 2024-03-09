@@ -47,7 +47,7 @@ export async function getStaticPaths() {
       { params: { mainId: "diary", subId: "diary_weekly" } },
       { params: { mainId: "diary", subId: "diary_monthly" } },
     ],
-    fallback: "blocking",
+    fallback: false,
   };
 }
 
