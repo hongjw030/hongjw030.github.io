@@ -9,7 +9,7 @@ import {
   MenuRounded as MenuIcon,
   WebRounded as WebIcon,
 } from "@mui/icons-material";
-import { Link } from "@mui/material";
+import { Link, Typography } from "@mui/material";
 
 const COMMON_ARRAY = [
   { id: "/", key: "home", name: "HOME", icon: <HomeIcon /> },
@@ -37,7 +37,7 @@ export default function CommonList({ current }: CommonListProps) {
               selected={current ? el.name === current : el.name === "HOME"}
             >
               <ListItemIcon>{el.icon}</ListItemIcon>
-              <ListItemText primary={el.name} />
+              <Typography fontSize={12}>{el.name}</Typography>
             </ListItemButton>
           </ListItem>
         </Link>

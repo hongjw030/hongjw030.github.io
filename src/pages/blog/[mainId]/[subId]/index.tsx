@@ -63,7 +63,6 @@ export async function getStaticProps({
   const mainId = params.mainId;
   const subId = params.subId;
   const files = fs.readdirSync(POST_DIR);
-
   const posts = files.map((filename) => {
     const markdownWithMetadata = fs
       .readFileSync(`src/_posts/${filename}`)
