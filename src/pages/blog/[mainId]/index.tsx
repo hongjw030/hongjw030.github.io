@@ -54,6 +54,8 @@ export async function getStaticProps({
     const markdownWithMetadata = fs
       .readFileSync(`src/_posts/${filename}`)
       .toString();
+    let stats = fs.statSync(`src/_posts/${filename}`);
+
     const { data } = matter(markdownWithMetadata);
     const frontmatter = {
       ...data,
@@ -63,18 +65,21 @@ export async function getStaticProps({
       return {
         slug: filename.replace(".md", ""),
         frontmatter,
+        birthTime: stats.birthtime.toString(),
+        mTime: stats.mtime.toString(),
       };
     } else return null;
   });
 
   let sortedPosts = posts.filter((el) => el !== null);
+
   if ((posts.length == 1 && posts[0] == null) || !posts) {
     return {
       props: { sortedPosts: [], mainId },
     };
   } else {
     sortedPosts = posts.sort((a, b) =>
-      (a?.frontmatter.date ?? 1) < (b?.frontmatter.date ?? 1) ? 1 : -1
+      (a?.birthTime ?? 1) < (b?.birthTime ?? 1) ? 1 : -1
     );
     return {
       props: { sortedPosts, mainId },

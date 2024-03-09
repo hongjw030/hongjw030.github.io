@@ -5,14 +5,12 @@ import { PostFrontMatterType } from "@/types/PostType";
 import CATEGORY_ARRAY from "@/constants/category";
 import PostLayout from "@/layouts/PostLayout";
 import PostHeader from "@/components/header/PostHeader";
-import { Box, Divider, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import markdownToHtml from "@/utils/markdownToHtml";
 
 export default function BlogPage({ post }: any) {
   if (!post) return;
-
   const frontmatter: PostFrontMatterType = post?.frontmatter;
-  // const content = post?.content;
   const currentMainObject = frontmatter.mainCategory
     ? CATEGORY_ARRAY[
         CATEGORY_ARRAY.findIndex(
@@ -44,7 +42,8 @@ export default function BlogPage({ post }: any) {
           mainTitle={currentMainObject?.mainCategory.title}
           subId={frontmatter.subCategory}
           subTitle={currentSubObject?.title}
-          date={frontmatter.date}
+          birthTime={post.birthTime}
+          mTime={post.mTime}
           description={frontmatter.description}
         />
         <Box
@@ -76,11 +75,17 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: { post: string } }) {
-  // const files = fs.readdirSync(POST_DIR);
   const mdFile = fs.readFileSync(`src/_posts/${params.post}.md`).toString();
+  let stats = fs.statSync(`src/_posts/${params.post}.md`);
+
   const { data, content } = matter(mdFile);
   const markedContent = await markdownToHtml(content);
-  const post = { frontmatter: data, content: markedContent };
+  const post = {
+    frontmatter: data,
+    content: markedContent,
+    birthTime: stats.birthtime.toString(),
+    mTime: stats.mtime.toString(),
+  };
   return {
     props: { post },
   };

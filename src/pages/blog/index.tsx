@@ -21,6 +21,7 @@ export async function getStaticProps() {
     const markdownWithMetadata = fs
       .readFileSync(`src/_posts/${filename}`)
       .toString();
+    let stats = fs.statSync(`src/_posts/${filename}`);
 
     const { data } = matter(markdownWithMetadata);
 
@@ -31,6 +32,8 @@ export async function getStaticProps() {
     return {
       slug: filename.replace(".md", ""),
       frontmatter,
+      birthTime: stats.birthtime.toString(),
+      mTime: stats.mtime.toString(),
     };
   });
 
@@ -41,7 +44,7 @@ export async function getStaticProps() {
     };
   } else {
     sortedPosts = posts.sort((a, b) =>
-      (a?.frontmatter.date ?? 1) < (b?.frontmatter.date ?? 1) ? 1 : -1
+      (a?.birthTime ?? 1) < (b?.birthTime ?? 1) ? 1 : -1
     );
     return {
       props: { sortedPosts },

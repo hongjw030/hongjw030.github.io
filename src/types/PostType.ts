@@ -3,7 +3,6 @@ export interface PostFrontMatterType{
   mainCategory: string;
   subCategory?: string;
   coverImg?: string;
-  date: string;
   toc?: boolean
   description?: string;
 }
