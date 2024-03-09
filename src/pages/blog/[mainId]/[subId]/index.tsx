@@ -5,11 +5,31 @@ import matter from "gray-matter";
 import { POST_DIR } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
 import PostingCard from "@/components/card/Card";
+import CATEGORY_ARRAY from "@/constants/category";
 
-export default function BlogPage({ sortedPosts }: any) {
+export default function BlogPage({ sortedPosts, mainId, subId }: any) {
+  const currentMainObject = mainId
+    ? CATEGORY_ARRAY[
+        CATEGORY_ARRAY.findIndex((el) => el.mainCategory.id === mainId)
+      ]
+    : null;
+
+  const currentSubObject =
+    currentMainObject && subId
+      ? currentMainObject.subCategory[
+          currentMainObject.subCategory.findIndex((el) => el.id === subId)
+        ]
+      : null;
   return (
-    <BlogLayout>
-      <div>블로그 전체 글 리스트를 보여주는 페이지</div>
+    <BlogLayout
+      mainId={mainId}
+      subId={subId}
+      mainTitle={currentMainObject?.mainCategory.title}
+      subTitle={currentSubObject?.title}
+      description={currentSubObject?.description}
+      note={currentSubObject?.note}
+      coverImg={currentSubObject?.coverImg}
+    >
       {sortedPosts?.map(
         ({
           frontmatter: {
@@ -84,11 +104,11 @@ export async function getStaticProps({
   let sortedPosts = posts.filter((el) => el !== null);
   if ((posts.length == 1 && posts[0] == null) || !posts) {
     return {
-      props: {},
+      props: { sortedPosts: [], mainId, subId },
     };
   } else {
     sortedPosts = posts.sort((a, b) =>
-      a.frontmatter.date < b.frontmatter.date ? 1 : -1
+      (a?.frontmatter.date ?? 1) < (b?.frontmatter.date ?? 1) ? 1 : -1
     );
     return {
       props: { sortedPosts, mainId, subId },

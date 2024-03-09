@@ -9,7 +9,6 @@ import PostingCard from "@/components/card/Card";
 export default function BlogPage({ sortedPosts }: any) {
   return (
     <BlogLayout>
-      <div>블로그 전체 글 리스트를 보여주는 페이지</div>
       {sortedPosts.map(
         ({
           frontmatter: {
@@ -58,13 +57,17 @@ export async function getStaticProps() {
     };
   });
 
-  const sortedPosts = posts.sort((a, b) =>
-    a.frontmatter.date < b.frontmatter.date ? 1 : -1
-  );
-
-  return {
-    props: {
-      sortedPosts,
-    },
-  };
+  let sortedPosts = posts.filter((el) => el !== null);
+  if ((posts.length == 1 && posts[0] == null) || !posts) {
+    return {
+      props: { sortedPosts: [] },
+    };
+  } else {
+    sortedPosts = posts.sort((a, b) =>
+      (a?.frontmatter.date ?? 1) < (b?.frontmatter.date ?? 1) ? 1 : -1
+    );
+    return {
+      props: { sortedPosts },
+    };
+  }
 }

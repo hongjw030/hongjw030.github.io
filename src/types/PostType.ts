@@ -7,3 +7,12 @@ export interface PostFrontMatterType{
   toc?: boolean
   description?: string;
 }
+
+export interface StaticPostsType {
+  slug: string;
+  frontmatter: PostFrontMatterType;  
+}
+
+export interface StaticPostParamsType{
+  sortedPosts: StaticPostParamsType[];
+}

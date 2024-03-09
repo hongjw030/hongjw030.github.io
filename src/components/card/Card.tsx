@@ -16,24 +16,46 @@ export default function PostingCard({
   description,
 }: PostFrontMatterType) {
   const router = useRouter();
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea onClick={() => router.push(`/${title}_${date}`)}>
+    <Card sx={{ minWidth: 345, padding: "15px" }}>
+      <CardActionArea
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+        }}
+        onClick={() => router.push(`/#`)}
+      >
         <CardMedia
           component="img"
+          sx={{ width: 140 }}
           height="140"
           image={coverImg ?? "/profile.jpg"}
           alt={title}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+        <CardContent
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "5px",
+          }}
+        >
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{ fontWeight: "700" }}
+          >
             {title}
           </Typography>
           <Typography variant="body1" component="div">
             {date}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
+          <Typography color="text.secondary" fontSize={12}>
+            {description
+              ? description
+              : "description이 작성되지 않은 글입니다! 카드를 클릭해 본문 내용을 참조해주세요."}
           </Typography>
         </CardContent>
       </CardActionArea>
