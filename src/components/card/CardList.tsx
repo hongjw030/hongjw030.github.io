@@ -1,7 +1,6 @@
 import { PostFrontMatterType } from "@/types/PostType";
 import PostingCard from "./Card";
-import { Box, Pagination, Stack } from "@mui/material";
-import { POST_PER_PAGE } from "@/constants";
+import { Stack } from "@mui/material";
 import EmptyBlogPage from "../emptyContainer/EmptyBlogPage";
 
 export default function CardList({ sortedPosts }: any) {

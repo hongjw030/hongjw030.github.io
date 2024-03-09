@@ -6,6 +6,7 @@ import { POST_DIR } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
 import CATEGORY_ARRAY from "@/constants/category";
 import CardList from "@/components/card/CardList";
+import { CategoryParamsType } from "@/types/CategoryType";
 
 export default function BlogPage({ sortedPosts, mainId }: any) {
   const currentMainObject = mainId
@@ -28,14 +29,15 @@ export default function BlogPage({ sortedPosts, mainId }: any) {
 }
 
 export async function getStaticPaths() {
+  const paths: CategoryParamsType[] = [];
+  CATEGORY_ARRAY.forEach((el) => {
+    paths.push({
+      params: { mainId: el.mainCategory.id },
+    });
+  });
+
   return {
-    paths: [
-      { params: { mainId: "TIL" } },
-      { params: { mainId: "algorithm" } },
-      { params: { mainId: "study" } },
-      { params: { mainId: "troubleshooting" } },
-      { params: { mainId: "diary" } },
-    ],
+    paths: paths,
     fallback: false,
   };
 }
