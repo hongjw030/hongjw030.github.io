@@ -3,32 +3,31 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { List, ListItem, ListItemButton } from "@mui/material";
-import Link from "next/link";
-
-import { CategoryGroupApiType } from "@/types/CategoryType";
+import { CategoryGroupType } from "@/types/CategoryType";
+import StyledCategoryListItem from "./StyledCategoryListItem";
+import { Link } from "@mui/material";
 
 interface CustomAccordionProps {
-  categoryGroup: CategoryGroupApiType;
+  categoryGroup: CategoryGroupType;
 }
 
 export default function StyledAccordion({
   categoryGroup,
 }: CustomAccordionProps) {
-  const mainCategory = categoryGroup[0];
-  const subCategoryList = categoryGroup[1];
+  const mainCategory = categoryGroup.mainCategory;
+  const subCategoryList = categoryGroup.subCategory;
 
   return (
     <div>
       <Accordion elevation={0} disableGutters>
-        <ListItemButton
-          sx={{
-            height: "30px",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <Link href={`/blog/${mainCategory.id}`} style={{ fontSize: "13px" }}>
+        <StyledCategoryListItem>
+          <Link
+            sx={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
+            href={`/blog/${mainCategory.id}`}
+          >
             {mainCategory.title}
           </Link>
           {subCategoryList.length > 0 && (
@@ -44,27 +43,25 @@ export default function StyledAccordion({
               }}
             ></AccordionSummary>
           )}
-        </ListItemButton>
+        </StyledCategoryListItem>
         {subCategoryList.length > 0 && (
           <AccordionDetails>
-            <List disablePadding>
-              {subCategoryList.map((subCategory) => {
-                return (
-                  <ListItem disablePadding key={subCategory.id}>
-                    <Link
-                      href={`/blog/${mainCategory.id}/${subCategory.id}`}
-                      style={{ fontSize: "14px" }}
-                    >
-                      <ListItemButton>
-                        <Typography fontSize={13}>
-                          {subCategory.title}
-                        </Typography>
-                      </ListItemButton>
-                    </Link>
-                  </ListItem>
-                );
-              })}
-            </List>
+            {subCategoryList.map((subCategory) => {
+              return (
+                <Link
+                  sx={{
+                    textDecoration: "none",
+                    color: "inherit",
+                  }}
+                  href={`/blog/${mainCategory.id}/${subCategory.id}`}
+                  key={subCategory.id}
+                >
+                  <StyledCategoryListItem>
+                    <Typography fontSize={13}>{subCategory.title}</Typography>
+                  </StyledCategoryListItem>
+                </Link>
+              );
+            })}
           </AccordionDetails>
         )}
       </Accordion>

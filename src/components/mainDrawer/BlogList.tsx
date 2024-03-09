@@ -1,10 +1,8 @@
 import StyledAccordion from "@/components/common/StyledAccordion";
+import CATEGORY_ARRAY from "@/constants/category";
 import { Link, ListItem } from "@mui/material";
 
-interface BlogListProps {
-  categoryData?: Array<any>;
-}
-export default function BlogList({ categoryData }: BlogListProps) {
+export default function BlogList() {
   return (
     <>
       <ListItem>
@@ -12,11 +10,9 @@ export default function BlogList({ categoryData }: BlogListProps) {
           전체보기{" "}
         </Link>
       </ListItem>
-      {categoryData &&
-        categoryData.length > 0 &&
-        categoryData.map((el) => {
-          return <StyledAccordion categoryGroup={el} key={el[0]?.id} />;
-        })}
+      {CATEGORY_ARRAY.map((el) => {
+        return <StyledAccordion categoryGroup={el} key={el.mainCategory.id} />;
+      })}
     </>
   );
 }

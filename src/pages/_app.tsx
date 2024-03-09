@@ -4,9 +4,9 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import "@/styles/globals.scss";
 import "@/styles/mixin.scss";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import InitialFetcher from "@/components/initialFetcher/InitialFetcher";
 import { Provider } from "jotai";
 import { Suspense } from "react";
+import InitialComponent from "@/components/initialComponent/InitialComponent";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider>
         <Suspense fallback="Loading...">
           <ThemeProvider theme={theme}>
-            <InitialFetcher />
+            <InitialComponent />
             <Component {...pageProps} />
           </ThemeProvider>
         </Suspense>

@@ -3,14 +3,11 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
-import { drawerWidth, navHeight } from "@/constants";
+import { DRAWER_WIDTH, NAV_HEIGHT } from "@/constants";
 import StyledSpacing from "../common/StyledSpacing";
 import CommonList from "./CommonList";
 import BlogList from "./BlogList";
 import SideProfile from "./SideProfile";
-import useGetCategoryData from "@/hooks/InitialFetcher";
-import { CategoryListAtom } from "@/store/category";
-import { useAtom } from "jotai";
 
 export interface MainDrawerProp {
   current?: string;
@@ -23,16 +20,13 @@ export default function MainDrawer({
   open = true,
   handleDrawerClose,
 }: MainDrawerProp) {
-  const { categoryData } = useGetCategoryData();
-  const [atom, setAtom] = useAtom(CategoryListAtom);
-
   return (
     <Drawer
       sx={{
-        width: drawerWidth,
+        width: DRAWER_WIDTH,
         flexShrink: 0,
         "& .MuiDrawer-paper": {
-          width: drawerWidth,
+          width: DRAWER_WIDTH,
           boxSizing: "border-box",
         },
       }}
@@ -40,7 +34,7 @@ export default function MainDrawer({
       anchor="left"
       open={open}
     >
-      <StyledSpacing justifyContent="flex-end" height={navHeight}>
+      <StyledSpacing justifyContent="flex-end" height={NAV_HEIGHT}>
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeftIcon />
         </IconButton>
@@ -53,7 +47,7 @@ export default function MainDrawer({
       <CommonList current={current} />
 
       <Divider />
-      {atom && <BlogList categoryData={atom} />}
+      <BlogList />
     </Drawer>
   );
 }

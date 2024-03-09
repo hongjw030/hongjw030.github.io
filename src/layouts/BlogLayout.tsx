@@ -10,13 +10,21 @@ import Container from "@/components/container/Container";
 import Nav from "@/components/nav/Nav";
 import MainDrawer from "@/components/mainDrawer/MainDrawer";
 import StyledSpacing from "@/components/common/StyledSpacing";
-import { navHeight } from "@/constants";
+import { NAV_HEIGHT } from "@/constants";
+import { useAtom } from "jotai";
+import { currentCategoryAtom } from "@/store/category";
 
 interface BlogLayoutProps {
   children?: ReactNode;
 }
 export default function BlogLayout({ children }: BlogLayoutProps) {
   const [open, setOpen] = useState(false);
+  const [current] = useAtom(currentCategoryAtom);
+
+  const currentLocation = `BLOG > ${
+    current?.currentMainCategoryAtom?.title ?? ""
+  } > ${current?.currentSubCategoryAtom?.title ?? ""}`;
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -41,7 +49,7 @@ export default function BlogLayout({ children }: BlogLayoutProps) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            BLOG {">"}
+            {currentLocation}
           </Typography>
         </Toolbar>
       </Nav>
@@ -53,7 +61,7 @@ export default function BlogLayout({ children }: BlogLayoutProps) {
       />
 
       <Container open={open}>
-        <StyledSpacing height={navHeight} />
+        <StyledSpacing height={NAV_HEIGHT} />
         <div>{children}</div>
       </Container>
     </Box>
