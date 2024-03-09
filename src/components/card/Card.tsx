@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { PostFrontMatterType } from "@/types/PostType";
 import { useRouter } from "next/router";
+import { MIN_WIDTH } from "@/constants";
 
 export default function PostingCard({
   title,
@@ -18,7 +19,7 @@ export default function PostingCard({
   const router = useRouter();
 
   return (
-    <Card sx={{ minWidth: 345, padding: "15px" }}>
+    <Card sx={{ minWidth: MIN_WIDTH, padding: "15px" }}>
       <CardActionArea
         sx={{
           display: "flex",
@@ -31,7 +32,7 @@ export default function PostingCard({
           component="img"
           sx={{ width: 140 }}
           height="140"
-          image={coverImg ?? "/profile.jpg"}
+          image={coverImg ?? "/noImg.png"}
           alt={title}
         />
         <CardContent

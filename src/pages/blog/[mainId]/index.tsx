@@ -4,8 +4,8 @@ import fs from "fs";
 import matter from "gray-matter";
 import { POST_DIR } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
-import PostingCard from "@/components/card/Card";
 import CATEGORY_ARRAY from "@/constants/category";
+import CardList from "@/components/card/CardList";
 
 export default function BlogPage({ sortedPosts, mainId }: any) {
   const currentMainObject = mainId
@@ -22,30 +22,7 @@ export default function BlogPage({ sortedPosts, mainId }: any) {
       note={currentMainObject?.mainCategory.note}
       coverImg={currentMainObject?.mainCategory.coverImg}
     >
-      {sortedPosts?.map(
-        ({
-          frontmatter: {
-            title,
-            date,
-            coverImg,
-            description,
-            mainCategory,
-            subCategory,
-          },
-        }: {
-          frontmatter: PostFrontMatterType;
-        }) => (
-          <PostingCard
-            title={title}
-            date={date}
-            coverImg={coverImg}
-            mainCategory={mainCategory}
-            subCategory={subCategory}
-            description={description}
-            key={title}
-          />
-        )
-      )}
+      <CardList sortedPosts={sortedPosts} />
     </BlogLayout>
   );
 }
