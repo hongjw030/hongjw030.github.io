@@ -6,12 +6,13 @@ import CATEGORY_ARRAY from "@/constants/category";
 import PostLayout from "@/layouts/PostLayout";
 import PostHeader from "@/components/header/PostHeader";
 import { Box, Divider, Stack } from "@mui/material";
+import markdownToHtml from "@/utils/markdownToHtml";
 
 export default function BlogPage({ post }: any) {
   if (!post) return;
 
   const frontmatter: PostFrontMatterType = post?.frontmatter;
-  const content = post?.content;
+  // const content = post?.content;
   const currentMainObject = frontmatter.mainCategory
     ? CATEGORY_ARRAY[
         CATEGORY_ARRAY.findIndex(
@@ -46,7 +47,15 @@ export default function BlogPage({ post }: any) {
           date={frontmatter.date}
           description={frontmatter.description}
         />
-        <div>{content}</div>
+        <Box
+          sx={{
+            "& img": {
+              minWidth: "340px",
+              width: "50vw",
+            },
+          }}
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        ></Box>
       </Stack>
     </PostLayout>
   );
@@ -70,8 +79,8 @@ export async function getStaticProps({ params }: { params: { post: string } }) {
   // const files = fs.readdirSync(POST_DIR);
   const mdFile = fs.readFileSync(`src/_posts/${params.post}.md`).toString();
   const { data, content } = matter(mdFile);
-  const post = { frontmatter: data, content: content };
-
+  const markedContent = await markdownToHtml(content);
+  const post = { frontmatter: data, content: markedContent };
   return {
     props: { post },
   };
