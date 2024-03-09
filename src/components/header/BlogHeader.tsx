@@ -1,5 +1,5 @@
 import { HEADER_HEIGHT, MIN_WIDTH } from "@/constants";
-import { Box, Divider, Paper, Typography } from "@mui/material";
+import { Divider, Paper, Typography } from "@mui/material";
 import React from "react";
 
 interface BlogHeaderProps {
@@ -33,9 +33,18 @@ export default function BlogHeader({
       }}
       elevation={3}
     >
-      <Typography variant="h5">{title}</Typography>
+      <Typography
+        gutterBottom
+        variant="h5"
+        component="div"
+        sx={{ fontWeight: "700" }}
+      >
+        {title ? title : "홍장군네 블로그"}
+      </Typography>
       <Divider />
-      <Typography variant="body1">{description}</Typography>
+      <Typography color="text.secondary" fontSize={13}>
+        {description ? description : "홍장군네 블로그 글 전체 보기"}
+      </Typography>
     </Paper>
   );
 }

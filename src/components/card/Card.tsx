@@ -8,6 +8,10 @@ import { PostFrontMatterType } from "@/types/PostType";
 import { useRouter } from "next/router";
 import { MIN_WIDTH } from "@/constants";
 
+interface PostingCardProps extends PostFrontMatterType {
+  slug: string;
+}
+
 export default function PostingCard({
   title,
   mainCategory,
@@ -15,7 +19,8 @@ export default function PostingCard({
   coverImg,
   date,
   description,
-}: PostFrontMatterType) {
+  slug,
+}: PostingCardProps) {
   const router = useRouter();
 
   return (
@@ -26,7 +31,7 @@ export default function PostingCard({
           justifyContent: "flex-start",
           alignItems: "flex-start",
         }}
-        onClick={() => router.push(`/#`)}
+        onClick={() => router.push(`/${slug}`)}
       >
         <CardMedia
           component="img"
