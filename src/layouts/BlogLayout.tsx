@@ -2,7 +2,6 @@ import { ReactNode, useState } from "react";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -10,21 +9,32 @@ import Container from "@/components/container/Container";
 import Nav from "@/components/nav/Nav";
 import MainDrawer from "@/components/mainDrawer/MainDrawer";
 import StyledSpacing from "@/components/common/StyledSpacing";
+import StyledBreadcrumbs from "@/components/common/StyledBreadcrumbs";
 import { NAV_HEIGHT } from "@/constants";
-import { useAtom } from "jotai";
-import { currentCategoryAtom } from "@/store/category";
+import CATEGORY_ARRAY from "@/constants/category";
+import BlogHeader from "@/components/header/BlogHeader";
 
 interface BlogLayoutProps {
   children?: ReactNode;
+  mainId?: string;
+  mainTitle?: string;
+  subId?: string;
+  subTitle?: string;
+  description?: string;
+  note?: number;
+  coverImg?: string;
 }
-export default function BlogLayout({ children }: BlogLayoutProps) {
+export default function BlogLayout({
+  children,
+  mainId,
+  mainTitle,
+  subId,
+  subTitle,
+  description,
+  note,
+  coverImg,
+}: BlogLayoutProps) {
   const [open, setOpen] = useState(false);
-  const [current] = useAtom(currentCategoryAtom);
-
-  const currentLocation = `BLOG > ${
-    current?.currentMainCategoryAtom?.title ?? ""
-  } > ${current?.currentSubCategoryAtom?.title ?? ""}`;
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -48,9 +58,14 @@ export default function BlogLayout({ children }: BlogLayoutProps) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            {currentLocation}
-          </Typography>
+          <Box>
+            <StyledBreadcrumbs
+              mainId={mainId}
+              mainTitle={mainTitle}
+              subId={subId}
+              subTitle={subTitle}
+            />
+          </Box>
         </Toolbar>
       </Nav>
 
@@ -62,6 +77,12 @@ export default function BlogLayout({ children }: BlogLayoutProps) {
 
       <Container open={open}>
         <StyledSpacing height={NAV_HEIGHT} />
+        <BlogHeader
+          title={subTitle ? subTitle : mainTitle}
+          description={description}
+          coverImg={coverImg}
+        />
+        <StyledSpacing height={30} />
         <div>{children}</div>
       </Container>
     </Box>

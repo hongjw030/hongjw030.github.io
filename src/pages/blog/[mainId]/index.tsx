@@ -4,36 +4,25 @@ import fs from "fs";
 import matter from "gray-matter";
 import { POST_DIR } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
-import PostingCard from "@/components/card/Card";
+import CATEGORY_ARRAY from "@/constants/category";
+import CardList from "@/components/card/CardList";
 
-export default function BlogPage({ sortedPosts }: any) {
+export default function BlogPage({ sortedPosts, mainId }: any) {
+  const currentMainObject = mainId
+    ? CATEGORY_ARRAY[
+        CATEGORY_ARRAY.findIndex((el) => el.mainCategory.id === mainId)
+      ]
+    : null;
+
   return (
-    <BlogLayout>
-      <div>블로그 전체 글 리스트를 보여주는 페이지</div>
-      {sortedPosts?.map(
-        ({
-          frontmatter: {
-            title,
-            date,
-            coverImg,
-            description,
-            mainCategory,
-            subCategory,
-          },
-        }: {
-          frontmatter: PostFrontMatterType;
-        }) => (
-          <PostingCard
-            title={title}
-            date={date}
-            coverImg={coverImg}
-            mainCategory={mainCategory}
-            subCategory={subCategory}
-            description={description}
-            key={title}
-          />
-        )
-      )}
+    <BlogLayout
+      mainId={mainId}
+      mainTitle={currentMainObject?.mainCategory.title}
+      description={currentMainObject?.mainCategory.description}
+      note={currentMainObject?.mainCategory.note}
+      coverImg={currentMainObject?.mainCategory.coverImg}
+    >
+      <CardList sortedPosts={sortedPosts} />
     </BlogLayout>
   );
 }
@@ -79,11 +68,11 @@ export async function getStaticProps({
   let sortedPosts = posts.filter((el) => el !== null);
   if ((posts.length == 1 && posts[0] == null) || !posts) {
     return {
-      props: {},
+      props: { sortedPosts: [], mainId },
     };
   } else {
     sortedPosts = posts.sort((a, b) =>
-      a.frontmatter.date < b.frontmatter.date ? 1 : -1
+      (a?.frontmatter.date ?? 1) < (b?.frontmatter.date ?? 1) ? 1 : -1
     );
     return {
       props: { sortedPosts, mainId },
