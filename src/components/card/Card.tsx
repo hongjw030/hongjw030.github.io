@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { MIN_WIDTH } from "@/constants";
 
 interface PostingCardProps extends PostFrontMatterType {
+  birthTime: string;
   slug: string;
 }
 
@@ -17,7 +18,7 @@ export default function PostingCard({
   mainCategory,
   subCategory,
   coverImg,
-  date,
+  birthTime,
   description,
   slug,
 }: PostingCardProps) {
@@ -56,7 +57,7 @@ export default function PostingCard({
             {title}
           </Typography>
           <Typography variant="body1" component="div">
-            {date}
+            {birthTime}
           </Typography>
           <Typography color="text.secondary" fontSize={12}>
             {description

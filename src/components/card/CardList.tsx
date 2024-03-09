@@ -18,18 +18,19 @@ export default function CardList({ sortedPosts }: any) {
             title,
             description,
             coverImg,
-            date,
             mainCategory,
             subCategory,
           },
           slug,
+          birthTime,
         }: {
           frontmatter: PostFrontMatterType;
           slug: string;
+          birthTime: string;
         }) => (
           <PostingCard
             title={title}
-            date={date}
+            birthTime={birthTime}
             coverImg={coverImg}
             mainCategory={mainCategory}
             subCategory={subCategory}

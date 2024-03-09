@@ -9,7 +9,8 @@ interface PostHeaderProps {
   mainTitle?: string;
   subId?: string;
   subTitle?: string;
-  date?: string;
+  birthTime: string;
+  mTime: string;
   description?: string;
 }
 
@@ -19,7 +20,8 @@ export default function PostHeader({
   mainTitle,
   subId,
   subTitle,
-  date,
+  birthTime,
+  mTime,
   description,
 }: PostHeaderProps) {
   return (
@@ -37,7 +39,9 @@ export default function PostHeader({
       <Box fontWeight={800} fontSize={35}>
         {title}
       </Box>
-      <Box fontSize={12}>{date}</Box>
+      <Box fontSize={12}>
+        {birthTime} / {mTime}{" "}
+      </Box>
       <Box
         sx={{
           display: "flex",
