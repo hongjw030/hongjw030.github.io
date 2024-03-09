@@ -22,8 +22,10 @@ export default function CardList({ sortedPosts }: any) {
             mainCategory,
             subCategory,
           },
+          slug,
         }: {
           frontmatter: PostFrontMatterType;
+          slug: string;
         }) => (
           <PostingCard
             title={title}
@@ -33,6 +35,7 @@ export default function CardList({ sortedPosts }: any) {
             subCategory={subCategory}
             description={description}
             key={title}
+            slug={slug}
           />
         )
       )}
