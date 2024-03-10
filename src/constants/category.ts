@@ -14,14 +14,21 @@ const TIL_group: CategoryGroupType = {
     note: 1,
   },
     subCategory: [
-    {
-      id: "TIL_blog",
-      title: "블로그 만들기",
-      description: "직접 블로그 홈페이지 만드는 과정.",
-      note: 1,
-      // coverImg: "string",
-    }
-  ]
+      {
+        id: "TIL_book",
+        title: "책 읽기",
+        description: "책읽고 느꼈던 점, 배운 점을 적습니다. (기술서적 위주)",
+        note: 1,
+        // coverImg: "string",
+      },
+      {
+        id: "TIL_blog",
+        title: "블로그 만들기",
+        description: "직접 블로그 홈페이지 만드는 과정.",
+        note: 2,
+        // coverImg: "string",
+      }
+    ]
   // coverImg: "string",
   
 }
@@ -68,9 +75,9 @@ const study_group: CategoryGroupType = {
       // coverImg: "string",
     },
     {
-      id: "study_book",
-      title: "기술 서적 스터디",
-      description: "기술 서적을 읽고 글을 남겨요.",
+      id: "study_modernreact",
+      title: "모던 리액트 딥다이브 스터디",
+      description: "모던 리액트 딥다이브를 공부하고 글을 남겨요.",
       note: 2,
       // coverImg: "string",
     }
@@ -98,24 +105,17 @@ const diary_group: CategoryGroupType = {
   },
   subCategory: [
     {
-      id: "diary_daily",
-      title: "일간 회고",
-      description: "매일 짧게라도 회고를 써요.",
-      note: 1,
-      // coverImg: "string",
-    },
-    {
       id: "diary_weekly",
       title: "주간 회고",
       description: "매주 일요일 회고를 남겨요.",
-      note: 2,
+      note: 1,
       // coverImg: "string",
     },
     {
       id: "diary_monthly",
       title: "월간 회고",
       description: "매달 마지막 날 회고를 남겨요.",
-      note: 3,
+      note: 2,
       // coverImg: "string",
     }
   ]

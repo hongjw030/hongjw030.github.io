@@ -2,7 +2,7 @@
 title: "에러 해결) vs code에서 node:internal/fs/utils:350    throw err;    ^Error: ENOENT: no such file or directory, open './input.txt' 에러 발생 시"
 mainCategory: "troubleshooting"
 description: ""
-coverImg: "/assets/algorithm/algorithm_problem6.png"
+coverImg: "/assets/troubleshooting/1.png"
 ---
 
 ## 0\. 발생 오류
