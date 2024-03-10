@@ -9,12 +9,12 @@ import { useRouter } from "next/router";
 import { MIN_WIDTH } from "@/constants";
 import formatDate from "@/utils/formatDate";
 
-export interface PostingCardProps extends PostFrontMatterType {
+interface SmallCardProps extends PostFrontMatterType {
   birthTime: string;
   slug: string;
 }
 
-export default function PostingCard({
+export default function SmallCard({
   title,
   mainCategory,
   subCategory,
@@ -22,22 +22,14 @@ export default function PostingCard({
   birthTime,
   description,
   slug,
-}: PostingCardProps) {
+}: SmallCardProps) {
   const router = useRouter();
 
   return (
-    <Card sx={{ minWidth: MIN_WIDTH, padding: "15px" }}>
-      <CardActionArea
-        sx={{
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-        }}
-        onClick={() => router.push(`/${slug}`)}
-      >
+    <Card sx={{ width: MIN_WIDTH, padding: "15px", height: "300px" }}>
+      <CardActionArea onClick={() => router.push(`/${slug}`)}>
         <CardMedia
           component="img"
-          sx={{ width: 100 }}
           height="100"
           image={coverImg ?? "/noImg.png"}
           alt={title}
@@ -47,12 +39,9 @@ export default function PostingCard({
             display: "flex",
             flexDirection: "column",
             gap: "5px",
-            paddingTop: 0,
-            paddingBottom: 0,
           }}
         >
           <Box
-            component="span"
             sx={{
               fontWeight: "700",
               fontSize: "20px",

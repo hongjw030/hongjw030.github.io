@@ -11,8 +11,6 @@ import Nav from "@/components/nav/Nav";
 import MainDrawer from "@/components/mainDrawer/MainDrawer";
 import StyledSpacing from "@/components/common/StyledSpacing";
 import { NAV_HEIGHT } from "@/constants";
-import { useAtom } from "jotai";
-import { currentCategoryAtom } from "@/store/category";
 
 interface MainLayoutProps {
   children?: ReactNode;
@@ -20,7 +18,6 @@ interface MainLayoutProps {
 }
 export default function MainLayout({ children, current }: MainLayoutProps) {
   const [open, setOpen] = useState(true);
-  const [temp, setCurrentCategory] = useAtom(currentCategoryAtom);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -29,13 +26,6 @@ export default function MainLayout({ children, current }: MainLayoutProps) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
-  useEffect(() => {
-    setCurrentCategory({
-      currentMainCategoryAtom: null,
-      currentSubCategoryAtom: null,
-    });
-  }, []);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -66,7 +56,7 @@ export default function MainLayout({ children, current }: MainLayoutProps) {
 
       <Container open={open}>
         <StyledSpacing height={NAV_HEIGHT} />
-        <div>{children}</div>
+        {children}
       </Container>
     </Box>
   );
