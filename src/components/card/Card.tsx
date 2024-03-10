@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { Box, CardActionArea } from "@mui/material";
 import { PostFrontMatterType } from "@/types/PostType";
 import { useRouter } from "next/router";
 import { MIN_WIDTH } from "@/constants";
@@ -37,8 +37,8 @@ export default function PostingCard({
       >
         <CardMedia
           component="img"
-          sx={{ width: 140 }}
-          height="140"
+          sx={{ width: 100 }}
+          height="100"
           image={coverImg ?? "/noImg.png"}
           alt={title}
         />
@@ -47,16 +47,22 @@ export default function PostingCard({
             display: "flex",
             flexDirection: "column",
             gap: "5px",
+            paddingTop: 0,
+            paddingBottom: 0,
           }}
         >
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{ fontWeight: "700" }}
+          <Box
+            component="span"
+            sx={{
+              fontWeight: "700",
+              fontSize: "20px",
+              maxHeight: "55px",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
           >
             {title}
-          </Typography>
+          </Box>
           <Typography variant="body2" component="div">
             작성일: {formatDate(birthTime)}
           </Typography>
