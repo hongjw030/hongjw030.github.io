@@ -3,13 +3,14 @@ export interface PostFrontMatterType{
   mainCategory: string;
   subCategory?: string;
   coverImg?: string;
-  toc?: boolean
   description?: string;
 }
 
 export interface StaticPostsType {
   slug: string;
   frontmatter: PostFrontMatterType;  
+  birthTime: string;
+  mTime: string;
 }
 
 export interface StaticPostParamsType{

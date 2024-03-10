@@ -38,7 +38,7 @@ export async function getStaticProps() {
   });
 
   let sortedPosts = posts.filter((el) => el !== null);
-  if ((posts.length == 1 && posts[0] == null) || !posts) {
+  if ((sortedPosts.length == 1 && sortedPosts[0] == null) || !posts) {
     return {
       props: { sortedPosts: [] },
     };

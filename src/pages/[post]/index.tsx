@@ -50,7 +50,7 @@ export default function BlogPage({ post }: any) {
           sx={{
             "& img": {
               minWidth: "340px",
-              width: "50vw",
+              width: "70vw",
             },
           }}
           dangerouslySetInnerHTML={{ __html: post.content }}
