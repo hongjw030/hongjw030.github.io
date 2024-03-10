@@ -78,7 +78,7 @@ export async function getStaticProps({
       props: { sortedPosts: [], mainId },
     };
   } else {
-    sortedPosts = posts.sort((a, b) =>
+    sortedPosts = sortedPosts.sort((a, b) =>
       (a?.birthTime ?? 1) < (b?.birthTime ?? 1) ? 1 : -1
     );
     return {

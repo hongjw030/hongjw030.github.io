@@ -70,35 +70,31 @@ export default function StyledCategoryGroup({
           ></AccordionSummary>
         )}
       </ListItem>
-      {subCategoryList.length > 0 && (
-        <AccordionDetails>
-          {subCategoryList.map((subCategory) => {
-            return (
-              <Link
-                sx={{
-                  textDecoration: "none",
-                  color: "inherit",
-                }}
-                href={
-                  subCategory.id !== "noTag"
-                    ? `/blog/${mainCategory.id}/${subCategory.id}`
-                    : `/blog/${mainCategory.id}`
-                }
-                key={subCategory.id}
-              >
-                <ListItem>
-                  <Typography fontSize={13}>
-                    <CategoryLabel
-                      title={subCategory.title}
-                      count={subCategory.count}
-                    />
-                  </Typography>
-                </ListItem>
-              </Link>
-            );
-          })}
-        </AccordionDetails>
-      )}
+      <AccordionDetails>
+        {subCategoryList.map((subCategory) => {
+          return (
+            <Link
+              sx={{
+                textDecoration: "none",
+                color: "inherit",
+              }}
+              href={
+                subCategory.id !== "noTag"
+                  ? `/blog/${mainCategory.id}/${subCategory.id}`
+                  : `/blog/${mainCategory.id}`
+              }
+              key={subCategory.id}
+            >
+              <ListItem>
+                <CategoryLabel
+                  title={subCategory.title}
+                  count={subCategory.count}
+                />
+              </ListItem>
+            </Link>
+          );
+        })}
+      </AccordionDetails>
     </Accordion>
   );
 }

@@ -4,12 +4,12 @@ import fs from "fs";
 import matter from "gray-matter";
 import { POST_DIR } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
-import CardList from "@/components/card/CardList";
+import { PostingCardList } from "@/components/card/CardList";
 
 export default function BlogPage({ sortedPosts }: any) {
   return (
     <BlogLayout>
-      <CardList sortedPosts={sortedPosts} />
+      <PostingCardList sortedPosts={sortedPosts} />
     </BlogLayout>
   );
 }
@@ -38,12 +38,13 @@ export async function getStaticProps() {
   });
 
   let sortedPosts = posts.filter((el) => el !== null);
+
   if ((sortedPosts.length == 1 && sortedPosts[0] == null) || !posts) {
     return {
       props: { sortedPosts: [] },
     };
   } else {
-    sortedPosts = posts.sort((a, b) =>
+    sortedPosts = sortedPosts.sort((a, b) =>
       (a?.birthTime ?? 1) < (b?.birthTime ?? 1) ? 1 : -1
     );
     return {

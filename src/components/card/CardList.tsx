@@ -1,5 +1,5 @@
 import { StaticPostsType } from "@/types/PostType";
-import PostingCard from "./Card";
+import { PostingCard, ProjectCard } from "./Card";
 import { Stack } from "@mui/material";
 import EmptyBlogPage from "../emptyContainer/EmptyBlogPage";
 
@@ -7,16 +7,15 @@ interface CardListProps {
   sortedPosts: StaticPostsType[];
 }
 
-export default function CardList({ sortedPosts }: CardListProps) {
+export function PostingCardList({ sortedPosts }: CardListProps) {
   const postCount = sortedPosts.length;
   if (!sortedPosts || postCount <= 0) {
     return <EmptyBlogPage />;
   }
-  let cardListPosts = sortedPosts.filter((el) => el !== null);
 
   return (
     <Stack spacing={2}>
-      {cardListPosts.map(
+      {sortedPosts.map(
         ({
           slug,
           frontmatter,
@@ -34,6 +33,31 @@ export default function CardList({ sortedPosts }: CardListProps) {
             subCategory={frontmatter.subCategory}
             description={frontmatter.description}
             key={frontmatter.title}
+            slug={slug}
+          />
+        )
+      )}
+    </Stack>
+  );
+}
+
+export function ProjectCardList({ sortedPosts }: CardListProps) {
+  const postCount = sortedPosts.length;
+  if (!sortedPosts || postCount <= 0) {
+    return <EmptyBlogPage />;
+  }
+
+  return (
+    <Stack spacing={2}>
+      {sortedPosts.map(
+        ({ slug, frontmatter }: { slug: string; frontmatter: any }) => (
+          <ProjectCard
+            note={frontmatter.note}
+            title={frontmatter.title}
+            date={frontmatter.date}
+            coverImg={frontmatter.coverImg}
+            description={frontmatter.description}
+            key={frontmatter.note}
             slug={slug}
           />
         )

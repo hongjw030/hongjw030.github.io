@@ -23,7 +23,12 @@ export default function BlogPage({ countPostArray }: any) {
         </Box>
         <Stack spacing={2}>
           {countPostArray.map((group: CategoryGroupNumType) => {
-            return <StyledCategoryGroup categoryGroup={group} />;
+            return (
+              <StyledCategoryGroup
+                categoryGroup={group}
+                key={`styled ${group.mainCategory.id}`}
+              />
+            );
           })}
         </Stack>
       </Box>

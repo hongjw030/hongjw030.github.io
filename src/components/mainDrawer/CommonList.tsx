@@ -13,7 +13,6 @@ import { Link, Typography } from "@mui/material";
 
 const COMMON_ARRAY = [
   { id: "/", key: "home", name: "HOME", icon: <HomeIcon /> },
-  { id: "/about", key: "about", name: "ABOUT", icon: <FaceIcon /> },
   { id: "/project", key: "project", name: "PROJECT", icon: <WebIcon /> },
   {
     id: "/category",
