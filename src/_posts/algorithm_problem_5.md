@@ -22,7 +22,7 @@ coverImg: "/assets/algorithm/algorithm_problem5.png"
 수열의 3행 + 4행 + 5행 + 6행 + 7행 = 2 + 3 + 3 + 3 + 4 = 15 를 리턴하도록 함수를 짜야 한다.
 <br/>
 
-이렇게 어느 구간 사이의 합을 구할 때엔, 동적 프로그래밍, DP를 이용해야 한다.
+이렇게 어느 구간 사이의 합을 구할 때엔, `동적 프로그래밍, DP`를 이용해야 한다.
 <br/>
 
 새로운 배열 Arr을 하나 만들고,
@@ -46,7 +46,7 @@ coverImg: "/assets/algorithm/algorithm_problem5.png"
 ### 내 풀이)
 <br/>
 
-```js
+```javascript
 // fs로 입력받는 경우
 
 function solution(start, end) {

@@ -1,11 +1,11 @@
 import fs from "fs";
 import matter from "gray-matter";
-import { POST_DIR } from "@/constants";
+import { MIN_WIDTH, POST_DIR, POST_MAX_WIDTH } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
 import CATEGORY_ARRAY from "@/constants/category";
 import PostLayout from "@/layouts/PostLayout";
 import PostHeader from "@/components/header/PostHeader";
-import { Box, Stack } from "@mui/material";
+import { Box, Paper, Stack } from "@mui/material";
 import markdownToHtml from "@/utils/markdownToHtml";
 
 export default function BlogPage({ post }: any) {
@@ -35,7 +35,15 @@ export default function BlogPage({ post }: any) {
       mainTitle={currentMainObject?.mainCategory.title}
       subTitle={currentSubObject?.title}
     >
-      <Stack spacing={4}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          maxWidth: POST_MAX_WIDTH,
+          minWidth: MIN_WIDTH,
+          gap: "20px",
+        }}
+      >
         <PostHeader
           title={frontmatter.title}
           mainId={frontmatter.mainCategory}
@@ -46,16 +54,53 @@ export default function BlogPage({ post }: any) {
           mTime={post.mTime}
           description={frontmatter.description}
         />
-        <Box
+        <Paper
           sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            padding: "20px",
+            maxWidth: POST_MAX_WIDTH,
             "& img": {
               minWidth: "340px",
-              width: "70vw",
+              width: "85vw",
+              maxWidth: POST_MAX_WIDTH,
+            },
+            "& p, & ul, & ol, & li, & pre": {
+              fontSize: "15px",
+              paddingLeft: "10px",
+            },
+            "& li": {
+              paddingLeft: "10px",
+            },
+            "& h1, h2, h3": {
+              marginTop: "40px",
+              marginBottom: "15px",
+            },
+            "& pre": {
+              backgroundColor: "#dfdfdf",
+              padding: "10px",
+              fontSize: "13px",
+              "& code": {
+                color: "#0f0f0f !important",
+              },
+            },
+            "& code": {
+              backgroundColor: "#dfdfdf",
+              fontFamily: "courier, monospace",
+              color: "#d94844",
+            },
+            "& hr": {
+              marginTop: "30px",
+              marginBottom: "30px",
+              backgroundColor: "#dfdfdf",
+              height: "1px",
+              border: 0,
             },
           }}
           dangerouslySetInnerHTML={{ __html: post.content }}
-        ></Box>
-      </Stack>
+        ></Paper>
+      </Box>
     </PostLayout>
   );
 }

@@ -5,8 +5,9 @@ import matter from "gray-matter";
 import { POST_DIR, PROJECT_DIR } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
 import { CarouselSection } from "@/components/homeComponents/CarouselSection";
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { ProjectType } from "@/types/ProjectType";
+import HomepageHeader from "@/components/homeComponents/HomepageHeader";
 
 export default function HomePage({ sortedPosts, sortedProjects }: any) {
   return (
@@ -15,19 +16,28 @@ export default function HomePage({ sortedPosts, sortedProjects }: any) {
         sx={{
           display: "flex",
           flexDirection: "column",
+          gap: "20px",
           justifyContent: "center",
           alignItems: "center",
+          paddingBottom: "20ox",
         }}
       >
-        <CarouselSection
-          label="최신 포스팅"
-          link="blog"
-          cardList={sortedPosts}
-        />
+        <HomepageHeader />
+
+        <Divider style={{ width: "100%" }}>Project</Divider>
+
         <CarouselSection
           label="최신 프로젝트"
           link="project"
           cardList={sortedProjects}
+        />
+
+        <Divider style={{ width: "100%" }}>Posting</Divider>
+
+        <CarouselSection
+          label="최신 포스팅"
+          link="blog"
+          cardList={sortedPosts}
         />
       </Box>
     </MainLayout>
