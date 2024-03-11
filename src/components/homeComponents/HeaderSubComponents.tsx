@@ -126,7 +126,7 @@ export function HeaderContact() {
       <Tooltip title="pdf 형식으로 다운받습니다.">
         <Button
           variant="outlined"
-          href="notification.pdf"
+          href="notification2.pdf"
           download
           sx={{ display: "flex", gap: "5px" }}
         >
