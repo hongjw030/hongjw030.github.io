@@ -5,7 +5,7 @@ import matter from "gray-matter";
 import { POST_DIR } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
 import CATEGORY_ARRAY from "@/constants/category";
-import CardList from "@/components/card/CardList";
+import {PostingCardList} from "@/components/card/CardList";
 import { CategoryParamsType } from "@/types/CategoryType";
 
 export default function BlogPage({ sortedPosts, mainId }: any) {
@@ -23,7 +23,7 @@ export default function BlogPage({ sortedPosts, mainId }: any) {
       note={currentMainObject?.mainCategory.note}
       coverImg={currentMainObject?.mainCategory.coverImg}
     >
-      <CardList sortedPosts={sortedPosts} />
+      <PostingCardList sortedPosts={sortedPosts} />
     </BlogLayout>
   );
 }
