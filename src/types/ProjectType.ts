@@ -6,6 +6,8 @@ export interface ProjectType{
   coverImg?: string;
   developmentUrl?: string;
   githubUrl?: string;
+  members?: string;
+  functions?: string;
 }
 
 export interface CategoryParamsType {

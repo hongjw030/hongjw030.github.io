@@ -10,7 +10,7 @@ function StyledCategoryListItem({ children }: StyledCategoryListItemProps) {
     <ListItemButton
       sx={{
         fontSize: "14px",
-        height: "30px",
+        height: "40px",
         display: "flex",
         justifyContent: "space-between",
       }}

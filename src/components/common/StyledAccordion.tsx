@@ -37,7 +37,6 @@ export default function StyledAccordion({
               id="panel1a-header"
               sx={{
                 padding: 0,
-                width: "60px",
                 display: "flex",
                 justifyContent: "flex-end",
               }}
@@ -57,7 +56,9 @@ export default function StyledAccordion({
                   key={subCategory.id}
                 >
                   <StyledCategoryListItem>
-                    <Typography fontSize={13}>{subCategory.title}</Typography>
+                    <Typography fontSize={13} color="#595959">
+                      * {subCategory.title}
+                    </Typography>
                   </StyledCategoryListItem>
                 </Link>
               );
