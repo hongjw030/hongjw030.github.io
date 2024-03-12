@@ -1,5 +1,4 @@
 // pages/sitemap.xml.ts
-import { NextPage } from "next";
 import fs from "fs";
 import { POST_DIR, PROJECT_DIR } from "@/constants";
 import CATEGORY_ARRAY from "@/constants/category";
@@ -15,21 +14,9 @@ function InnerUrl(url = "") {
 	`;
 }
 
-export default function SitemapPage({ PAGES }: any) {
-  let totalUrl = "";
-  for (let page of PAGES) {
-    totalUrl += InnerUrl(page);
-  }
+const Sitemap = () => {};
 
-  let sitemapString = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${totalUrl}
-</urlset>`;
-
-  return <>{sitemapString}</>;
-}
-
-export async function getStaticProps() {
+export async function getServerSideProps({ res }: any) {
   const postfiles = fs.readdirSync(POST_DIR);
   const projectfiles = fs.readdirSync(PROJECT_DIR);
 
@@ -58,7 +45,23 @@ export async function getStaticProps() {
     ...DYNAMIC_PROJECT_PAGES,
   ];
 
+  let totalUrl = "";
+  for (let page of PAGES) {
+    totalUrl += InnerUrl(page);
+  }
+
+  let sitemapString = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${totalUrl}
+</urlset>`;
+
+  res.setHeader("Content-Type", "text/xml");
+  res.write(sitemapString);
+  res.end();
+
   return {
-    props: { PAGES },
+    props: {},
   };
 }
+
+export default Sitemap;
