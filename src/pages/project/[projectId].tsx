@@ -7,10 +7,17 @@ import { ProjectType } from "@/types/ProjectType";
 import { Box, Paper } from "@mui/material";
 import ProjectHeader from "@/components/header/ProjectHeader";
 import markdownToHtml from "@/utils/markdownToHtml";
+import HeadMeta from "@/components/seo/HeadMeta";
 
-export default function ProjectPage({ frontmatter, markedContent }: any) {
+export default function ProjectPage({ id, frontmatter, markedContent }: any) {
   return (
     <MainLayout current="PROJECT">
+      <HeadMeta
+        title={frontmatter.title}
+        description={frontmatter.description}
+        image={frontmatter.coverImg}
+        url={id}
+      />
       <Box
         sx={{
           display: "flex",
@@ -118,6 +125,10 @@ export async function getStaticProps({
   const markedContent = await markdownToHtml(content);
 
   return {
-    props: { frontmatter, markedContent },
+    props: {
+      id: params.projectId,
+      frontmatter,
+      markedContent,
+    },
   };
 }

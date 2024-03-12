@@ -7,6 +7,7 @@ import { PostFrontMatterType } from "@/types/PostType";
 import CATEGORY_ARRAY from "@/constants/category";
 import { PostingCardList } from "@/components/card/CardList";
 import { CategorySubParamsType } from "@/types/CategoryType";
+import HeadMeta from "@/components/seo/HeadMeta";
 
 export default function BlogPage({ sortedPosts, mainId, subId }: any) {
   const currentMainObject = mainId
@@ -31,6 +32,14 @@ export default function BlogPage({ sortedPosts, mainId, subId }: any) {
       note={currentSubObject?.note}
       coverImg={currentSubObject?.coverImg}
     >
+      <HeadMeta
+        title={currentSubObject?.title ?? "프론트엔드 블로그 카테고리"}
+        description={
+          currentSubObject?.description ?? "프론트엔드 블로그 카테고리"
+        }
+        image="/profile.jpg"
+        url={`blog/${mainId}/${subId}`}
+      />
       <PostingCardList sortedPosts={sortedPosts} />
     </BlogLayout>
   );

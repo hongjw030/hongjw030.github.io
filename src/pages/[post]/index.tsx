@@ -7,6 +7,7 @@ import PostLayout from "@/layouts/PostLayout";
 import PostHeader from "@/components/header/PostHeader";
 import { Box, Paper, Stack } from "@mui/material";
 import markdownToHtml from "@/utils/markdownToHtml";
+import HeadMeta from "@/components/seo/HeadMeta";
 
 export default function BlogPage({ post }: any) {
   if (!post) return;
@@ -35,6 +36,12 @@ export default function BlogPage({ post }: any) {
       mainTitle={currentMainObject?.mainCategory.title}
       subTitle={currentSubObject?.title}
     >
+      <HeadMeta
+        title={frontmatter.title}
+        description={frontmatter.description ?? frontmatter.title}
+        image="/profile.jpg"
+        url={post.id}
+      />
       <Box
         sx={{
           display: "flex",
@@ -126,6 +133,7 @@ export async function getStaticProps({ params }: { params: { post: string } }) {
   const { data, content } = matter(mdFile);
   const markedContent = await markdownToHtml(content);
   const post = {
+    id: params.post,
     frontmatter: data,
     content: markedContent,
     birthTime: stats.birthtime.toString(),

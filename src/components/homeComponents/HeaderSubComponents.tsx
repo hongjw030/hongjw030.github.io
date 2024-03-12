@@ -149,12 +149,8 @@ export function HeaderPrivacy() {
       }}
     >
       <Box display="flex" justifyContent="space-between">
-        <Box fontWeight={700}>이름</Box>
-        <Box>홍재원</Box>
-      </Box>
-      <Box display="flex" justifyContent="space-between">
-        <Box fontWeight={700}>학력</Box>
-        <Box>이화여대(컴퓨터공학과)</Box>
+        <Box fontWeight={700}>닉네임</Box>
+        <Box>홍장군</Box>
       </Box>
       <Box display="flex" justifyContent="space-between">
         <Box fontWeight={700}>이메일</Box>

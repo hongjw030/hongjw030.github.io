@@ -12,7 +12,7 @@ export default function Document() {
           name="naver-site-verification"
           content="2d26f45a27332a5a9f6a61f2f2739d0c557e7a61"
         />
-        <link ref="icon" href="/public/favicon.ico.png" />
+        <link rel="shortcut icon" href="/favicon.ico.png" />
       </Head>
       <body>
         <Main />

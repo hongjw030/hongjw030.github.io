@@ -7,10 +7,17 @@ import MainLayout from "@/layouts/MainLayout";
 import { CategoryGroupNumType, CategoryNumType } from "@/types/CategoryType";
 import { Box, Stack } from "@mui/material";
 import StyledCategoryGroup from "@/components/categoryComponents/StyledCategoryGroup";
+import HeadMeta from "@/components/seo/HeadMeta";
 
 export default function BlogPage({ countPostArray }: any) {
   return (
     <MainLayout current="CATEGORY">
+      <HeadMeta
+        title="블로그"
+        description="프론트엔드 공부 카테고리"
+        image="/profile.jpg"
+        url="category"
+      />
       <Box
         sx={{
           display: "flex",

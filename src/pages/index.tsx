@@ -8,10 +8,16 @@ import { CarouselSection } from "@/components/homeComponents/CarouselSection";
 import { Box, Divider } from "@mui/material";
 import { ProjectType } from "@/types/ProjectType";
 import HomepageHeader from "@/components/homeComponents/HomepageHeader";
+import HeadMeta from "@/components/seo/HeadMeta";
 
 export default function HomePage({ sortedPosts, sortedProjects }: any) {
   return (
     <MainLayout>
+      <HeadMeta
+        title="블로그"
+        description="프론트엔드 기술 블로그"
+        image="/profile.jpg"
+      />
       <Box
         sx={{
           display: "flex",

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hongjw030-github-io.vercel.app/sitemap.xml

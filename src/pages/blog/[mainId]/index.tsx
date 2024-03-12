@@ -5,8 +5,9 @@ import matter from "gray-matter";
 import { POST_DIR } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
 import CATEGORY_ARRAY from "@/constants/category";
-import {PostingCardList} from "@/components/card/CardList";
+import { PostingCardList } from "@/components/card/CardList";
 import { CategoryParamsType } from "@/types/CategoryType";
+import HeadMeta from "@/components/seo/HeadMeta";
 
 export default function BlogPage({ sortedPosts, mainId }: any) {
   const currentMainObject = mainId
@@ -23,6 +24,17 @@ export default function BlogPage({ sortedPosts, mainId }: any) {
       note={currentMainObject?.mainCategory.note}
       coverImg={currentMainObject?.mainCategory.coverImg}
     >
+      <HeadMeta
+        title={
+          currentMainObject?.mainCategory.title ?? "프론트엔드 블로그 카테고리"
+        }
+        description={
+          currentMainObject?.mainCategory.description ??
+          "프론트엔드 블로그 카테고리"
+        }
+        image="/profile.jpg"
+        url={`blog/${mainId}`}
+      />
       <PostingCardList sortedPosts={sortedPosts} />
     </BlogLayout>
   );

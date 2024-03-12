@@ -5,10 +5,17 @@ import matter from "gray-matter";
 import { POST_DIR } from "@/constants";
 import { PostFrontMatterType } from "@/types/PostType";
 import { PostingCardList } from "@/components/card/CardList";
+import HeadMeta from "@/components/seo/HeadMeta";
 
 export default function BlogPage({ sortedPosts }: any) {
   return (
     <BlogLayout>
+      <HeadMeta
+        title="프론트엔드 블로그 포스팅"
+        description="프론트엔드 블로그 포스팅 모음"
+        image="/profile.jpg"
+        url="blog"
+      />
       <PostingCardList sortedPosts={sortedPosts} />
     </BlogLayout>
   );
