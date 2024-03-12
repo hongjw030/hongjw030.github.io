@@ -1,4 +1,4 @@
-const siteUrl = "https://hongjw030-github-io.vercel.app/";
+const siteUrl = "https://hongjw030-github-io.vercel.app";
 
 module.exports = {
   siteUrl,
