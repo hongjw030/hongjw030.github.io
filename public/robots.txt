@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://hongjw030-github-io.vercel.app
+
+# Sitemaps
+Sitemap: https://hongjw030-github-io.vercel.app/sitemap.xml
+Sitemap: https://hongjw030-github-io.vercel.app/sitemap.xml/sitemap-projectid.xml
+Sitemap: https://hongjw030-github-io.vercel.app/sitemap.xml/sitemap-post.xml
+Sitemap: https://hongjw030-github-io.vercel.app/sitemap.xml/sitemap-mainid.xml
+Sitemap: https://hongjw030-github-io.vercel.app/sitemap.xml/sitemap-subid.xml
