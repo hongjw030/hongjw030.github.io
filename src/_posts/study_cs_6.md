@@ -59,9 +59,11 @@ coverImg: "/assets/study/cs/6_1.jpg"
 
 5) 화면에 실제 픽셀을 paint한다. 
 
+6) 이후 화면이 변경되면 다시 레이아웃을 계산하는 `reflow` 작업, 혹은 색상이나 배경이 변경될 때 발생하는 `repaint` 작업이 동작한다.
+
 ![image](/assets/study/cs/6_2.png)
 
-사진으로 총정리하기. html parser과 css parser이 병렬적으로(비동기적으로) 작업중인 것 같지만, 동기적으로 작업한단 걸 기억하자.
+사진으로 총정리하기. 
 
 ***
 
@@ -70,12 +72,16 @@ coverImg: "/assets/study/cs/6_1.jpg"
 #### Q. 브라우저의 동작 원리에 대해 설명해주세요.
 
 A.
-브라우저는 서버로부터 받은 데이터를 화면에 그려주는 일을 하는데, 그러기 위해 먼저 렌더링 엔진의 html parser이 html 데이터를 파싱하고, DOM tree를 생성합니다.
+브라우저는 서버로부터 받은 데이터를 화면에 그려주는 일을 하는데, 그러기 위해 먼저 서버로부터 받은 html에 대해, 브라우저의 렌더링 엔진의 html parser이 html 데이터를 파싱합니다.
 
-그 과정에서 css 링크나 스타일 태그를 만나면 CSS 데이터를 파싱하고, CSSOM이라는 css object model을 트리구조로 생성합니다.
+그 과정에서 css 링크나 스타일 태그를 만나면 CSS 데이터를 다운받아 파싱하고, 
 
-그 후 DOM tree와 CSSOM을 합쳐 Render tree를 생성하고,
+파싱과정과 함께 html데이터로는 DOM tree를, css로는 CSSOM이라는 css object model을 트리구조로 생성합니다.
 
-생성된 Render tree의 요소를 화면에 어떻게 배치할지 계산하는 layout 과정이 진행됩니다.
+그 후 DOM tree와 CSSOM을 합치는 attachment라는 과정으로 Render tree를 생성하는데요, 이 때 render tree에는 html의 head 태그라든가 display none 값 등 브라우저에 보이지 않는 요소들은 포함되지 않습니다.
+
+Render tree가 생성되면 요소를 화면에 어떻게 배치할지 계산하는 layout 과정이 진행됩니다.
 
 그 후 실제 화면에 요소들이 그려지는, painting 과정이 일어납니다.
+
+이후 `요소가 추가, 삭제되거나 화면 크기가 변하면 다시 layout을 계산하는 reflow` 과정이 일어나거나, `레이아웃 자체엔 영향이 없고 색상, 배경 등 가시성이 변경될 때 발생하는 repainting`이 일어납니다.
