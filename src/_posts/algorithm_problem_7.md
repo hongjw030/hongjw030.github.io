@@ -6,25 +6,22 @@ description: "어떻게 시간복잡도를 줄일지 고민하느라 시간이 �
 coverImg: "/assets/algorithm/algorithm_problem7.png"
 ---
 
+## 문제 
+
 ![image](/assets/algorithm/algorithm_problem7.png)
 
 ![image](/assets/algorithm/algorithm_problem7_1.png)
 
-<br/>
-<br/>
+***
 
-## 내 풀이)
-<br/>
+## 내 풀이
 좀 더 연산을 효율적으로 하기 위해, name과 yearning을 맵핑한 객체를 만들자.
-<br/>
 
 추억 점수는 number 범위를 넘지 않으므로, 일반적인 연산을 해도 좋다.
 
-<br/>
-<br/>
+*** 
 
-## 내 코드)
-<br/>
+## 내 코드
 
 ```js
 function solution(name, yearning, photo) {
@@ -44,10 +41,8 @@ function solution(name, yearning, photo) {
   return answer;
 }
 ```
-<br/>
 
 여기서, 연습 겸 sum 을 구할 때엔 reduce 메소드를 활용한다면 아래 코드와 같다.
-<br/>
 
 ```js
 function solution(name, yearning, photo) {

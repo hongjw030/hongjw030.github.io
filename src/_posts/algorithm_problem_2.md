@@ -6,16 +6,15 @@ description: "js로 백준 10998을 풀어보았다. 난이도는 최하지만 j
 coverImg: "/assets/algorithm/algorithm_problem2.png"
 ---
 
+## 문제
+
 ![image](/assets/algorithm/algorithm_problem2.png)
 
-<br/>
-<br/>
+***
 
-**내 풀이)**
-<br/>
+## 내 풀이
 
 1.  readline으로 입력 받는 법.
-<br/>
 
 ```js
 const readline = require('readline').createInterface({
@@ -31,10 +30,7 @@ readline.on('line', function(line) {
 });
 ```
 
-<br/>
-
 2.  fs로 입력 받는 법
-<br/>
 
 ```js
 const fs = require('fs');
@@ -43,10 +39,9 @@ const input = fs.readFileSync("/dev/stdin").toString().trim().split(" ").map(Num
 console.log(input[0] * input[1]);
 ```
 
-<br/>
-<br/>
+***
 
-**결론)**
+## 결과
 
 성공적!
 
