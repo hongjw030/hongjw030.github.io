@@ -74,7 +74,7 @@ description: "3월 셋째 주의 회고."
 
 - 잘한 것: 알고리즘 스터디 출첵 완료~
 - 못한 점: 너무너무 늦게 자서 몸이 안좋다. 10시에 일어났지만 결국 스터디 끝나고 다시 자버려서 1시 반에 일어남 ㅠㅠ
-- 배운 점: 알고리즘 스터디를 통해 배열 메소드 중 at, reduce, 문자열 메소드의 substring과 slice의 차이, reverse 에 대해 배웠다. 기억해두자.
+- 배운 점: 알고리즘 스터디를 통해 배열 메소드 중 `at`, `reduce`, `reverse` 문자열 메소드의 `substring`과 `slice`의 차이, `repeat`, `join`, node js 내장 모듈 process의 객체인 `stdin`, `stdout` 에 대해 배웠다. 기억해두자.
 - 개선할 점: 일찍 자자!!! 운동 제발!!
 
 - nit: 
