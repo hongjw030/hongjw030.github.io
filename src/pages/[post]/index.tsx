@@ -8,6 +8,7 @@ import PostHeader from "@/components/header/PostHeader";
 import { Box, Paper, Stack } from "@mui/material";
 import markdownToHtml from "@/utils/markdownToHtml";
 import HeadMeta from "@/components/seo/HeadMeta";
+import Utterances from "@/components/comment/Utterances";
 
 export default function BlogPage({ post }: any) {
   if (!post) return;
@@ -108,6 +109,7 @@ export default function BlogPage({ post }: any) {
           dangerouslySetInnerHTML={{ __html: post.content }}
         ></Paper>
       </Box>
+      <Utterances />
     </PostLayout>
   );
 }
