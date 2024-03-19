@@ -86,7 +86,7 @@ export default async function handler(req: any, res: any){
 
 ![image](/assets/TIL/blog/2_4.png)
 
-참고로 메인 카테고리, 서브 카테고리 데이터는 여러 페이지에서 전역적으로 쓰이며, 메인 카테고리 하위에 서브 카테고리를 조건에 맞게 넣어서 써야 하므로, `app.tsx` 파일 내부에서 해당 api를 불러와 데이터를 맨 처음 패칭하고, 그 데이터를 `조타이`를 활용해서 전역적으로 쓸 예정이다.
+참고로 메인 카테고리, 서브 카테고리 데이터는 여러 페이지에서 전역적으로 쓰이며, 메인 카테고리 하위에 서브 카테고리를 조건에 맞게 넣어서 써야 하므로, `app.tsx` 파일 내부에서 해당 api를 불러와 데이터를 맨 처음 패칭하고, 그 데이터를 `조타이`를 활용해서 전역적으로 쓸 예정이다. 지금은 이 모든 걸 구현할 필요는 없으니, 일단 `리액트 쿼리`의 캐싱 타임을 `infinity`로 해서 쓰고, 나중에 조타이를 도입할 것.
 
 6. 메인 카테고리와 서브 카테고리 데이터들을 `category` DB 내부 `maincategories` collection, `subcategories` collection에 다 저장했다. 이제 조건을 걸고 데이터를 조회하는 api를 짜야 한다.
 
@@ -98,6 +98,40 @@ export default async function handler(req: any, res: any){
 
 `const algorithmGroup = await subCategory.find({groupPath: 'algorithm'})`
 
+그 결과, 전체 카테고리 리스트를 조회하는 api는 다음과 같이 구현했다.
+
+```js
+// 모든 카테고리 조회 api...
+
+import dbConnect from "@/db/dbConnect";
+import mainCategory from "@/db/models/mainCategory";
+import subCategory from "@/db/models/subCategory";
+
+export default async function handler(req: any, res: any){
+  await dbConnect();
+
+  const mainCategoryData = await mainCategory.find();
+
+  const promises =await Promise.all(mainCategoryData.map(async (el: any)=>{
+    let subData = await subCategory.find({groupPath: el.path});
+    return [el, [...subData]];
+  }))
+  res.status(200).send(promises);
+}
+```
+
+data 안에 `[mainCategory 객체, [해당 mainCategory의 하위 Category들...]]` 데이터를 각각 집어넣는 식이다. 예를 들어
+
+![image](/assets/TIL/blog/2_5.png) 
+
+이런 형태의 카테고리라면, response data로
+
+```
+[
+  [{title: 스터디}, [{title: 기술 면접 스터디}, {title: 모던 리액트 딥다이브 스터디}]],
+  [{title: 나의 공부}, [{title: 책 읽기}, {title: 직접 블로그 만들기 프로젝트}]],
+]
+```
 
 ***
 

@@ -1,17 +1,21 @@
 import StyledAccordion from "@/components/common/StyledAccordion";
-import CATEGORY_ARRAY from "@/constants/category";
+import { CategoryListApiType } from "@/types/CategoryApiType";
 import { Link, ListItem } from "@mui/material";
 
-export default function BlogList() {
+interface BlogListProps {
+  categoryList: CategoryListApiType;
+}
+
+export default function BlogList({ categoryList }: BlogListProps) {
   return (
     <>
       <ListItem>
         <Link href="/blog" underline="none" color="inherit" fontSize={13}>
-          전체보기{" "}
+          전체보기
         </Link>
       </ListItem>
-      {CATEGORY_ARRAY.map((el) => {
-        return <StyledAccordion categoryGroup={el} key={el.mainCategory.id} />;
+      {categoryList.map((el) => {
+        return <StyledAccordion categoryGroup={el} key={el[0]._id} />;
       })}
     </>
   );

@@ -3,19 +3,19 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { CategoryGroupType } from "@/types/CategoryType";
 import StyledCategoryListItem from "./StyledCategoryListItem";
 import { Link } from "@mui/material";
+import { CategoryGroupApiType } from "@/types/CategoryApiType";
 
 interface CustomAccordionProps {
-  categoryGroup: CategoryGroupType;
+  categoryGroup: CategoryGroupApiType;
 }
 
 export default function StyledAccordion({
   categoryGroup,
 }: CustomAccordionProps) {
-  const mainCategory = categoryGroup.mainCategory;
-  const subCategoryList = categoryGroup.subCategory;
+  const mainCategory = categoryGroup[0];
+  const subCategoryList = categoryGroup[1];
 
   return (
     <div>
@@ -26,7 +26,7 @@ export default function StyledAccordion({
               textDecoration: "none",
               color: "inherit",
             }}
-            href={`/blog/${mainCategory.id}`}
+            href={`/blog/${mainCategory.path}`}
           >
             {mainCategory.title}
           </Link>
@@ -52,8 +52,8 @@ export default function StyledAccordion({
                     textDecoration: "none",
                     color: "inherit",
                   }}
-                  href={`/blog/${mainCategory.id}/${subCategory.id}`}
-                  key={subCategory.id}
+                  href={`/blog/${mainCategory.path}/${subCategory.path}`}
+                  key={subCategory._id}
                 >
                   <StyledCategoryListItem>
                     <Typography fontSize={13} color="#595959">

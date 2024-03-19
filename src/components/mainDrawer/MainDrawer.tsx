@@ -8,6 +8,7 @@ import StyledSpacing from "../common/StyledSpacing";
 import CommonList from "./CommonList";
 import BlogList from "./BlogList";
 import SideProfile from "./SideProfile";
+import useGetCategory from "@/hooks/useGetCategory";
 
 export interface MainDrawerProp {
   current?: string;
@@ -20,6 +21,8 @@ export default function MainDrawer({
   open = true,
   handleDrawerClose,
 }: MainDrawerProp) {
+  const { data } = useGetCategory();
+
   return (
     <Drawer
       sx={{
@@ -47,7 +50,7 @@ export default function MainDrawer({
       <CommonList current={current} />
 
       <Divider />
-      <BlogList />
+      {data && <BlogList categoryList={data} />}
     </Drawer>
   );
 }

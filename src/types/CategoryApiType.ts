@@ -1,4 +1,5 @@
 export interface MainCategoryApiType{
+  _id: string;
   path: string;
   title: string;
   description?: string;
@@ -9,3 +10,7 @@ export interface MainCategoryApiType{
 export interface SubCategoryApiType extends MainCategoryApiType{
   groupPath: string;
 }
+
+export type CategoryGroupApiType = [MainCategoryApiType, Array<SubCategoryApiType>];
+
+export type CategoryListApiType = Array<CategoryGroupApiType>;
