@@ -3,7 +3,7 @@ title: "크로스 브라우징이 뭔지 알아보자."
 mainCategory: "study"
 subCategory: "study_cs"
 description: "크로스 브라우징이 뭘까?"
-coverImg: "/assets/study/cs/9_1.jpg"
+coverImg: "/assets/study/cs/9_1.png"
 ---
 
 ## 오늘의 기술면접 질문

@@ -3,7 +3,7 @@ title: "CORS에 대해 설명하자."
 mainCategory: "study"
 subCategory: "study_cs"
 description: "CORS가 뭔지 알아보기"
-coverImg: "/assets/study/cs/8_1.jpg"
+coverImg: "/assets/study/cs/8_1.png"
 ---
 
 ## 오늘의 기술면접 질문

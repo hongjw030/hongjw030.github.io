@@ -43,9 +43,60 @@ http를 테스트해봤더니 다음과 같이 잘 된다.
 
 ![image](/assets/TIL/blog/2_2.png)
 
-2. 그다음 할 일은 몽구스 사용하기다.
+2. 이제 필요한 패키지를 설치한다.
 
-`npm install mongoose`를 한다.
+`npm install mongodb`
+`npm install mongoose`
+
+3. Next js 권장 방식으로 몽고디비를 연결하자. src폴더 하위에 db 폴더를 만들고, 안에 `dbConnect.ts`  파일을 만들어 해당 소스코드를 붙여넣는다. https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/lib/dbConnect.ts 참고!
+
+4. 그 후 환경변수 설정을 위해 `.env.local` 에 `MONGODB_URI` 값으로, 몽고디비 connect 값을 복사해 붙이면~
+
+![image](/assets/TIL/blog/2_3.png)
+
+연결 구레잇.
+(참고로 이 때 database connect 비밀번호를 까먹는다면 웹페이지 사이드바 밑에 보면 `Database Access` 라는 메뉴가 있는데 여기 들어가서 비번 바꾸면 된다.)
+
+5. 이제는 내가 직접 몽고디비 클러스터의 데이터베이스 안에 값들을 다 넣어줄 차례이다. 
+
+```js
+// api 코드
+import dbConnect from "@/db/dbConnect";
+import mainCategory from "@/db/models/mainCategory";
+
+export default async function handler(req: any, res: any){
+  await dbConnect();
+
+  switch(req.method){
+    case 'GET':
+      const categoryData = await mainCategory.find();
+      res.status(200).send(categoryData);
+      break;
+    case 'POST':
+      const reqData = await req.body;
+      const jsonData =JSON.parse(reqData);
+      const newData = await mainCategory.create(jsonData);
+      res.status(201).send(newData);
+      break;
+  }
+}
+```
+
+결과. 데이터를 잘 넣음!!
+
+![image](/assets/TIL/blog/2_4.png)
+
+참고로 메인 카테고리, 서브 카테고리 데이터는 여러 페이지에서 전역적으로 쓰이며, 메인 카테고리 하위에 서브 카테고리를 조건에 맞게 넣어서 써야 하므로, `app.tsx` 파일 내부에서 해당 api를 불러와 데이터를 맨 처음 패칭하고, 그 데이터를 `조타이`를 활용해서 전역적으로 쓸 예정이다.
+
+6. 메인 카테고리와 서브 카테고리 데이터들을 `category` DB 내부 `maincategories` collection, `subcategories` collection에 다 저장했다. 이제 조건을 걸고 데이터를 조회하는 api를 짜야 한다.
+
+예를 들어 내가 메인 카테고리 `study` 안에 있는 모든 post를 조회하려면, 다음과 같은 코드를 쓰면 된다.
+
+`const studyPosts = await post.find({mainCategory: 'study'})` 
+
+만약 메인카테고리 `algorithm` 하위에 있는 서브 카테고리 목록을 알아내려면, 아래와 같은 코드를 짜면 될 것이다!! 
+
+`const algorithmGroup = await subCategory.find({groupPath: 'algorithm'})`
 
 
 ***

@@ -5,7 +5,7 @@ subCategory: "study_cs"
 description: "왜 하필 React와 Next js를 선택하게 되었나요? >> 그냥 배운 게 이거니까..;"
 coverImg: "/assets/study/cs/10_1.png"
 ---
-
+ 
 ## 오늘의 기술면접 질문
 
 ####  왜 React와 Next js를 써서 개발하고 있나요?

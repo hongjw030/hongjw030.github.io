@@ -3,7 +3,7 @@ title: "Document Object Model이 뭔지 알아보자."
 mainCategory: "study"
 subCategory: "study_cs"
 description: "Document Object Model에 대해 설명하자."
-coverImg: "/assets/study/cs/7_1.jpg"
+coverImg: "/assets/study/cs/7_1.png"
 ---
 
 ## 오늘의 기술면접 질문

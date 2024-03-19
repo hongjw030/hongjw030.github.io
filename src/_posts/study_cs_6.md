@@ -3,7 +3,7 @@ title: "브라우저의 동작 원리에 대해 알아보자."
 mainCategory: "study"
 subCategory: "study_cs"
 description: "브라우저의 동작 원리!"
-coverImg: "/assets/study/cs/6_1.jpg"
+coverImg: "/assets/study/cs/6_1.png"
 ---
 
 ## 오늘의 기술면접 질문
