@@ -15,8 +15,6 @@ export default function BlogPage() {
     gcTime: Infinity,
   });
 
-  console.log(data);
-
   return (
     <BlogLayout>
       {/* <PostingCardList sortedPosts={sortedPosts} /> */}

@@ -14,8 +14,6 @@ export default function BlogPage() {
     gcTime: Infinity,
   });
 
-  console.log(data);
-
   return (
     <BlogLayout>
       <HeadMeta
