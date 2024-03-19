@@ -11,7 +11,6 @@ import MainDrawer from "@/components/mainDrawer/MainDrawer";
 import StyledSpacing from "@/components/common/StyledSpacing";
 import StyledBreadcrumbs from "@/components/common/StyledBreadcrumbs";
 import { NAV_HEIGHT } from "@/constants";
-import CATEGORY_ARRAY from "@/constants/category";
 import BlogHeader from "@/components/header/BlogHeader";
 
 interface BlogLayoutProps {

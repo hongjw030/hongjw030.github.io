@@ -15,14 +15,14 @@ const TIL_group: CategoryGroupType = {
   },
     subCategory: [
       {
-        id: "TIL_book",
+        id: "book",
         title: "책 읽기",
         description: "책읽고 느꼈던 점, 배운 점을 적습니다. (기술서적 위주)",
         note: 1,
         // coverImg: "string",
       },
       {
-        id: "TIL_blog",
+        id: "blogProject",
         title: "블로그 만들기",
         description: "직접 블로그 홈페이지 만드는 과정.",
         note: 2,
@@ -42,14 +42,14 @@ const algorithm_group: CategoryGroupType = {
   },
   subCategory: [
     {
-      id: "algorithm_study",
+      id: "study",
       title: "공부 기록",
       description: "자료구조 및 알고리즘에 대한 공부 내용.",
       note: 1,
       // coverImg: "string",
     },
     {
-      id: "algorithm_problem",
+      id: "problem",
       title: "문제 풀이",
       description: "직접 알고리즘 문제를 풀고 기록해요. 주력 언어는 JS, TS.",
       note: 2,
@@ -68,14 +68,14 @@ const study_group: CategoryGroupType = {
   },
   subCategory: [
     {
-      id: "study_cs",
+      id: "cs",
       title: "기술 면접 스터디",
       description: "기술 면접에 대해 스터디한 내용을 남겨요.",
       note: 1,
       // coverImg: "string",
     },
     {
-      id: "study_modernreact",
+      id: "modernReactDeepdive",
       title: "모던 리액트 딥다이브 스터디",
       description: "모던 리액트 딥다이브를 공부하고 글을 남겨요.",
       note: 2,
@@ -105,15 +105,21 @@ const diary_group: CategoryGroupType = {
   },
   subCategory: [
     {
-      id: "diary_weekly",
+      id: "weekly",
       title: "주간 회고",
       description: "매주 일요일 회고를 남겨요.",
       note: 1,
       // coverImg: "string",
     },
     {
-      id: "diary_monthly",
+      id: "monthly",
       title: "월간 회고",
+      description: "매달 마지막 날 회고를 남겨요.",
+      note: 2,
+      // coverImg: "string",
+    },    {
+      id: "event",
+      title: "특별 회고",
       description: "매달 마지막 날 회고를 남겨요.",
       note: 2,
       // coverImg: "string",

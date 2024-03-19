@@ -133,6 +133,9 @@ data 안에 `[mainCategory 객체, [해당 mainCategory의 하위 Category들...
 ]
 ```
 
+7. 이제 본격적으로 posting 글들을 싹다 db에 넣어야 한다. 진심 산 넘어 산!
+
+
 ***
 
 ## 완성
