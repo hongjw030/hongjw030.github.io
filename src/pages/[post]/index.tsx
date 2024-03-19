@@ -131,9 +131,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: { params: { post: string } }) {
   const mdFile = fs.readFileSync(`src/_posts/${params.post}.md`).toString();
   let stats = fs.statSync(`src/_posts/${params.post}.md`);
-
   const { data, content } = matter(mdFile);
   const markedContent = await markdownToHtml(content);
+
   const post = {
     id: params.post,
     frontmatter: data,

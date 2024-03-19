@@ -20,6 +20,16 @@ export async function getSubPostList (mainPath: string, subPath: string) {
 
 // 단일 포스트 조회
 export async function getPostContent (postId: string) {
-  const data = await axiosInstance.get(`/${postId}`)
+  try{
+
+    const data = await axiosInstance.get(`/${postId}`)
+    return data?.data;
+  }catch(e){
+    return e;
+  }
+}
+
+export async function postPosting (inputs: any) {
+  const data = await axiosInstance.post(`/post`, inputs)
   return data?.data;
 }

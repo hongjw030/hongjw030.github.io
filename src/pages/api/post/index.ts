@@ -12,9 +12,8 @@ export default async function handler(req: any, res: any){
       res.status(200).send(totalPost);
       break;
     case 'POST':
-      const objectData = JSON.parse(req.body);
-      const newData = await post.create(objectData);
-
+      const newData = await post.create(req.body);
+      console.log(newData);
       res.status(200).send(newData);
       break;
   }
