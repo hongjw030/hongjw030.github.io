@@ -1,5 +1,6 @@
-import { DRAWER_WIDTH, MAX_WIDTH } from "@/constants";
 import { styled } from "@mui/material/styles";
+
+import { DRAWER_WIDTH, MAX_WIDTH } from "@/constants";
 
 const Container = styled("main", {
   shouldForwardProp: (prop) => prop !== "open",

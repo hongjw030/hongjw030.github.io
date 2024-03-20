@@ -6,7 +6,7 @@ interface PageTitleProps {
   title: string;
   fontSize?: number;
 }
-export default function PageTitle({ title, fontSize = 20 }: PageTitleProps) {
+export function PageTitle({ title, fontSize = 20 }: PageTitleProps) {
   return (
     <Box fontSize={fontSize} fontWeight={700}>
       {title}

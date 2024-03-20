@@ -12,21 +12,12 @@ export default function HomePage() {
         description="프론트엔드 기술 블로그"
         image="/profile.jpg"
       />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingBottom: "20ox",
-        }}
-      >
-        <HomepageHeader />
 
-        <Divider style={{ width: "100%" }}>Project</Divider>
+      <HomepageHeader />
 
-        {/* <CarouselSection
+      <Divider style={{ width: "100%" }}>Project</Divider>
+
+      {/* <CarouselSection
           label="최신 프로젝트"
           link="project"
           cardList={sortedProjects}
@@ -39,7 +30,6 @@ export default function HomePage() {
           link="blog"
           cardList={sortedPosts}
         /> */}
-      </Box>
     </MainLayout>
   );
 }
