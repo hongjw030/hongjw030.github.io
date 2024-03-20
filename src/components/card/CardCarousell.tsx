@@ -1,10 +1,10 @@
 import Carousel from "react-material-ui-carousel";
 import SmallCard from "./SmallCard";
-import { StaticPostsType } from "@/types/PostType";
 import { MIN_WIDTH } from "@/constants";
+import { PostListApiType } from "@/types/PostApiType";
 
 interface SmallCardListProps {
-  smallCardList: StaticPostsType[];
+  smallCardList: PostListApiType;
 }
 
 export default function CardCarousell({ smallCardList }: SmallCardListProps) {
@@ -31,14 +31,16 @@ export default function CardCarousell({ smallCardList }: SmallCardListProps) {
     >
       {smallCardList.map((card) => (
         <SmallCard
-          key={`${card.frontmatter.title}`}
-          title={card.frontmatter.title}
-          mainCategory={card.frontmatter.mainCategory}
-          subCategory={card.frontmatter.subCategory}
-          coverImg={card.frontmatter.coverImg}
-          birthTime={card.birthTime}
-          description={card.frontmatter.description}
-          slug={card.slug}
+          key={`${card.title}`}
+          title={card.title}
+          mainCategory={card.mainCategory}
+          subCategory={card.subCategory}
+          coverImg={card.coverImg}
+          createdAt={card.createdAt}
+          updatedAt={card.updatedAt}
+          content={card.content}
+          description={card.description}
+          _id={card._id}
         />
       ))}
     </Carousel>

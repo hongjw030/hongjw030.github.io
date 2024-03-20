@@ -3,8 +3,27 @@ import React from "react";
 import { Box, Divider } from "@mui/material";
 import HomepageHeader from "@/components/homeComponents/HomepageHeader";
 import HeadMeta from "@/components/seo/HeadMeta";
+import { useQuery } from "@tanstack/react-query";
+import { getCarouselPostList } from "@/apis/post";
+import { getCarouselProjectList } from "@/apis/project";
+import { CarouselSection } from "@/components/homeComponents/CarouselSection";
 
 export default function HomePage() {
+  const { data: postCarousel } = useQuery({
+    queryKey: ["post-carousel"],
+    queryFn: () => getCarouselPostList(),
+    retry: 3,
+    staleTime: Infinity,
+    gcTime: Infinity,
+  });
+  const { data: projectCarousel } = useQuery({
+    queryKey: ["project-carousel"],
+    queryFn: () => getCarouselProjectList(),
+    retry: 3,
+    staleTime: Infinity,
+    gcTime: Infinity,
+  });
+
   return (
     <MainLayout>
       <HeadMeta
@@ -16,20 +35,22 @@ export default function HomePage() {
       <HomepageHeader />
 
       <Divider style={{ width: "100%" }}>Project</Divider>
-
-      {/* <CarouselSection
+      {projectCarousel && (
+        <CarouselSection
           label="최신 프로젝트"
           link="project"
-          cardList={sortedProjects}
+          cardList={projectCarousel}
         />
+      )}
 
-        <Divider style={{ width: "100%" }}>Posting</Divider>
-
+      <Divider style={{ width: "100%" }}>Posting</Divider>
+      {postCarousel && (
         <CarouselSection
           label="최신 포스팅"
           link="blog"
-          cardList={sortedPosts}
-        /> */}
+          cardList={postCarousel}
+        />
+      )}
     </MainLayout>
   );
 }

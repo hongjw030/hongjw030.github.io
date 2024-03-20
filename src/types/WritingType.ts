@@ -7,4 +7,15 @@ export interface WritingPostType{
   content: string;
 }
 
-
+export interface WritingProjectType{
+  title: string;
+  description: string;
+  coverImg?: string;
+  content: string;
+  developmentUrl: string;
+  githubUrl: string;
+  functions: string;
+  note: number;
+  term: string;
+  isTeam: string;
+}

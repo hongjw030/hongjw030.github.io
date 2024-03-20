@@ -1,11 +1,11 @@
-import { StaticPostsType } from "@/types/PostType";
 import { Box, Link } from "@mui/material";
 import CardCarousell from "../card/CardCarousell";
+import { PostListApiType } from "@/types/PostApiType";
 
 interface CarouselSectionProps {
   label: string;
   link: string;
-  cardList: StaticPostsType[];
+  cardList: PostListApiType;
 }
 
 export function CarouselSection({

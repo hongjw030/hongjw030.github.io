@@ -6,6 +6,12 @@ export async function getAllProjectList () {
   return data?.data;
 }
 
+// 포스트 10개만 가져오기.
+export async function getCarouselProjectList(){
+  const data = await axiosInstance.get(`/project/carousel`)
+  return data?.data;
+}
+
 // 단일 프로젝트 조회
 export async function getProjectContent (projectId: string) {
   try{
@@ -14,5 +20,10 @@ export async function getProjectContent (projectId: string) {
   }catch(e){
     return e;
   }
+}
+
+export async function postProject (inputs: any) {
+  const data = await axiosInstance.post(`/project`, inputs)
+  return data?.data;
 }
 

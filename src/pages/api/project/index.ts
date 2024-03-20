@@ -9,7 +9,6 @@ export default async function handler(req: any, res: any){
   switch(req.method){
     case 'GET':
       const totalPost = await project.find().sort({"createdAt": -1});
-      console.log(totalPost)
       res.status(201).send(totalPost);
       break;
     case 'POST':

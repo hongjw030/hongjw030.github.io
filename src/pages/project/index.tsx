@@ -22,7 +22,7 @@ export default function ProjectPage() {
         image="/profile.jpg"
         url="project"
       />
-      <ProjectCardList sortedPosts={data} />
+      <ProjectCardList sortedProjects={data} />
     </MainLayout>
   );
 }

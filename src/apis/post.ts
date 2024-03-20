@@ -7,6 +7,12 @@ export async function getAllPostList () {
   return data?.data;
 }
 
+// 포스트 10개만 가져오기.
+export async function getCarouselPostList(){
+  const data = await axiosInstance.get(`/post/carousel`)
+  return data?.data;
+}
+
 // 메인 카테고리 포스트 조회
 export async function getMainPostList (mainPath: string) {
   const data = await axiosInstance.get(`/post/${mainPath}`)

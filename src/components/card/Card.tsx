@@ -1,5 +1,4 @@
-/** TODO - postingCard 컴포넌트 누를 때 onClick 속성의 이동하는거 그거 고치기
- * 기본적으로 project 페이지나 blog 페이지에 들어가는 글 카드 컴포넌트
+/** 기본적으로 project 페이지나 blog 페이지에 들어가는 글 카드 컴포넌트
  */
 
 import Card from "@mui/material/Card";
@@ -13,8 +12,8 @@ import { MIN_WIDTH } from "@/constants";
 import { EMPTY_DESCRIPTION } from "@/constants/alertText";
 import { PostTitle } from "@/components/common/Titles";
 import { DateTag, CategoryTag } from "@/components/common/Tags";
-import { ProjectType } from "@/types/ProjectType";
 import { PostApiType } from "@/types/PostApiType";
+import { ProjectApiType } from "@/types/ProjectApiType";
 
 export function PostingCard({
   _id,
@@ -76,7 +75,13 @@ export function PostingCard({
   );
 }
 
-export function ProjectCard({ title, coverImg, date, description, slug }: any) {
+export function ProjectCard({
+  title,
+  coverImg,
+  createdAt,
+  description,
+  _id,
+}: ProjectApiType) {
   const router = useRouter();
 
   return (
@@ -87,7 +92,7 @@ export function ProjectCard({ title, coverImg, date, description, slug }: any) {
           justifyContent: "flex-start",
           alignItems: "flex-start",
         }}
-        onClick={() => router.push(`/project/${slug}`)}
+        onClick={() => router.push(`/project/${_id}`)}
       >
         <CardMedia
           component="img"
@@ -117,13 +122,9 @@ export function ProjectCard({ title, coverImg, date, description, slug }: any) {
           >
             {title}
           </Box>
-          <Typography variant="body2" component="div">
-            작성일: {date}
-          </Typography>
+          <DateTag date={createdAt} />
           <Typography color="text.secondary" fontSize={12}>
-            {description
-              ? description
-              : "description이 작성되지 않은 글입니다! 카드를 클릭해 본문 내용을 참조해주세요."}
+            {description ? description : EMPTY_DESCRIPTION}
           </Typography>
         </CardContent>
       </CardActionArea>

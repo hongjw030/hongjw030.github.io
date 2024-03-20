@@ -1,18 +1,18 @@
 import { MIN_WIDTH } from "@/constants";
 import { Box, Divider, Paper, Typography } from "@mui/material";
-import { ProjectType } from "@/types/ProjectType";
+import { ProjectApiType } from "@/types/ProjectApiType";
 
 export default function ProjectHeader({
   note,
   title,
-  date,
+  term,
   description,
   coverImg,
-  members,
+  isTeam,
   developmentUrl,
   githubUrl,
   functions,
-}: ProjectType) {
+}: ProjectApiType) {
   return (
     <Paper
       sx={{
@@ -37,8 +37,8 @@ export default function ProjectHeader({
 
       <Divider />
       <Box>
-        <Box>기간: {date ? date : "진행 중"}</Box>
-        <Box>인원: {members ? members : "1인 개발"}</Box>
+        <Box>기간: {term ? term : "진행 중"}</Box>
+        <Box>인원: {isTeam ? isTeam : "1인 개발"}</Box>
         <Box>
           깃허브 링크: {githubUrl ? githubUrl : "문제가 있어 잠시 내렸습니다."}
         </Box>

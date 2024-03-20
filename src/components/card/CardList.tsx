@@ -3,9 +3,13 @@ import { Stack } from "@mui/material";
 import { PostingCard, ProjectCard } from "@/components/card/Card";
 import { EMPTY_POST_LIST } from "@/constants/alertText";
 import { PostListApiType } from "@/types/PostApiType";
+import { ProjectApiListType } from "@/types/ProjectApiType";
 
 interface CardListProps {
   sortedPosts: PostListApiType;
+}
+interface ProjectCardListProps {
+  sortedProjects: ProjectApiListType;
 }
 
 export function PostingCardList({ sortedPosts }: CardListProps) {
@@ -34,26 +38,31 @@ export function PostingCardList({ sortedPosts }: CardListProps) {
   );
 }
 
-export function ProjectCardList({ sortedPosts }: CardListProps) {
-  if (!sortedPosts || sortedPosts?.length <= 0) {
+export function ProjectCardList({ sortedProjects }: ProjectCardListProps) {
+  if (!sortedProjects || sortedProjects?.length <= 0) {
     return <>{EMPTY_POST_LIST}</>;
   }
 
   return (
     <Stack spacing={2}>
-      {/* {sortedPosts.map(
-        ({ slug, frontmatter }: { slug: string; frontmatter: any }) => (
-          <ProjectCard
-            note={frontmatter.note}
-            title={frontmatter.title}
-            date={frontmatter.date}
-            coverImg={frontmatter.coverImg}
-            description={frontmatter.description}
-            key={frontmatter.note}
-            slug={slug}
-          />
-        )
-      )} */}
+      {sortedProjects.map((project) => (
+        <ProjectCard
+          key={project._id}
+          _id={project._id}
+          updatedAt={project.updatedAt}
+          createdAt={project.createdAt}
+          isTeam={project.isTeam}
+          functions={project.functions}
+          githubUrl={project.githubUrl}
+          developmentUrl={project.developmentUrl}
+          note={project.note}
+          title={project.title}
+          term={project.term}
+          content={project.content}
+          coverImg={project.coverImg}
+          description={project.description}
+        />
+      ))}
     </Stack>
   );
 }
