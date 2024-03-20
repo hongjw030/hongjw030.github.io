@@ -50,7 +50,7 @@ export default function CategoryGroupAccordion({
           {mainCategory.title}
         </Link>
 
-        {subCategoryList?.length > 0 && (
+        {subCategoryList && subCategoryList?.length > 0 && (
           <AccordionSummary
             expandIcon={<ArrowDropDownIcon color="primary" />}
             aria-controls="panel1a-content"
@@ -67,29 +67,30 @@ export default function CategoryGroupAccordion({
           padding: "20px",
         }}
       >
-        {subCategoryList.map((subCategory) => {
-          return (
-            <Link
-              underline="hover"
-              sx={{
-                fontSize: "15px",
-                display: "flex",
-                gap: "5px",
-                textDecoration: "none",
-                color: "inherit",
-              }}
-              href={
-                subCategory.path !== "noTag"
-                  ? `/blog/${mainCategory.path}/${subCategory.path}`
-                  : `/blog/${mainCategory.path}`
-              }
-              key={subCategory._id}
-            >
-              <TabIcon color="primary" />
-              {subCategory.title}
-            </Link>
-          );
-        })}
+        {subCategoryList &&
+          subCategoryList?.map((subCategory) => {
+            return (
+              <Link
+                underline="hover"
+                sx={{
+                  fontSize: "15px",
+                  display: "flex",
+                  gap: "5px",
+                  textDecoration: "none",
+                  color: "inherit",
+                }}
+                href={
+                  subCategory.path !== "noTag"
+                    ? `/blog/${mainCategory.path}/${subCategory.path}`
+                    : `/blog/${mainCategory.path}`
+                }
+                key={subCategory._id}
+              >
+                <TabIcon color="primary" />
+                {subCategory.title}
+              </Link>
+            );
+          })}
       </AccordionDetails>
     </Accordion>
   );

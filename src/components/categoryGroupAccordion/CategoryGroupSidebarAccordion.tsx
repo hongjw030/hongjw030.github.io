@@ -26,7 +26,7 @@ export default function CategoryGroupSidebarAccordion({
             title={`${mainCategory.title}`}
             href={`/blog/${mainCategory.path}`}
           />
-          {subCategoryList?.length > 0 && (
+          {subCategoryList && subCategoryList?.length > 0 && (
             <AccordionSummary
               expandIcon={<ArrowDropDownIcon />}
               aria-controls="panel1a-content"
@@ -39,7 +39,7 @@ export default function CategoryGroupSidebarAccordion({
             ></AccordionSummary>
           )}
         </StyledCategoryListItem>
-        {subCategoryList?.length > 0 && (
+        {subCategoryList && subCategoryList?.length > 0 && (
           <AccordionDetails>
             {subCategoryList.map((subCategory) => {
               return (

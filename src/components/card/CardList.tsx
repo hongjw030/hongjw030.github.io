@@ -15,27 +15,27 @@ export function PostingCardList({ sortedPosts }: CardListProps) {
 
   return (
     <Stack spacing={2}>
-      {sortedPosts.map((post) => (
-        <PostingCard
-          title={post.title}
-          createdAt={post.createdAt}
-          updatedAt={post.updatedAt}
-          coverImg={post.coverImg}
-          mainCategory={post.mainCategory}
-          subCategory={post.subCategory}
-          description={post.description}
-          _id={post._id}
-          key={post._id}
-          content={post.content}
-        />
-      ))}
+      {sortedPosts &&
+        sortedPosts.map((post) => (
+          <PostingCard
+            title={post.title}
+            createdAt={post.createdAt}
+            updatedAt={post.updatedAt}
+            coverImg={post.coverImg}
+            mainCategory={post.mainCategory}
+            subCategory={post.subCategory}
+            description={post.description}
+            _id={post._id}
+            key={post._id}
+            content={post.content}
+          />
+        ))}
     </Stack>
   );
 }
 
 export function ProjectCardList({ sortedPosts }: CardListProps) {
-  const postCount = sortedPosts.length;
-  if (!sortedPosts || postCount <= 0) {
+  if (!sortedPosts || sortedPosts?.length <= 0) {
     return <>{EMPTY_POST_LIST}</>;
   }
 
