@@ -1,6 +1,7 @@
 // 카테고리 전체 리스트를 조회하는 api를 실행해 카테고리 데이터를 넘겨주는 훅
 
 import { getCategoryList } from "@/apis/category";
+import { CategoryListApiType } from "@/types/CategoryApiType";
 import { useQuery } from "@tanstack/react-query";
 
 function useGetCategory() {
@@ -12,7 +13,11 @@ function useGetCategory() {
     gcTime: Infinity,
   });
 
-  return { data, isLoading, isError };
+  const returnData: {data: CategoryListApiType, isLoading: boolean, isError: boolean} = {
+    data, isLoading, isError
+  }
+
+  return { ...returnData };
 }
 
 export default useGetCategory;

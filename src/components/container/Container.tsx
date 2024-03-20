@@ -1,4 +1,4 @@
-import { DRAWER_WIDTH } from "@/constants";
+import { DRAWER_WIDTH, MAX_WIDTH } from "@/constants";
 import { styled } from "@mui/material/styles";
 
 const Container = styled("main", {
@@ -6,6 +6,14 @@ const Container = styled("main", {
 })<{
   open?: boolean;
 }>(({ theme, open }) => ({
+  maxWidth: MAX_WIDTH,
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+  paddingTop: "10px",
+  paddingLeft: "25px",
+  paddingRight: "25px",
+  paddingBottom: "100px",
   flexGrow: 1,
   transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,

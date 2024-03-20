@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,34 +11,33 @@ import Nav from "@/components/nav/Nav";
 import MainDrawer from "@/components/mainDrawer/MainDrawer";
 import StyledSpacing from "@/components/common/StyledSpacing";
 import { NAV_HEIGHT } from "@/constants";
+import useHandleDrawer from "@/hooks/useHandleDrawer";
 
 interface MainLayoutProps {
   children?: ReactNode;
-  current?: string;
+  current?: "CATEGORY" | "PROJECT";
 }
+
 export default function MainLayout({ children, current }: MainLayoutProps) {
-  const [open, setOpen] = useState(true);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const { isOpen, handleDrawerClose, handleDrawerOpen } = useHandleDrawer(true);
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
       <CssBaseline />
 
-      <Nav position="fixed" open={open}>
+      <Nav position="fixed" open={isOpen}>
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
+            sx={{ mr: 2, ...(isOpen && { display: "none" }) }}
           >
             <MenuIcon />
           </IconButton>
@@ -50,11 +49,11 @@ export default function MainLayout({ children, current }: MainLayoutProps) {
 
       <MainDrawer
         current={current}
-        open={open}
+        open={isOpen}
         handleDrawerClose={handleDrawerClose}
       />
 
-      <Container open={open}>
+      <Container open={isOpen}>
         <StyledSpacing height={NAV_HEIGHT} />
         {children}
       </Container>
