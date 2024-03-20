@@ -9,8 +9,7 @@ interface CardListProps {
 }
 
 export function PostingCardList({ sortedPosts }: CardListProps) {
-  const postCount = sortedPosts.length;
-  if (!sortedPosts || postCount <= 0) {
+  if (!sortedPosts || sortedPosts?.length <= 0) {
     return <>{EMPTY_POST_LIST}</>;
   }
 

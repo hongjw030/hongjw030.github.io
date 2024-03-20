@@ -50,7 +50,7 @@ export default function CategoryGroupAccordion({
           {mainCategory.title}
         </Link>
 
-        {subCategoryList.length > 0 && (
+        {subCategoryList?.length > 0 && (
           <AccordionSummary
             expandIcon={<ArrowDropDownIcon color="primary" />}
             aria-controls="panel1a-content"
