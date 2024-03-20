@@ -11,6 +11,7 @@ export default async function handler(req: any, res: any){
       const totalPost = await project.find().sort({"createdAt": -1});
       res.setHeader("Cache-Control", "no-cache, no-store");
       res.setHeader("Pragma", "no-cache");
+      console.log(totalPost)
       res.status(200).send(totalPost);
       break;
     case 'POST':
