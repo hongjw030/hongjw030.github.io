@@ -1,9 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
+
+import { getAllPostList } from "@/apis/post";
 import BlogLayout from "@/layouts/BlogLayout";
-import React from "react";
 import { PostingCardList } from "@/components/card/CardList";
 import HeadMeta from "@/components/seo/HeadMeta";
-import { useQuery } from "@tanstack/react-query";
-import { getAllPostList } from "@/apis/post";
 
 export default function BlogPage() {
   const { data } = useQuery({
@@ -22,7 +22,7 @@ export default function BlogPage() {
         image="/profile.jpg"
         url="blog"
       />
-      {/* {data && <PostingCardList sortedPosts={data} />} */}
+      {data && <PostingCardList sortedPosts={data} />}
     </BlogLayout>
   );
 }

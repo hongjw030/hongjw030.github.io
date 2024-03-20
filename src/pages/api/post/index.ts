@@ -8,7 +8,7 @@ export default async function handler(req: any, res: any){
 
   switch(req.method){
     case 'GET':
-      const totalPost = await post.find();
+      const totalPost = await post.find().sort({"createdAt": -1});
       res.status(200).send(totalPost);
       break;
     case 'POST':

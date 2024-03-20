@@ -1,7 +1,9 @@
-import BlogLayout from "@/layouts/BlogLayout";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
+
 import { getSubPostList } from "@/apis/post";
+import { PostingCardList } from "@/components/card/CardList";
+import BlogLayout from "@/layouts/BlogLayout";
 
 export default function BlogPage() {
   const router = useRouter();
@@ -12,19 +14,10 @@ export default function BlogPage() {
     retry: 3,
     staleTime: Infinity,
     gcTime: Infinity,
+    enabled: !!subId,
   });
 
   return (
-    <BlogLayout>
-      {/* <HeadMeta
-        title={currentSubObject?.title ?? "프론트엔드 블로그 카테고리"}
-        description={
-          currentSubObject?.description ?? "프론트엔드 블로그 카테고리"
-        }
-        image="/profile.jpg"
-        url={`blog/${mainId}/${subId}`}
-      />
-      <PostingCardList sortedPosts={sortedPosts} /> */}
-    </BlogLayout>
+    <BlogLayout>{data && <PostingCardList sortedPosts={data} />}</BlogLayout>
   );
 }

@@ -1,10 +1,13 @@
 export interface PostApiType{
+  _id: string;
   title: string;
   mainCategory: string;
   subCategory?: string;
   coverImg?: string;
   description?: string;
-  _id: string;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt: string;
+  updatedAt: string;
+  content: string;
 }
+
+export type PostListApiType = Array<PostApiType>;

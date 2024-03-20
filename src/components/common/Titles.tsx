@@ -2,13 +2,29 @@
 
 import { Box } from "@mui/material";
 
-interface PageTitleProps {
+interface TitleProps {
   title: string;
   fontSize?: number;
 }
-export function PageTitle({ title, fontSize = 20 }: PageTitleProps) {
+export function PageTitle({ title, fontSize = 20 }: TitleProps) {
   return (
     <Box fontSize={fontSize} fontWeight={700}>
+      {title}
+    </Box>
+  );
+}
+
+export function PostTitle({ title, fontSize = 15 }: TitleProps) {
+  return (
+    <Box
+      fontSize={fontSize}
+      fontWeight={500}
+      sx={{
+        maxHeight: "55px",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+      }}
+    >
       {title}
     </Box>
   );

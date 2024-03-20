@@ -12,6 +12,7 @@ import StyledSpacing from "@/components/common/StyledSpacing";
 import StyledBreadcrumbs from "@/components/common/StyledBreadcrumbs";
 import { NAV_HEIGHT } from "@/constants";
 import BlogHeader from "@/components/header/BlogHeader";
+import useHandleDrawer from "@/hooks/useHandleDrawer";
 
 interface BlogLayoutProps {
   children?: ReactNode;
@@ -33,27 +34,25 @@ export default function BlogLayout({
   note,
   coverImg,
 }: BlogLayoutProps) {
-  const [open, setOpen] = useState(false);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const { isOpen, handleDrawerClose, handleDrawerOpen } = useHandleDrawer(true);
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
       <CssBaseline />
 
-      <Nav position="fixed" open={open}>
+      <Nav position="fixed" open={isOpen}>
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
+            sx={{ mr: 2, ...(isOpen && { display: "none" }) }}
           >
             <MenuIcon />
           </IconButton>
@@ -70,19 +69,20 @@ export default function BlogLayout({
 
       <MainDrawer
         current="blogs"
-        open={open}
+        open={isOpen}
         handleDrawerClose={handleDrawerClose}
       />
 
-      <Container open={open}>
+      <Container open={isOpen}>
         <StyledSpacing height={NAV_HEIGHT} />
+
         <BlogHeader
           title={subTitle ? subTitle : mainTitle}
           description={description}
           coverImg={coverImg}
         />
         <StyledSpacing height={30} />
-        <div>{children}</div>
+        {children}
       </Container>
     </Box>
   );
