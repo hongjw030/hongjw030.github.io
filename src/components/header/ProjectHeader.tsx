@@ -1,6 +1,5 @@
 import { MIN_WIDTH } from "@/constants";
 import { Box, Divider, Paper, Typography } from "@mui/material";
-import { useRouter } from "next/router";
 import { ProjectType } from "@/types/ProjectType";
 
 export default function ProjectHeader({

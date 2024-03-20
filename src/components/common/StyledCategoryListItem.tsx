@@ -1,4 +1,4 @@
-import { Link, ListItemButton } from "@mui/material";
+import { ListItemButton } from "@mui/material";
 import { ReactNode } from "react";
 
 interface StyledCategoryListItemProps {
@@ -9,8 +9,7 @@ function StyledCategoryListItem({ children }: StyledCategoryListItemProps) {
   return (
     <ListItemButton
       sx={{
-        fontSize: "14px",
-        height: "40px",
+        height: "45px",
         display: "flex",
         justifyContent: "space-between",
       }}

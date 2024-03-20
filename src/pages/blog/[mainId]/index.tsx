@@ -1,100 +1,38 @@
-import BlogLayout from "@/layouts/BlogLayout";
-import React from "react";
-import fs from "fs";
-import matter from "gray-matter";
-import { POST_DIR } from "@/constants";
-import { PostFrontMatterType } from "@/types/PostType";
-import CATEGORY_ARRAY from "@/constants/category";
-import { PostingCardList } from "@/components/card/CardList";
-import { CategoryParamsType } from "@/types/CategoryType";
-import HeadMeta from "@/components/seo/HeadMeta";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 
-export default function BlogPage({ sortedPosts, mainId }: any) {
-  const currentMainObject = mainId
-    ? CATEGORY_ARRAY[
-        CATEGORY_ARRAY.findIndex((el) => el.mainCategory.id === mainId)
-      ]
-    : null;
+import { getMainPostList } from "@/apis/post";
+import { PostingCardList } from "@/components/card/CardList";
+import BlogHeader from "@/components/header/BlogHeader";
+import SubLayout from "@/layouts/SubLayout";
+
+export default function BlogPage() {
+  const router = useRouter();
+  const { mainId } = router.query;
+
+  const { data } = useQuery({
+    queryKey: ["main-post-list"],
+    queryFn: () => getMainPostList(mainId as string),
+    retry: 3,
+    staleTime: Infinity,
+    gcTime: Infinity,
+    enabled: !!mainId,
+  });
 
   return (
-    <BlogLayout
-      mainId={mainId}
-      mainTitle={currentMainObject?.mainCategory.title}
-      description={currentMainObject?.mainCategory.description}
-      note={currentMainObject?.mainCategory.note}
-      coverImg={currentMainObject?.mainCategory.coverImg}
-    >
-      <HeadMeta
-        title={
-          currentMainObject?.mainCategory.title ?? "프론트엔드 블로그 카테고리"
-        }
-        description={
-          currentMainObject?.mainCategory.description ??
-          "프론트엔드 블로그 카테고리"
-        }
-        image="/profile.jpg"
-        url={`blog/${mainId}`}
-      />
-      <PostingCardList sortedPosts={sortedPosts} />
-    </BlogLayout>
+    <>
+      {data && (
+        <SubLayout
+          headerComponent={
+            <BlogHeader
+              description={data.description}
+              coverImg={data.coverImg}
+            />
+          }
+        >
+          <PostingCardList sortedPosts={data} />
+        </SubLayout>
+      )}
+    </>
   );
-}
-
-export async function getStaticPaths() {
-  const paths: CategoryParamsType[] = [];
-  CATEGORY_ARRAY.forEach((el) => {
-    paths.push({
-      params: { mainId: el.mainCategory.id },
-    });
-  });
-
-  return {
-    paths: paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({
-  params,
-}: {
-  params: { mainId: string };
-}) {
-  const mainId = params.mainId;
-  const files = fs.readdirSync(POST_DIR);
-
-  const posts = files.map((filename) => {
-    const markdownWithMetadata = fs
-      .readFileSync(`src/_posts/${filename}`)
-      .toString();
-    let stats = fs.statSync(`src/_posts/${filename}`);
-
-    const { data } = matter(markdownWithMetadata);
-    const frontmatter = {
-      ...data,
-    } as PostFrontMatterType;
-
-    if (frontmatter?.mainCategory === mainId) {
-      return {
-        slug: filename.replace(".md", ""),
-        frontmatter,
-        birthTime: stats.birthtime.toString(),
-        mTime: stats.mtime.toString(),
-      };
-    } else return null;
-  });
-
-  let sortedPosts = posts.filter((el) => el !== null);
-
-  if ((sortedPosts.length == 1 && sortedPosts[0] == null) || !posts) {
-    return {
-      props: { sortedPosts: [], mainId },
-    };
-  } else {
-    sortedPosts = sortedPosts.sort((a, b) =>
-      (a?.birthTime ?? 1) < (b?.birthTime ?? 1) ? 1 : -1
-    );
-    return {
-      props: { sortedPosts, mainId },
-    };
-  }
 }

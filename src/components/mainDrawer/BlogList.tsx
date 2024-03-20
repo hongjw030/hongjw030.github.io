@@ -1,17 +1,23 @@
-import StyledAccordion from "@/components/common/StyledAccordion";
-import CATEGORY_ARRAY from "@/constants/category";
-import { Link, ListItem } from "@mui/material";
+import { CategoryLink } from "@/components/common/Links";
+import StyledCategoryListItem from "@/components/common/StyledCategoryListItem";
+import CategoryGroupSidebarAccordion from "@/components/categoryGroupAccordion/CategoryGroupSidebarAccordion";
+import { CategoryListApiType } from "@/types/CategoryApiType";
 
-export default function BlogList() {
+interface BlogListProps {
+  categoryList: CategoryListApiType;
+}
+
+export default function BlogList({ categoryList }: BlogListProps) {
   return (
     <>
-      <ListItem>
-        <Link href="/blog" underline="none" color="inherit" fontSize={13}>
-          전체보기{" "}
-        </Link>
-      </ListItem>
-      {CATEGORY_ARRAY.map((el) => {
-        return <StyledAccordion categoryGroup={el} key={el.mainCategory.id} />;
+      <StyledCategoryListItem>
+        <CategoryLink title="전체 보기" href="/blog" />
+      </StyledCategoryListItem>
+
+      {categoryList.map((el) => {
+        return (
+          <CategoryGroupSidebarAccordion categoryGroup={el} key={el[0]._id} />
+        );
       })}
     </>
   );

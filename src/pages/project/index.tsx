@@ -1,13 +1,19 @@
-import React from "react";
-import fs from "fs";
-import matter from "gray-matter";
-import { PROJECT_DIR } from "@/constants";
-import { ProjectCardList } from "@/components/card/CardList";
-import MainLayout from "@/layouts/MainLayout";
-import { ProjectType } from "@/types/ProjectType";
-import HeadMeta from "@/components/seo/HeadMeta";
+import { useQuery } from "@tanstack/react-query";
 
-export default function ProjectPage({ sortedProjects }: any) {
+import { getAllProjectList } from "@/apis/project";
+import { ProjectCardList } from "@/components/card/CardList";
+import HeadMeta from "@/components/seo/HeadMeta";
+import MainLayout from "@/layouts/MainLayout";
+
+export default function ProjectPage() {
+  const { data } = useQuery({
+    queryKey: ["all-project-list"],
+    queryFn: () => getAllProjectList(),
+    retry: 3,
+    staleTime: Infinity,
+    gcTime: Infinity,
+  });
+
   return (
     <MainLayout current="PROJECT">
       <HeadMeta
@@ -16,43 +22,7 @@ export default function ProjectPage({ sortedProjects }: any) {
         image="/profile.jpg"
         url="project"
       />
-      <ProjectCardList sortedPosts={sortedProjects} />
+      <ProjectCardList sortedPosts={data} />
     </MainLayout>
   );
-}
-
-export async function getStaticProps() {
-  const files = fs.readdirSync(PROJECT_DIR);
-
-  const projects = files.map((filename) => {
-    const markdownWithMetadata = fs
-      .readFileSync(`src/_projects/${filename}`)
-      .toString();
-
-    const { data } = matter(markdownWithMetadata);
-
-    const frontmatter = {
-      ...data,
-    } as ProjectType;
-
-    return {
-      slug: filename.replace(".md", ""),
-      frontmatter,
-    };
-  });
-
-  let sortedProjects = projects.filter((el) => el !== null);
-
-  if ((sortedProjects.length == 1 && sortedProjects[0] == null) || !projects) {
-    return {
-      props: { sortedProjects: [] },
-    };
-  } else {
-    sortedProjects = sortedProjects.sort((a, b) =>
-      a?.frontmatter.note < b?.frontmatter.note ? 1 : -1
-    );
-    return {
-      props: { sortedProjects },
-    };
-  }
 }

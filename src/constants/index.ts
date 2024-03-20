@@ -1,6 +1,7 @@
 import path from 'path';
 
 const DRAWER_WIDTH = 210;
+const MAX_WIDTH = 1200;
 const MIN_WIDTH = 345;
 const POST_MAX_WIDTH = 700;
 
@@ -14,4 +15,4 @@ const THEME_VALUE = 'light';
 const POST_DIR = path.join('src/_posts');
 const PROJECT_DIR = path.join('src/_projects');
 
-export {DRAWER_WIDTH, NAV_HEIGHT, POST_MAX_WIDTH, THEME_VALUE, POST_DIR, MIN_WIDTH, POST_PER_PAGE, HEADER_HEIGHT, PROJECT_DIR};
+export {DRAWER_WIDTH, MAX_WIDTH, NAV_HEIGHT, POST_MAX_WIDTH, THEME_VALUE, POST_DIR, MIN_WIDTH, POST_PER_PAGE, HEADER_HEIGHT, PROJECT_DIR};

@@ -1,13 +1,20 @@
+/** 기본 사이드바 컴포넌트.
+ * sideProfile 컴포넌트,
+ * commonList 컴포넌트(home, project, category)
+ * blogList 컴포넌트(블로그 카테고리 모음)
+ */
+
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 import { DRAWER_WIDTH, NAV_HEIGHT } from "@/constants";
-import StyledSpacing from "../common/StyledSpacing";
-import CommonList from "./CommonList";
-import BlogList from "./BlogList";
-import SideProfile from "./SideProfile";
+import StyledSpacing from "@/components/common/StyledSpacing";
+import CommonList from "@/components/mainDrawer/CommonList";
+import BlogList from "@/components/mainDrawer/BlogList";
+import SideProfile from "@/components/mainDrawer/SideProfile";
+import useGetCategory from "@/hooks/useGetCategory";
 
 export interface MainDrawerProp {
   current?: string;
@@ -20,6 +27,8 @@ export default function MainDrawer({
   open = true,
   handleDrawerClose,
 }: MainDrawerProp) {
+  const { data } = useGetCategory();
+
   return (
     <Drawer
       sx={{
@@ -47,7 +56,7 @@ export default function MainDrawer({
       <CommonList current={current} />
 
       <Divider />
-      <BlogList />
+      {data && <BlogList categoryList={data} />}
     </Drawer>
   );
 }

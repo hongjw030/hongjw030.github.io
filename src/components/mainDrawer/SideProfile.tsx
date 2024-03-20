@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 
 import ProfileImg from "/public/profile.jpg";
 import { BLOG_TITLE, JOB, NICKNAME } from "@/constants/user";
+import { PageTitle } from "@/components/common/Titles";
 
 export default function SideProfile() {
   return (
@@ -29,9 +30,7 @@ export default function SideProfile() {
           priority
         />
       </Box>
-      <Typography fontSize={20} sx={{ fontWeight: "bold" }}>
-        {BLOG_TITLE}
-      </Typography>
+      <PageTitle title={BLOG_TITLE} />
       <Box display="flex" flexDirection="column" alignItems="center">
         <Typography>{JOB}</Typography>
         <Typography fontSize={13}>{NICKNAME}</Typography>
