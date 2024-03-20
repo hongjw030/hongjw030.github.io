@@ -8,7 +8,5 @@ export default async function handler(req: any, res: any){
 
   const {mainPath, subPath} = req.query;
   const totalPost = await post.find({mainCategory: mainPath, subCategory: subPath}).sort({"createdAt": -1});
-  res.setHeader("Cache-Control", "no-cache, no-store");
-  res.setHeader("Pragma", "no-cache");
-  res.status(200).send(totalPost);
+  res.status(201).send(totalPost);
 }
