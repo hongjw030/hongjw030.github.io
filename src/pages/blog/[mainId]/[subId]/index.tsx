@@ -3,7 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getSubPostList } from "@/apis/post";
 import { PostingCardList } from "@/components/card/CardList";
-import BlogLayout from "@/layouts/BlogLayout";
+import BlogHeader from "@/components/header/BlogHeader";
+import SubLayout from "@/layouts/SubLayout";
 
 export default function BlogPage() {
   const router = useRouter();
@@ -18,6 +19,19 @@ export default function BlogPage() {
   });
 
   return (
-    <BlogLayout>{data && <PostingCardList sortedPosts={data} />}</BlogLayout>
+    <>
+      {data && (
+        <SubLayout
+          headerComponent={
+            <BlogHeader
+              description={data.description}
+              coverImg={data.coverImg}
+            />
+          }
+        >
+          <PostingCardList sortedPosts={data} />
+        </SubLayout>
+      )}
+    </>
   );
 }

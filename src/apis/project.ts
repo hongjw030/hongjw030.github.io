@@ -6,7 +6,6 @@ export async function getAllProjectList () {
   return data?.data;
 }
 
-
 // 단일 프로젝트 조회
 export async function getProjectContent (projectId: string) {
   try{

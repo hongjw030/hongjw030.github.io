@@ -25,8 +25,8 @@ export default function CategoryGroupAccordion({
     <Accordion
       elevation={2}
       sx={{
-        maxWidth: "500px",
         minWidth: MIN_WIDTH,
+        width: "50vw",
       }}
     >
       <ListItem

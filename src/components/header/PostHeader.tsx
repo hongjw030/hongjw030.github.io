@@ -1,47 +1,38 @@
-import { HEADER_HEIGHT, MIN_WIDTH } from "@/constants";
-import { Box, Divider, Paper, Typography } from "@mui/material";
-import StyledChip from "../common/StyledChip";
-import { useRouter } from "next/router";
-import formatDate from "@/utils/formatDate";
+import { Box, Typography } from "@mui/material";
+
+import { MIN_WIDTH } from "@/constants";
+import StyledChip from "@/components/common/StyledChip";
+import { DateTag } from "@/components/common/Tags";
+import { PostTitle } from "@/components/common/Titles";
 
 interface PostHeaderProps {
   title: string;
-  mainId?: string;
-  mainTitle?: string;
-  subId?: string;
-  subTitle?: string;
-  birthTime: string;
-  mTime: string;
+  createdAt: string;
+  updatedAt: string;
   description?: string;
 }
 
 export default function PostHeader({
   title,
-  mainId,
-  mainTitle,
-  subId,
-  subTitle,
-  birthTime,
-  mTime,
+  createdAt,
+  updatedAt,
   description,
 }: PostHeaderProps) {
   return (
-    <Paper
+    <Box
       sx={{
         minWidth: MIN_WIDTH,
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        gap: "10px",
-        padding: "24px",
+        gap: "20px",
+        paddingTop: "20px",
       }}
-      elevation={2}
     >
-      <Box fontWeight={800} fontSize={35}>
-        {title}
-      </Box>
-      <Box fontSize={12}>
-        작성일: {formatDate(birthTime)} / 수정일: {formatDate(mTime)}
+      <PostTitle title={title} fontSize={35} />
+      <Box>
+        <DateTag label="Created at :" date={createdAt} fontSize={12} />
+        <DateTag label="Updated at :" date={updatedAt} fontSize={12} />
       </Box>
       <Box
         sx={{
@@ -50,7 +41,7 @@ export default function PostHeader({
         }}
       >
         <StyledChip label={"Blog"} color="info" size="small" url={`/blog`} />
-        {mainTitle && (
+        {/* {mainTitle && (
           <StyledChip
             label={mainTitle}
             color="info"
@@ -65,14 +56,9 @@ export default function PostHeader({
             size="small"
             url={`/blog/${mainId}/${subId}`}
           />
-        )}
+        )} */}
       </Box>
-      {description && (
-        <>
-          <Divider />
-          <Typography variant="body2">{description}</Typography>
-        </>
-      )}
-    </Paper>
+      {description && <Typography variant="body2">{description}</Typography>}
+    </Box>
   );
 }

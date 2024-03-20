@@ -1,5 +1,5 @@
 /** TODO - postingCard 컴포넌트 누를 때 onClick 속성의 이동하는거 그거 고치기
- *
+ * 기본적으로 project 페이지나 blog 페이지에 들어가는 글 카드 컴포넌트
  */
 
 import Card from "@mui/material/Card";
@@ -42,7 +42,7 @@ export function PostingCard({
           justifyContent: "flex-start",
           alignItems: "flex-start",
         }}
-        onClick={() => router.push(`/#`)}
+        onClick={() => router.push(`/${_id}`)}
       >
         <CardMedia
           component="img"

@@ -5,20 +5,30 @@ import { Box } from "@mui/material";
 interface TitleProps {
   title: string;
   fontSize?: number;
+  fontWeight?: number;
 }
-export function PageTitle({ title, fontSize = 20 }: TitleProps) {
+
+export function PageTitle({
+  title,
+  fontSize = 20,
+  fontWeight = 700,
+}: TitleProps) {
   return (
-    <Box fontSize={fontSize} fontWeight={700}>
+    <Box fontSize={fontSize} fontWeight={fontWeight}>
       {title}
     </Box>
   );
 }
 
-export function PostTitle({ title, fontSize = 15 }: TitleProps) {
+export function PostTitle({
+  title,
+  fontSize = 15,
+  fontWeight = 500,
+}: TitleProps) {
   return (
     <Box
       fontSize={fontSize}
-      fontWeight={500}
+      fontWeight={fontWeight}
       sx={{
         maxHeight: "55px",
         overflow: "hidden",

@@ -1,6 +1,7 @@
-import { PostingCard, ProjectCard } from "./Card";
 import { Stack } from "@mui/material";
-import EmptyBlogPage from "../emptyContainer/EmptyBlogPage";
+
+import { PostingCard, ProjectCard } from "@/components/card/Card";
+import { EMPTY_POST_LIST } from "@/constants/alertText";
 import { PostListApiType } from "@/types/PostApiType";
 
 interface CardListProps {
@@ -10,9 +11,8 @@ interface CardListProps {
 export function PostingCardList({ sortedPosts }: CardListProps) {
   const postCount = sortedPosts.length;
   if (!sortedPosts || postCount <= 0) {
-    return <EmptyBlogPage />;
+    return <>{EMPTY_POST_LIST}</>;
   }
-  console.log(sortedPosts);
 
   return (
     <Stack spacing={2}>
@@ -37,7 +37,7 @@ export function PostingCardList({ sortedPosts }: CardListProps) {
 export function ProjectCardList({ sortedPosts }: CardListProps) {
   const postCount = sortedPosts.length;
   if (!sortedPosts || postCount <= 0) {
-    return <EmptyBlogPage />;
+    return <>{EMPTY_POST_LIST}</>;
   }
 
   return (

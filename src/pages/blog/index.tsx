@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { getAllPostList } from "@/apis/post";
-import BlogLayout from "@/layouts/BlogLayout";
 import { PostingCardList } from "@/components/card/CardList";
 import HeadMeta from "@/components/seo/HeadMeta";
+import BlogHeader from "@/components/header/BlogHeader";
+import SubLayout from "@/layouts/SubLayout";
 
 export default function BlogPage() {
   const { data } = useQuery({
@@ -15,14 +16,25 @@ export default function BlogPage() {
   });
 
   return (
-    <BlogLayout>
-      <HeadMeta
-        title="프론트엔드 블로그 포스팅"
-        description="프론트엔드 블로그 포스팅 모음"
-        image="/profile.jpg"
-        url="blog"
-      />
-      {data && <PostingCardList sortedPosts={data} />}
-    </BlogLayout>
+    <>
+      {data && (
+        <SubLayout
+          headerComponent={
+            <BlogHeader
+              description={data.description}
+              coverImg={data.coverImg}
+            />
+          }
+        >
+          <HeadMeta
+            title="프론트엔드 블로그 포스팅"
+            description="프론트엔드 블로그 포스팅 모음"
+            image="/profile.jpg"
+            url="blog"
+          />
+          <PostingCardList sortedPosts={data} />
+        </SubLayout>
+      )}
+    </>
   );
 }

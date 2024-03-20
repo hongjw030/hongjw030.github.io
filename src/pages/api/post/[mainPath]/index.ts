@@ -7,6 +7,6 @@ export default async function handler(req: any, res: any){
   await dbConnect();
 
   const {mainPath} = req.query;
-  const totalPost = await post.find({mainCategory: mainPath});
+  const totalPost = await post.find({mainCategory: mainPath}).sort({"createdAt": -1});
   res.status(200).send(totalPost);
 }

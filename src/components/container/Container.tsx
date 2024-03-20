@@ -10,6 +10,7 @@ const Container = styled("main", {
   maxWidth: MAX_WIDTH,
   display: "flex",
   flexDirection: "column",
+  alignItems: "center",
   gap: "20px",
   paddingTop: "10px",
   paddingLeft: "25px",

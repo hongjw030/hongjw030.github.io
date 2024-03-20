@@ -1,39 +1,35 @@
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Divider } from "@mui/material";
 
+import { MIN_WIDTH, NAV_HEIGHT, POST_MAX_WIDTH } from "@/constants";
 import Container from "@/components/container/Container";
 import Nav from "@/components/nav/Nav";
 import MainDrawer from "@/components/mainDrawer/MainDrawer";
 import StyledSpacing from "@/components/common/StyledSpacing";
 import StyledBreadcrumbs from "@/components/common/StyledBreadcrumbs";
-import { NAV_HEIGHT } from "@/constants";
-import BlogHeader from "@/components/header/BlogHeader";
 import useHandleDrawer from "@/hooks/useHandleDrawer";
 
-interface BlogLayoutProps {
-  children?: ReactNode;
+interface SubLayoutProps {
   mainId?: string;
   mainTitle?: string;
   subId?: string;
   subTitle?: string;
-  description?: string;
-  note?: number;
-  coverImg?: string;
+  children?: ReactNode;
+  headerComponent?: ReactNode;
 }
-export default function BlogLayout({
-  children,
+export default function SubLayout({
   mainId,
   mainTitle,
   subId,
   subTitle,
-  description,
-  note,
-  coverImg,
-}: BlogLayoutProps) {
+  children,
+  headerComponent,
+}: SubLayoutProps) {
   const { isOpen, handleDrawerClose, handleDrawerOpen } = useHandleDrawer(true);
 
   return (
@@ -75,14 +71,20 @@ export default function BlogLayout({
 
       <Container open={isOpen}>
         <StyledSpacing height={NAV_HEIGHT} />
-
-        <BlogHeader
-          title={subTitle ? subTitle : mainTitle}
-          description={description}
-          coverImg={coverImg}
-        />
-        <StyledSpacing height={30} />
-        {children}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            maxWidth: POST_MAX_WIDTH,
+            width: "85vw",
+            minWidth: MIN_WIDTH,
+            gap: "20px",
+          }}
+        >
+          {headerComponent}
+          <Divider />
+          {children}
+        </Box>
       </Container>
     </Box>
   );

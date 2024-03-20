@@ -1,3 +1,4 @@
+import markdownToHtml from "@/utils/markdownToHtml";
 import axiosInstance from "./instance"
 
 // 모든 포스트 조회
@@ -21,7 +22,6 @@ export async function getSubPostList (mainPath: string, subPath: string) {
 // 단일 포스트 조회
 export async function getPostContent (postId: string) {
   try{
-
     const data = await axiosInstance.get(`/${postId}`)
     return data?.data;
   }catch(e){
@@ -29,7 +29,14 @@ export async function getPostContent (postId: string) {
   }
 }
 
+// 포스트 내용을 md에서 html로 바꿔주는 비동기함수
+export async function getMarkdownToHtml(content: string){
+  const data = await markdownToHtml(content);
+  return data;
+}
+
 export async function postPosting (inputs: any) {
   const data = await axiosInstance.post(`/post`, inputs)
   return data?.data;
 }
+
