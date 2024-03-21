@@ -9,6 +9,9 @@ interface AppBarProps extends MuiAppBarProps {
 const Nav = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme, open }) => ({
+  color: "black",
+  backgroundColor: "white",
+  boxShadow: "none",
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
