@@ -30,7 +30,8 @@ export default function SubLayout({
   children,
   headerComponent,
 }: SubLayoutProps) {
-  const { isOpen, handleDrawerClose, handleDrawerOpen } = useHandleDrawer(true);
+  const { isOpen, handleDrawerClose, handleDrawerOpen } =
+    useHandleDrawer(false);
 
   return (
     <Box

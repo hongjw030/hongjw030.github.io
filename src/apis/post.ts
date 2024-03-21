@@ -11,7 +11,6 @@ interface getPostListProps {
 // 모든 포스트 조회
 export async function getPostList ({mainPath, subPath, cursor, count=10}: getPostListProps) {
   let queries = `?count=${count}${mainPath ? `&mainPath=${mainPath}` : ""}${subPath ? `&subPath=${subPath}` : ""}${cursor ? `&cursor=${cursor}` : ""}`
-  console.log(queries);
   const data = await axiosInstance.get(`/post${queries}`)
   return data?.data;
 }

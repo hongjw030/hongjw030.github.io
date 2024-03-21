@@ -13,7 +13,7 @@ const HEADER_HEIGHT = 140;
 
 const PADDING = 30;
 
-const COUNT_PER_PAGE = 10;
+const COUNT_PER_PAGE = 6;
 
 const THEME_VALUE = 'light';
 
