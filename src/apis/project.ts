@@ -1,14 +1,14 @@
-import axiosInstance from "./instance"
+import axiosInstance from "@/apis/libs/instance"
 
-// 모든 프로젝트 조회
-export async function getAllProjectList () {
-  const data = await axiosInstance.get(`/project`)
-  return data?.data;
+interface getProjectListProps {
+  cursor?: string;
+  count?: number;
 }
 
-// 포스트 10개만 가져오기.
-export async function getCarouselProjectList(){
-  const data = await axiosInstance.get(`/project/carousel`)
+// 모든 프로젝트 조회
+export async function getProjectList ({cursor, count=10}: getProjectListProps) {
+  let queries = `?count=${count}${cursor ? `&cursor=${cursor}` : ""}`
+  const data = await axiosInstance.get(`/project${queries}`)
   return data?.data;
 }
 
@@ -21,9 +21,3 @@ export async function getProjectContent (projectId: string) {
     return e;
   }
 }
-
-export async function postProject (inputs: any) {
-  const data = await axiosInstance.post(`/project`, inputs)
-  return data?.data;
-}
-

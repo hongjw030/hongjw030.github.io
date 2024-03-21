@@ -10,6 +10,7 @@ import TabIcon from "@mui/icons-material/Tab";
 
 import { MIN_WIDTH } from "@/constants";
 import { CategoryGroupApiType } from "@/types/CategoryApiType";
+import { getCategoryPostQueryLink } from "@/utils/getQueryLink";
 
 interface CategoryGroupAccordionProps {
   categoryGroup: CategoryGroupApiType;
@@ -20,6 +21,8 @@ export default function CategoryGroupAccordion({
 }: CategoryGroupAccordionProps) {
   const mainCategory = categoryGroup[0];
   const subCategoryList = categoryGroup[1];
+
+  const mainCategoryLink = getCategoryPostQueryLink(mainCategory.path);
 
   return (
     <Accordion
@@ -44,7 +47,7 @@ export default function CategoryGroupAccordion({
             display: "flex",
             gap: "5px",
           }}
-          href={`/blog/${mainCategory.path}`}
+          href={mainCategoryLink}
         >
           <TopicIcon />
           {mainCategory.title}
@@ -81,8 +84,8 @@ export default function CategoryGroupAccordion({
                 }}
                 href={
                   subCategory.path !== "noTag"
-                    ? `/blog/${mainCategory.path}/${subCategory.path}`
-                    : `/blog/${mainCategory.path}`
+                    ? `${mainCategoryLink}&subPath=${subCategory.path}`
+                    : mainCategoryLink
                 }
                 key={subCategory._id}
               >

@@ -4,21 +4,21 @@ import { Box, Divider } from "@mui/material";
 import HomepageHeader from "@/components/homeComponents/HomepageHeader";
 import HeadMeta from "@/components/seo/HeadMeta";
 import { useQuery } from "@tanstack/react-query";
-import { getCarouselPostList } from "@/apis/post";
-import { getCarouselProjectList } from "@/apis/project";
 import { CarouselSection } from "@/components/homeComponents/CarouselSection";
+import { getPostList } from "@/apis/post";
+import { getProjectList } from "@/apis/project";
 
 export default function HomePage() {
   const { data: postCarousel } = useQuery({
     queryKey: ["post-carousel"],
-    queryFn: () => getCarouselPostList(),
+    queryFn: () => getPostList({}),
     retry: 3,
     staleTime: Infinity,
     gcTime: Infinity,
   });
   const { data: projectCarousel } = useQuery({
     queryKey: ["project-carousel"],
-    queryFn: () => getCarouselProjectList(),
+    queryFn: () => getProjectList({}),
     retry: 3,
     staleTime: Infinity,
     gcTime: Infinity,

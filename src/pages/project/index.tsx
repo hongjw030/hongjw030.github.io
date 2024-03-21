@@ -1,14 +1,18 @@
+/** 프로젝트 리뷰 리스트 전체 조회
+ *
+ */
+
 import { useQuery } from "@tanstack/react-query";
 
-import { getAllProjectList } from "@/apis/project";
 import { ProjectCardList } from "@/components/card/CardList";
 import HeadMeta from "@/components/seo/HeadMeta";
 import MainLayout from "@/layouts/MainLayout";
+import { getProjectList } from "@/apis/project";
 
 export default function ProjectPage() {
   const { data } = useQuery({
     queryKey: ["all-project-list"],
-    queryFn: () => getAllProjectList(),
+    queryFn: () => getProjectList({}),
     retry: 3,
     staleTime: Infinity,
     gcTime: Infinity,
@@ -22,7 +26,7 @@ export default function ProjectPage() {
         image="/profile.jpg"
         url="project"
       />
-      <ProjectCardList sortedProjects={data} />
+      <ProjectCardList sortedProjects={data.totalProject} />
     </MainLayout>
   );
 }

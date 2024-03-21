@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 
 import { PostingCard, ProjectCard } from "@/components/card/Card";
-import { EMPTY_POST_LIST } from "@/constants/alertText";
+import { EMPTY_POST_LIST } from "@/constants/texts";
 import { PostListApiType } from "@/types/PostApiType";
 import { ProjectApiListType } from "@/types/ProjectApiType";
 

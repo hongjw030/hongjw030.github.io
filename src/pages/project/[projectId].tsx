@@ -1,3 +1,7 @@
+/** 단일 프로젝트 리뷰글 조회
+ *
+ */
+
 import { useQuery } from "@tanstack/react-query";
 
 import MainLayout from "@/layouts/MainLayout";
@@ -24,7 +28,7 @@ export default function ProjectPage() {
     <MainLayout current="PROJECT">
       {data && !isLoading && (
         <>
-          <ProjectHeader
+          {/* <ProjectHeader
             note={data.note}
             title={data.title}
             date={data.createdAt}
@@ -32,7 +36,7 @@ export default function ProjectPage() {
             coverImg={data.coverImg}
             developmentUrl={data.developmentUrl}
             githubUrl={data.githubUrl}
-          />
+          /> */}
           <MarkdownContainer content={data?.content} _id={data?._id} />
         </>
       )}
