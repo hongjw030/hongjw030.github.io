@@ -8,6 +8,7 @@ import { MIN_WIDTH } from "@/constants";
 import { PostApiType } from "@/types/PostApiType";
 import { DateTag } from "../common/Tags";
 import { EMPTY_DESCRIPTION } from "@/constants/texts";
+import { PUBLIC_SETTING_IMPORT } from "@/constants/links";
 
 export default function SmallCard({
   title,
@@ -26,7 +27,7 @@ export default function SmallCard({
         <CardMedia
           component="img"
           height="100"
-          image={coverImg ?? "/noImg.png"}
+          image={coverImg ?? `${PUBLIC_SETTING_IMPORT}/noImg.png`}
           alt={title}
         />
         <CardContent

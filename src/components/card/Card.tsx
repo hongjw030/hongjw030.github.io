@@ -14,7 +14,11 @@ import { PostTitle } from "@/components/common/Titles";
 import { DateTag, CategoryTag } from "@/components/common/Tags";
 import { PostApiType } from "@/types/PostApiType";
 import { ProjectApiType } from "@/types/ProjectApiType";
-import { POST_LINK, PROJECT_LINK } from "@/constants/links";
+import {
+  POST_LINK,
+  PROJECT_LINK,
+  PUBLIC_SETTING_IMPORT,
+} from "@/constants/links";
 
 export function PostingCard({
   _id,
@@ -48,7 +52,7 @@ export function PostingCard({
           component="img"
           sx={{ width: 100 }}
           height="100"
-          image={coverImg ?? "/public/noImg.png"}
+          image={coverImg ?? `${PUBLIC_SETTING_IMPORT}/noImg.png`}
           alt={title}
         />
         <CardContent
@@ -99,7 +103,7 @@ export function ProjectCard({
           component="img"
           sx={{ width: 100 }}
           height="100"
-          image={coverImg ?? "/noImg.png"}
+          image={coverImg ?? `${PUBLIC_SETTING_IMPORT}/noImg.png`}
           alt={title}
         />
         <CardContent

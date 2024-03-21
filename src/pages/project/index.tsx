@@ -23,7 +23,6 @@ export default function ProjectPage() {
       <HeadMeta
         title="프론트엔드 프로젝트"
         description="프론트엔드 프로젝트 리뷰 모음"
-        image="/profile.jpg"
         url="project"
       />
       {data && <ProjectCardList sortedProjects={data.totalProject} />}

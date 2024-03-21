@@ -26,11 +26,7 @@ export default function HomePage() {
 
   return (
     <MainLayout>
-      <HeadMeta
-        title="블로그"
-        description="프론트엔드 기술 블로그"
-        image="/profile.jpg"
-      />
+      <HeadMeta title="블로그" description="프론트엔드 기술 블로그" />
 
       <HomepageHeader />
 

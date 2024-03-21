@@ -14,7 +14,6 @@ export default function BlogPage() {
       <HeadMeta
         title="블로그"
         description="프론트엔드 기술 블로그 카테고리"
-        image="/profile.jpg"
         url="category"
       />
       <PageTitle title="블로그 전체 카테고리 모아보기" />

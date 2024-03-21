@@ -35,7 +35,6 @@ export default function BlogPage() {
           <HeadMeta
             title="프론트엔드 블로그 포스팅"
             description="프론트엔드 블로그 포스팅 모음"
-            image="/profile.jpg"
             url="blog"
           />
           <PostingCardList sortedPosts={data.totalPost} />
