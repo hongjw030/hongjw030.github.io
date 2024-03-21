@@ -26,7 +26,7 @@ export default function ProjectPage() {
         image="/profile.jpg"
         url="project"
       />
-      <ProjectCardList sortedProjects={data.totalProject} />
+      {data && <ProjectCardList sortedProjects={data.totalProject} />}
     </MainLayout>
   );
 }
