@@ -9,11 +9,12 @@ import { Box, CardActionArea } from "@mui/material";
 import { useRouter } from "next/router";
 
 import { MIN_WIDTH } from "@/constants";
-import { EMPTY_DESCRIPTION } from "@/constants/alertText";
+import { EMPTY_DESCRIPTION } from "@/constants/texts";
 import { PostTitle } from "@/components/common/Titles";
 import { DateTag, CategoryTag } from "@/components/common/Tags";
 import { PostApiType } from "@/types/PostApiType";
 import { ProjectApiType } from "@/types/ProjectApiType";
+import { POST_LINK, PROJECT_LINK } from "@/constants/links";
 
 export function PostingCard({
   _id,
@@ -41,7 +42,7 @@ export function PostingCard({
           justifyContent: "flex-start",
           alignItems: "flex-start",
         }}
-        onClick={() => router.push(`/${_id}`)}
+        onClick={() => router.push(`${POST_LINK}/${_id}`)}
       >
         <CardMedia
           component="img"
@@ -92,7 +93,7 @@ export function ProjectCard({
           justifyContent: "flex-start",
           alignItems: "flex-start",
         }}
-        onClick={() => router.push(`/project/${_id}`)}
+        onClick={() => router.push(`${PROJECT_LINK}/${_id}`)}
       >
         <CardMedia
           component="img"

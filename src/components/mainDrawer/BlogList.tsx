@@ -2,6 +2,7 @@ import { CategoryLink } from "@/components/common/Links";
 import StyledCategoryListItem from "@/components/common/StyledCategoryListItem";
 import CategoryGroupSidebarAccordion from "@/components/categoryGroupAccordion/CategoryGroupSidebarAccordion";
 import { CategoryListApiType } from "@/types/CategoryApiType";
+import { POST_LINK } from "@/constants/links";
 
 interface BlogListProps {
   categoryList: CategoryListApiType;
@@ -11,7 +12,7 @@ export default function BlogList({ categoryList }: BlogListProps) {
   return (
     <>
       <StyledCategoryListItem>
-        <CategoryLink title="전체 보기" href="/blog" />
+        <CategoryLink title="전체 보기" href={POST_LINK} />
       </StyledCategoryListItem>
 
       {categoryList.map((el) => {

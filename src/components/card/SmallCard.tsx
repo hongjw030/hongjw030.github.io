@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { MIN_WIDTH } from "@/constants";
 import { PostApiType } from "@/types/PostApiType";
 import { DateTag } from "../common/Tags";
-import { EMPTY_DESCRIPTION } from "@/constants/alertText";
+import { EMPTY_DESCRIPTION } from "@/constants/texts";
 
 export default function SmallCard({
   title,

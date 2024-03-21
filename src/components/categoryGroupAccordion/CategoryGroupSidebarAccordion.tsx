@@ -7,6 +7,7 @@ import { Box } from "@mui/material";
 import StyledCategoryListItem from "@/components/common/StyledCategoryListItem";
 import { CategoryLink } from "@/components/common/Links";
 import { CategoryGroupApiType } from "@/types/CategoryApiType";
+import { getCategoryPostQueryLink } from "@/utils/getQueryLink";
 
 interface CustomAccordionProps {
   categoryGroup: CategoryGroupApiType;
@@ -18,13 +19,15 @@ export default function CategoryGroupSidebarAccordion({
   const mainCategory = categoryGroup[0];
   const subCategoryList = categoryGroup[1];
 
+  const mainCategoryLink = getCategoryPostQueryLink(mainCategory.path);
+
   return (
     <Box>
       <Accordion>
         <StyledCategoryListItem>
           <CategoryLink
             title={`${mainCategory.title}`}
-            href={`/blog/${mainCategory.path}`}
+            href={mainCategoryLink}
           />
           {subCategoryList && subCategoryList?.length > 0 && (
             <AccordionSummary
@@ -46,7 +49,7 @@ export default function CategoryGroupSidebarAccordion({
                 <StyledCategoryListItem key={subCategory._id}>
                   <CategoryLink
                     title={`* ${subCategory.title}`}
-                    href={`/blog/${mainCategory.path}/${subCategory.path}`}
+                    href={`${mainCategoryLink}&subPath=${subCategory.path}`}
                     color="#595959"
                   />
                 </StyledCategoryListItem>

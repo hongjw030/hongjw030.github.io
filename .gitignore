@@ -37,4 +37,6 @@ next-env.d.ts
 
 /httpTest
 
-/src/pages/testPost
+/src/pages/admin
+
+/src/apis/admin

@@ -1,34 +1,25 @@
 import markdownToHtml from "@/utils/markdownToHtml";
-import axiosInstance from "./instance"
+import axiosInstance from "@/apis/libs/instance"
+
+interface getPostListProps {
+  mainPath ?: string;
+  subPath?: string;
+  cursor?: string;
+  count?: number;
+}
 
 // 모든 포스트 조회
-export async function getAllPostList () {
-  const data = await axiosInstance.get(`/post`)
-  return data?.data;
-}
-
-// 포스트 10개만 가져오기.
-export async function getCarouselPostList(){
-  const data = await axiosInstance.get(`/post/carousel`)
-  return data?.data;
-}
-
-// 메인 카테고리 포스트 조회
-export async function getMainPostList (mainPath: string) {
-  const data = await axiosInstance.get(`/post/${mainPath}`)
-  return data?.data;
-}
-
-// 서브 카테고리 포스트 조회
-export async function getSubPostList (mainPath: string, subPath: string) {
-  const data = await axiosInstance.get(`/post/${mainPath}/${subPath}`)
+export async function getPostList ({mainPath, subPath, cursor, count=10}: getPostListProps) {
+  let queries = `?count=${count}${mainPath ? `&mainPath=${mainPath}` : ""}${subPath ? `&subPath=${subPath}` : ""}${cursor ? `&cursor=${cursor}` : ""}`
+  console.log(queries);
+  const data = await axiosInstance.get(`/post${queries}`)
   return data?.data;
 }
 
 // 단일 포스트 조회
 export async function getPostContent (postId: string) {
   try{
-    const data = await axiosInstance.get(`/${postId}`)
+    const data = await axiosInstance.get(`/post/${postId}`)
     return data?.data;
   }catch(e){
     return e;
@@ -40,9 +31,3 @@ export async function getMarkdownToHtml(content: string){
   const data = await markdownToHtml(content);
   return data;
 }
-
-export async function postPosting (inputs: any) {
-  const data = await axiosInstance.post(`/post`, inputs)
-  return data?.data;
-}
-

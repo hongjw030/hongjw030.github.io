@@ -19,3 +19,15 @@ export interface WritingProjectType{
   term: string;
   isTeam: string;
 }
+
+export interface WritingMainCategoryType{
+  path: string;
+  title: string;
+  description?: string;
+  note: number;
+  coverImg?: string;
+}
+
+export interface WritingSubCategoryType extends WritingMainCategoryType{
+  groupPath: string;
+}

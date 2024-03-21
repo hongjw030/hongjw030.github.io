@@ -34,9 +34,7 @@ export function CarouselSection({
         </Box>
         <Link href={`/${link}`}>더보기</Link>
       </Box>
-      <Box>
-        <CardCarousell smallCardList={cardList} />
-      </Box>
+      <Box>{/* <CardCarousell smallCardList={cardList} /> */}</Box>
     </Box>
   );
 }

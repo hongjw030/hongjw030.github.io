@@ -1,21 +1,24 @@
-import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 
-import { getSubPostList } from "@/apis/post";
 import { PostingCardList } from "@/components/card/CardList";
+import HeadMeta from "@/components/seo/HeadMeta";
 import BlogHeader from "@/components/header/BlogHeader";
 import SubLayout from "@/layouts/SubLayout";
+import { useRouter } from "next/router";
+import { getPostList } from "@/apis/post";
 
 export default function BlogPage() {
   const router = useRouter();
-  const { mainId, subId } = router.query;
+  const { mainPath, subPath } = router.query;
+
   const { data } = useQuery({
-    queryKey: ["sub-post-list"],
-    queryFn: () => getSubPostList(mainId as string, subId as string),
+    queryKey: ["all-post-list"],
+    queryFn: () =>
+      getPostList({ mainPath: mainPath as string, subPath: subPath as string }),
     retry: 3,
     staleTime: Infinity,
     gcTime: Infinity,
-    enabled: !!subId,
+    enabled: !!mainPath,
   });
 
   return (
@@ -29,7 +32,13 @@ export default function BlogPage() {
             />
           }
         >
-          <PostingCardList sortedPosts={data} />
+          <HeadMeta
+            title="프론트엔드 블로그 포스팅"
+            description="프론트엔드 블로그 포스팅 모음"
+            image="/profile.jpg"
+            url="blog"
+          />
+          <PostingCardList sortedPosts={data.totalPost} />
         </SubLayout>
       )}
     </>

@@ -2,6 +2,8 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { getAllPostQueryLink } from "@/utils/getQueryLink";
+import { POST_LINK } from "@/constants/links";
 
 interface StyledBreadcrumbsProps {
   mainId?: string;
@@ -21,7 +23,7 @@ export default function StyledBreadcrumbs({
       underline="hover"
       key="1"
       color="white"
-      href={`/blog`}
+      href={POST_LINK}
       fontSize={mainId ? 12 : 14}
     >
       BLOG
