@@ -39,3 +39,15 @@ export function PostTitle({
     </Box>
   );
 }
+
+export function ImportantTitle({
+  title,
+  fontSize = 25,
+  fontWeight = 500,
+}: TitleProps) {
+  return (
+    <Box fontSize={fontSize} fontWeight={fontWeight}>
+      {title}
+    </Box>
+  );
+}

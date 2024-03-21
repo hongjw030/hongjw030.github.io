@@ -1,0 +1,4 @@
+const HEADER_COVER_IMG_Z = -5;
+const HEADER_TEXT_Z = 20;
+
+export {HEADER_COVER_IMG_Z, HEADER_TEXT_Z}

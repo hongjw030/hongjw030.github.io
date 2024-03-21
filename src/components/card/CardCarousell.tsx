@@ -1,13 +1,18 @@
 import Carousel from "react-material-ui-carousel";
-import SmallCard from "./SmallCard";
+
+import SmallCard from "@/components/card/SmallCard";
 import { MIN_WIDTH } from "@/constants";
-import { PostListApiType } from "@/types/PostApiType";
+import { CardType, SmallCardType } from "@/types/CardType";
 
 interface SmallCardListProps {
-  smallCardList: PostListApiType;
+  cardType: CardType;
+  smallCardList: SmallCardType[];
 }
 
-export default function CardCarousell({ smallCardList }: SmallCardListProps) {
+export default function CardCarousell({
+  smallCardList,
+  cardType,
+}: SmallCardListProps) {
   return (
     <Carousel
       cycleNavigation={true}
@@ -32,13 +37,10 @@ export default function CardCarousell({ smallCardList }: SmallCardListProps) {
       {smallCardList.map((card) => (
         <SmallCard
           key={`${card.title}`}
+          cardType={cardType}
           title={card.title}
-          mainCategory={card.mainCategory}
-          subCategory={card.subCategory}
           coverImg={card.coverImg}
           createdAt={card.createdAt}
-          updatedAt={card.updatedAt}
-          content={card.content}
           description={card.description}
           _id={card._id}
         />

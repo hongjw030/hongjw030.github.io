@@ -4,26 +4,30 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Box, CardActionArea } from "@mui/material";
 import { useRouter } from "next/router";
+
+import { DateTag } from "@/components/common/Tags";
 import { MIN_WIDTH } from "@/constants";
-import { PostApiType } from "@/types/PostApiType";
-import { DateTag } from "../common/Tags";
 import { EMPTY_DESCRIPTION } from "@/constants/texts";
 import { PUBLIC_SETTING_IMPORT } from "@/constants/links";
+import { CardType, SmallCardType } from "@/types/CardType";
+
+interface SmallCardProps extends SmallCardType {
+  cardType: CardType;
+}
 
 export default function SmallCard({
   title,
-  mainCategory,
-  subCategory,
   coverImg,
   createdAt,
   description,
   _id,
-}: PostApiType) {
+  cardType,
+}: SmallCardProps) {
   const router = useRouter();
 
   return (
     <Card sx={{ width: MIN_WIDTH, padding: "15px", height: "300px" }}>
-      <CardActionArea onClick={() => router.push(`/${_id}`)}>
+      <CardActionArea onClick={() => router.push(`/${cardType}/${_id}`)}>
         <CardMedia
           component="img"
           height="100"
