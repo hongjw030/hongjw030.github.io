@@ -15,7 +15,7 @@ import StyledSpacing from "@/components/common/StyledSpacing";
 import CommonList from "@/components/mainDrawer/CommonList";
 import BlogList from "@/components/mainDrawer/BlogList";
 import SideProfile from "@/components/mainDrawer/SideProfile";
-import useGetCategory from "@/hooks/useGetCategory";
+import useGetCategory from "@/hooks/apis/useGetCategory";
 
 export interface MainDrawerProp {
   current?: string;

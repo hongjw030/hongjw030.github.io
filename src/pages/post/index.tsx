@@ -2,13 +2,13 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import { getCategoryData } from "@/apis/category";
 import { PostingCardList } from "@/components/card/CardList";
 import HeadMeta from "@/components/seo/HeadMeta";
 import BlogHeader from "@/components/header/BlogHeader";
 import { getPostList } from "@/apis/post";
 import { COUNT_PER_PAGE } from "@/constants";
 import SubLayout from "@/layouts/SubLayout";
+import useGetCurrentCategoryLoc from "@/hooks/apis/useGetCurrentCategoryLoc";
 
 export default function BlogPage() {
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function BlogPage() {
     queryKey: ["post-list", mainPath, subPath, currentPage],
     queryFn: () =>
       getPostList({
-        mainPath: mainPath as string,
+        mainPath: mainPath as string | undefined,
         subPath: subPath as string | undefined,
         count: COUNT_PER_PAGE,
         cursor: cursor ? cursor : undefined,
@@ -32,15 +32,10 @@ export default function BlogPage() {
   });
   console.log(data);
 
-  const { data: categoryLocation } = useQuery({
-    queryKey: ["category", mainPath, subPath],
-    queryFn: () =>
-      getCategoryData(mainPath as string, subPath as string | undefined),
-    retry: 3,
-    staleTime: Infinity,
-    gcTime: Infinity,
-    enabled: !!mainPath,
-  });
+  const { categoryLocation } = useGetCurrentCategoryLoc(
+    mainPath as string | undefined,
+    subPath as string | undefined
+  );
 
   // TODO - 프리패치 사용하기
   // TODO - cursor을 page로 바꾸고 그냥 skip(countPerPage * page) 사용해야겠음 커서로 하니까 1에서 4, 5, 등 다른 페이지로 건너뛰는게 불가능함;;

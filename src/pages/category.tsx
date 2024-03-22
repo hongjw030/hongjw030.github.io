@@ -4,7 +4,7 @@ import HeadMeta from "@/components/seo/HeadMeta";
 import CategoryGroupAccordion from "@/components/categoryGroupAccordion/CategoryGroupAccordion";
 import { PageTitle } from "@/components/common/Titles";
 import ContentContainer from "@/components/container/ContentContainer";
-import useGetCategory from "@/hooks/useGetCategory";
+import useGetCategory from "@/hooks/apis/useGetCategory";
 import MainLayout from "@/layouts/MainLayout";
 
 export default function BlogPage() {
