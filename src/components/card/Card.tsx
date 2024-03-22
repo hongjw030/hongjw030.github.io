@@ -8,10 +8,11 @@ import Typography from "@mui/material/Typography";
 import { Box, CardActionArea } from "@mui/material";
 import { useRouter } from "next/router";
 
-import { MIN_WIDTH } from "@/constants";
-import { EMPTY_DESCRIPTION } from "@/constants/texts";
 import { PostTitle } from "@/components/common/Titles";
-import { DateTag, CategoryTag } from "@/components/common/Tags";
+import { DateTag, CategoryTag, TermTag } from "@/components/common/Tags";
+import { EMPTY_DESCRIPTION } from "@/constants/texts";
+import { MIN_WIDTH } from "@/constants";
+import { GRAY_1_COLOR } from "@/constants/colors";
 import { PostApiType } from "@/types/PostApiType";
 import { ProjectApiType } from "@/types/ProjectApiType";
 import {
@@ -27,7 +28,7 @@ export function PostingCard({ ...data }: PostApiType) {
       sx={{
         minWidth: MIN_WIDTH,
         boxShadow: "none",
-        borderBottom: "1px solid #dfdfdf",
+        borderBottom: `1px solid ${GRAY_1_COLOR}`,
       }}
     >
       <CardActionArea
@@ -75,9 +76,16 @@ export function ProjectCard({ ...data }: ProjectApiType) {
   const router = useRouter();
 
   return (
-    <Card sx={{ minWidth: MIN_WIDTH, padding: "15px" }}>
+    <Card
+      sx={{
+        minWidth: MIN_WIDTH,
+        boxShadow: "none",
+        borderBottom: `1px solid ${GRAY_1_COLOR}`,
+      }}
+    >
       <CardActionArea
         sx={{
+          padding: "15px",
           display: "flex",
           justifyContent: "flex-start",
           alignItems: "flex-start",
@@ -112,7 +120,8 @@ export function ProjectCard({ ...data }: ProjectApiType) {
           >
             {data.title}
           </Box>
-          <DateTag date={data.createdAt} />
+          <TermTag additional="제작 기간: " term={data.term} />
+          <DateTag additional="포스팅 날짜: " date={data.createdAt} />
           <Typography color="text.secondary" fontSize={12}>
             {data.description ? data.description : EMPTY_DESCRIPTION}
           </Typography>

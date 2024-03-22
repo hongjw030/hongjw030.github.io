@@ -37,7 +37,13 @@ export function ProjectCardList({ sortedProjects }: ProjectCardListProps) {
   }
 
   return (
-    <Stack spacing={2}>
+    <Stack
+      spacing={2}
+      sx={{
+        paddingTop: "50px",
+        paddingBottom: "50px",
+      }}
+    >
       {sortedProjects.map((project) => (
         <ProjectCard key={project._id} {...project} />
       ))}

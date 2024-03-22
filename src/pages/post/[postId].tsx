@@ -6,7 +6,7 @@ import PostHeader from "@/components/header/PostHeader";
 import HeadMeta from "@/components/seo/HeadMeta";
 import Utterances from "@/components/comment/Utterances";
 import MarkdownContainer from "@/components/container/MarkdownContainer";
-import SubLayout from "@/layouts/SubLayout";
+import ContentLayout from "@/layouts/ContentLayout";
 
 export default function BlogPage() {
   const router = useRouter();
@@ -24,7 +24,7 @@ export default function BlogPage() {
   return (
     <>
       {data && !isLoading && (
-        <SubLayout
+        <ContentLayout
           headerComponent={
             <PostHeader
               title={data.title}
@@ -36,7 +36,7 @@ export default function BlogPage() {
         >
           <MarkdownContainer content={data?.content} _id={data?._id} />
           <Utterances />
-        </SubLayout>
+        </ContentLayout>
       )}
     </>
   );

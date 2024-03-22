@@ -10,6 +10,7 @@ import ProjectHeader from "@/components/header/ProjectHeader";
 import { useRouter } from "next/router";
 import { getProjectContent } from "@/apis/project";
 import MarkdownContainer from "@/components/container/MarkdownContainer";
+import ContentLayout from "@/layouts/ContentLayout";
 
 export default function ProjectPage() {
   const router = useRouter();
@@ -25,7 +26,7 @@ export default function ProjectPage() {
   });
 
   return (
-    <MainLayout current="PROJECT">
+    <ContentLayout current="PROJECT">
       {data && !isLoading && (
         <>
           {/* <ProjectHeader
@@ -40,6 +41,6 @@ export default function ProjectPage() {
           <MarkdownContainer content={data?.content} _id={data?._id} />
         </>
       )}
-    </MainLayout>
+    </ContentLayout>
   );
 }
