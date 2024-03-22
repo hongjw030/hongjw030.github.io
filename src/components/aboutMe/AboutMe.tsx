@@ -1,15 +1,13 @@
-import { Box, Divider, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
 import ArticleIcon from "@mui/icons-material/Article";
 import Face4Icon from "@mui/icons-material/Face4";
 
-import StyledSpacing from "../common/StyledSpacing";
-import HomeCover from "../homeCover/HomeCover";
-import ContentContainer from "../container/ContentContainer";
+import ContentContainer from "@/components/container/ContentContainer";
+import { InfoDescription } from "@/components/common/Descriptions";
+import { TooltipLinkButton } from "@/components/common/Links";
 import { NICKNAME_KOR, EMAIL, GITHUB_URL, MAJOR, UNIV } from "@/constants/user";
-import { InfoDescription } from "../common/Descriptions";
-import { TooltipLinkButton } from "../common/Links";
 
 const USER_INFO_LIST = [
   { label: "닉네임", value: NICKNAME_KOR },
@@ -60,7 +58,7 @@ function HeaderPrivacy() {
 function HeaderContact() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2} columns={{ xs: 1, sm: 2, md: 4, lg: 4 }}>
+      <Grid container spacing={2} columns={{ xs: 1, sm: 2, md: 2, lg: 4 }}>
         {CONTACT_LIST.map((el) => (
           <Grid item xs={1} sm={1} md={1} key={el.href}>
             <TooltipLinkButton
@@ -76,18 +74,11 @@ function HeaderContact() {
   );
 }
 
-export default function HomeHeader() {
+export default function AboutMe() {
   return (
-    <>
-      <HomeCover />
-
-      <StyledSpacing height={50} />
-      <Divider style={{ width: "100%" }}>About me</Divider>
-
-      <ContentContainer>
-        <HeaderPrivacy />
-        <HeaderContact />
-      </ContentContainer>
-    </>
+    <ContentContainer>
+      <HeaderPrivacy />
+      <HeaderContact />
+    </ContentContainer>
   );
 }

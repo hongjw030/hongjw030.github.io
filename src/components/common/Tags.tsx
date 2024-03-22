@@ -1,7 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import ClassIcon from "@mui/icons-material/Class";
 
+import { GRAY_3_COLOR } from "@/constants/colors";
+import { NICKNAME, NICKNAME_KOR } from "@/constants/user";
 import formatDate from "@/utils/formatDate";
 
 interface DateTagProps {
@@ -39,6 +41,14 @@ export function CategoryTag({
     <Box fontSize={fontSize}>
       <ClassIcon sx={{ fontSize: "13px" }} color="primary" />
       {categoryText}
+    </Box>
+  );
+}
+
+export function DesginedByTag({ fontSize = 10 }) {
+  return (
+    <Box color={GRAY_3_COLOR} fontSize={`${fontSize}px`}>
+      Designed by. {NICKNAME}, {NICKNAME_KOR}
     </Box>
   );
 }

@@ -9,7 +9,7 @@ interface SmallCardListProps {
   smallCardList: SmallCardType[];
 }
 
-export default function CardCarousell({
+export default function CardCarousel({
   smallCardList,
   cardType,
 }: SmallCardListProps) {
