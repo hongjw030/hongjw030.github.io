@@ -20,16 +20,7 @@ import {
   PUBLIC_SETTING_IMPORT,
 } from "@/constants/links";
 
-export function PostingCard({
-  _id,
-  title,
-  mainCategory,
-  subCategory,
-  coverImg,
-  createdAt,
-  description,
-  content,
-}: PostApiType) {
+export function PostingCard({ ...data }: PostApiType) {
   const router = useRouter();
   return (
     <Card
@@ -46,14 +37,14 @@ export function PostingCard({
           justifyContent: "flex-start",
           alignItems: "flex-start",
         }}
-        onClick={() => router.push(`${POST_LINK}/${_id}`)}
+        onClick={() => router.push(`${POST_LINK}/${data._id}`)}
       >
         <CardMedia
           component="img"
           sx={{ width: 100 }}
           height="100"
-          image={coverImg ?? `${PUBLIC_SETTING_IMPORT}/noImg.png`}
-          alt={title}
+          image={data.coverImg ?? `${PUBLIC_SETTING_IMPORT}/noImg.png`}
+          alt={data.title}
         />
         <CardContent
           sx={{
@@ -64,15 +55,15 @@ export function PostingCard({
             paddingBottom: 0,
           }}
         >
-          <PostTitle title={title} fontSize={16} />
-          <DateTag date={createdAt} fontSize={12} />
+          <PostTitle title={data.title} fontSize={16} />
+          <DateTag date={data.createdAt} fontSize={12} />
           <CategoryTag
-            mainCategory={mainCategory}
-            subCategory={subCategory}
+            mainCategory={data.mainCategory}
+            subCategory={data.subCategory}
             fontSize={12}
           />
           <Typography color="text.secondary" fontSize={12}>
-            {description ? description : EMPTY_DESCRIPTION}
+            {data.description ? data.description : EMPTY_DESCRIPTION}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -80,13 +71,7 @@ export function PostingCard({
   );
 }
 
-export function ProjectCard({
-  title,
-  coverImg,
-  createdAt,
-  description,
-  _id,
-}: ProjectApiType) {
+export function ProjectCard({ ...data }: ProjectApiType) {
   const router = useRouter();
 
   return (
@@ -97,14 +82,14 @@ export function ProjectCard({
           justifyContent: "flex-start",
           alignItems: "flex-start",
         }}
-        onClick={() => router.push(`${PROJECT_LINK}/${_id}`)}
+        onClick={() => router.push(`${PROJECT_LINK}/${data._id}`)}
       >
         <CardMedia
           component="img"
           sx={{ width: 100 }}
           height="100"
-          image={coverImg ?? `${PUBLIC_SETTING_IMPORT}/noImg.png`}
-          alt={title}
+          image={data.coverImg ?? `${PUBLIC_SETTING_IMPORT}/noImg.png`}
+          alt={data.title}
         />
         <CardContent
           sx={{
@@ -125,11 +110,11 @@ export function ProjectCard({
               textOverflow: "ellipsis",
             }}
           >
-            {title}
+            {data.title}
           </Box>
-          <DateTag date={createdAt} />
+          <DateTag date={data.createdAt} />
           <Typography color="text.secondary" fontSize={12}>
-            {description ? description : EMPTY_DESCRIPTION}
+            {data.description ? data.description : EMPTY_DESCRIPTION}
           </Typography>
         </CardContent>
       </CardActionArea>

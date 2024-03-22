@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getCategoryData } from '@/apis/category';
 
 export default function useGetCurrentCategoryLoc(mainPath?: string, subPath?: string) {
-  const { data: categoryLocation, isLoading: categoryLocationIsLoading, error: categoryLocationError } = useQuery({
+  const { data: categoryLocation, isLoading: categoryLocationIsLoading, error: categoryLocationError, isSuccess: categoryLocationIsSuccess } = useQuery({
     queryKey: ["category", mainPath, subPath],
     queryFn: () =>
       getCategoryData(mainPath as string, subPath as string | undefined),
@@ -15,5 +15,5 @@ export default function useGetCurrentCategoryLoc(mainPath?: string, subPath?: st
     enabled: !!mainPath,
   });
 
-  return {categoryLocation, categoryLocationIsLoading, categoryLocationError}
+  return {categoryLocation, categoryLocationIsLoading, categoryLocationError, categoryLocationIsSuccess}
 }

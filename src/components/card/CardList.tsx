@@ -18,22 +18,15 @@ export function PostingCardList({ sortedPosts }: CardListProps) {
   }
 
   return (
-    <Stack spacing={2}>
+    <Stack
+      spacing={2}
+      sx={{
+        paddingTop: "50px",
+        paddingBottom: "50px",
+      }}
+    >
       {sortedPosts &&
-        sortedPosts.map((post) => (
-          <PostingCard
-            title={post.title}
-            createdAt={post.createdAt}
-            updatedAt={post.updatedAt}
-            coverImg={post.coverImg}
-            mainCategory={post.mainCategory}
-            subCategory={post.subCategory}
-            description={post.description}
-            _id={post._id}
-            key={post._id}
-            content={post.content}
-          />
-        ))}
+        sortedPosts.map((post) => <PostingCard key={post._id} {...post} />)}
     </Stack>
   );
 }
@@ -46,22 +39,7 @@ export function ProjectCardList({ sortedProjects }: ProjectCardListProps) {
   return (
     <Stack spacing={2}>
       {sortedProjects.map((project) => (
-        <ProjectCard
-          key={project._id}
-          _id={project._id}
-          updatedAt={project.updatedAt}
-          createdAt={project.createdAt}
-          isTeam={project.isTeam}
-          functions={project.functions}
-          githubUrl={project.githubUrl}
-          developmentUrl={project.developmentUrl}
-          note={project.note}
-          title={project.title}
-          term={project.term}
-          content={project.content}
-          coverImg={project.coverImg}
-          description={project.description}
-        />
+        <ProjectCard key={project._id} {...project} />
       ))}
     </Stack>
   );

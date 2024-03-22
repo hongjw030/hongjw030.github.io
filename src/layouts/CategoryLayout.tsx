@@ -13,7 +13,7 @@ import MainDrawer from "@/components/mainDrawer/MainDrawer";
 import StyledSpacing from "@/components/common/StyledSpacing";
 import StyledBreadcrumbs from "@/components/common/StyledBreadcrumbs";
 import CategoryCover from "@/components/cover/CategoryCover";
-import { NAV_HEIGHT } from "@/constants";
+import { NAV_HEIGHT, PAGE_PADDING_BOTTOM } from "@/constants";
 import useGetCurrentCategoryLoc from "@/hooks/apis/useGetCurrentCategoryLoc";
 import useHandleDrawer from "@/hooks/useHandleDrawer";
 
@@ -26,10 +26,11 @@ export default function CategoryLayout({ children }: CategoryLayoutProps) {
 
   const router = useRouter();
   const { mainPath, subPath } = router.query;
-  const { categoryLocation } = useGetCurrentCategoryLoc(
-    mainPath as string | undefined,
-    subPath as string | undefined
-  );
+  const { categoryLocation, categoryLocationIsLoading } =
+    useGetCurrentCategoryLoc(
+      mainPath as string | undefined,
+      subPath as string | undefined
+    );
 
   return (
     <Box
@@ -51,7 +52,9 @@ export default function CategoryLayout({ children }: CategoryLayoutProps) {
           >
             <MenuIcon />
           </IconButton>
-          <StyledBreadcrumbs {...categoryLocation} />
+          {!categoryLocationIsLoading && categoryLocation && (
+            <StyledBreadcrumbs {...categoryLocation} />
+          )}
         </Toolbar>
       </Nav>
 
@@ -66,6 +69,7 @@ export default function CategoryLayout({ children }: CategoryLayoutProps) {
         <CategoryCover {...categoryLocation} />
         <Divider />
         {children}
+        <StyledSpacing height={PAGE_PADDING_BOTTOM} />
       </Container>
     </Box>
   );

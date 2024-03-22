@@ -1,16 +1,16 @@
-import markdownToHtml from "@/utils/markdownToHtml";
 import axiosInstance from "@/apis/libs/instance"
+import markdownToHtml from "@/utils/markdownToHtml";
 
 interface getPostListProps {
   mainPath ?: string;
   subPath?: string;
-  cursor?: string;
+  currentPage?: number;
   count?: number;
 }
 
 // 모든 포스트 조회
-export async function getPostList ({mainPath, subPath, cursor, count=10}: getPostListProps) {
-  let queries = `?count=${count}${mainPath ? `&mainPath=${mainPath}` : ""}${subPath ? `&subPath=${subPath}` : ""}${cursor ? `&cursor=${cursor}` : ""}`
+export async function getPostList ({mainPath, subPath, currentPage, count=10}: getPostListProps) {
+  let queries = `?count=${count}${mainPath ? `&mainPath=${mainPath}` : ""}${subPath ? `&subPath=${subPath}` : ""}${currentPage ? `&currentPage=${currentPage}` : ""}`
   const data = await axiosInstance.get(`/post${queries}`)
   return data?.data;
 }
