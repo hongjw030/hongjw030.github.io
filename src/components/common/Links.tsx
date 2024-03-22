@@ -23,6 +23,7 @@ export function CategoryLink({
 }: CategoryLinkProps) {
   return (
     <Link
+      underline="hover"
       sx={{
         textDecoration: "none",
         color: color,

@@ -1,67 +1,45 @@
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { getAllPostQueryLink } from "@/utils/getQueryLink";
+
+import { CategoryLink } from "@/components/common/Links";
 import { POST_LINK } from "@/constants/links";
+import { SubCategoryApiType } from "@/types/CategoryApiType";
 
-interface StyledBreadcrumbsProps {
-  mainId?: string;
-  mainTitle?: string;
-  subId?: string;
-  subTitle?: string;
-}
-
-export default function StyledBreadcrumbs({
-  mainId,
-  mainTitle,
-  subId,
-  subTitle,
-}: StyledBreadcrumbsProps) {
+export default function StyledBreadcrumbs({ ...data }: SubCategoryApiType) {
+  if (!data) return;
   const breadcrumbs = [
-    <Link
-      underline="hover"
+    <CategoryLink
+      title="BLOG"
+      color="inherit"
       key="1"
-      color="white"
       href={POST_LINK}
-      fontSize={mainId ? 12 : 14}
-    >
-      BLOG
-    </Link>,
+      fontSize={data.path ? 12 : 14}
+    />,
+    <CategoryLink
+      title={data?.groupPath ? data?.groupPath : data?.title}
+      key="2"
+      href={`${POST_LINK}?mainPath=${
+        data?.groupPath ? data?.groupPath : data?.path
+      }`}
+    />,
   ];
-  if (mainId) {
+
+  if (data?.groupPath) {
     breadcrumbs.push(
-      <Link
-        underline="hover"
+      <CategoryLink
+        title={data?.title}
         key="2"
-        color="white"
-        fontSize={subId ? 12 : 14}
-        href={`/blog/${mainId}`}
-      >
-        {mainTitle}
-      </Link>
-    );
-  }
-  if (subId) {
-    breadcrumbs.push(
-      <Link
-        underline="hover"
-        key="2"
-        color="white"
         fontSize={14}
-        href={`/blog/${mainId}/${subId}`}
-      >
-        {subTitle}
-      </Link>
+        href={`${POST_LINK}?mainPath=${data?.groupPath}&subPath=${data?.path}`}
+      />
     );
   }
 
   return (
-    <Stack spacing={2}>
+    <Stack>
       <Breadcrumbs
-        separator={
-          <NavigateNextIcon fontSize="small" sx={{ color: "#ffffff" }} />
-        }
+        separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
       >
         {breadcrumbs}
