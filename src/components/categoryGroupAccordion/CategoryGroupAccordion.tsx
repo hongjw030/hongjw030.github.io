@@ -35,7 +35,7 @@ export default function CategoryGroupAccordion({
       <ListItem
         sx={{
           display: "flex",
-          height: "64px",
+          height: "60px",
           justifyContent: "space-between",
           backgroundColor: "rgba(25, 118, 210, 0.08)",
         }}

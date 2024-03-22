@@ -3,14 +3,14 @@ import {
   MenuRounded as MenuIcon,
   WebRounded as WebIcon,
 } from "@mui/icons-material";
+import { CATEGORY_LINK, PROJECT_LINK } from "./links";
 
 const COMMON_ARRAY = [
-  { id: "/", key: "home", name: "HOME", icon: <HomeIcon /> },
-  { id: "/project", key: "project", name: "PROJECT", icon: <WebIcon /> },
+  { path: "/", title: "HOME", icon: <HomeIcon /> },
+  { path: PROJECT_LINK, title: "PROJECT", icon: <WebIcon /> },
   {
-    id: "/category",
-    key: "category",
-    name: "CATEGORY",
+    path: CATEGORY_LINK,
+    title: "CATEGORY",
     icon: <MenuIcon />,
   },
 ];

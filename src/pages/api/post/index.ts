@@ -16,7 +16,7 @@ export default async function handler(req: any, res: any){
           const totalPost = await post.find().sort({"createdAt": -1}).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }else{
-          const totalPost = await post.find({_id: cursor}).sort({"createdAt": -1}).limit(count);
+          const totalPost = await post.find({_id: {$lt: cursor}}).sort({"createdAt": -1}).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }
       }
@@ -27,7 +27,7 @@ export default async function handler(req: any, res: any){
           const totalPost = await post.find({mainCategory: mainPath}).sort({"createdAt": -1}).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }else{
-          const totalPost = await post.find({mainCategory: mainPath, _id: cursor}).sort({"createdAt": -1}).limit(count);
+          const totalPost = await post.find({mainCategory: mainPath, _id:  {$lt: cursor}}).sort({"createdAt": -1}).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }
       }else if (mainPath && subPath){
@@ -37,7 +37,7 @@ export default async function handler(req: any, res: any){
           const totalPost = await post.find({mainCategory: mainPath, subCategory: subPath}).sort({"createdAt": -1}).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }else{
-          const totalPost = await post.find({mainCategory: mainPath, subCategory: subPath, _id: cursor}).sort({"createdAt": -1}).limit(count);
+          const totalPost = await post.find({mainCategory: mainPath, subCategory: subPath, _id:  {$lt: cursor}}).sort({"createdAt": -1}).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }
       }else{

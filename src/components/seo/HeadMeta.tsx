@@ -31,7 +31,7 @@ export default function HeadMeta({
             : "https://hongjw030-github-io.vercel.app"
         }
       />
-      <meta property="og:image" content={image || "/profile.jpg"} />
+      <meta property="og:image" content={image} />
       <meta property="og:article:author" content="프론트엔드" />
     </Head>
   );

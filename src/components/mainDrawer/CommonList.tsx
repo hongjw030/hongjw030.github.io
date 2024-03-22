@@ -14,12 +14,12 @@ export default function CommonList({ current }: CommonListProps) {
   return (
     <List>
       {COMMON_ARRAY.map((el) => (
-        <Link href={el.id} color="inherit" underline="none" key={el.name}>
+        <Link href={el.path} color="inherit" underline="none" key={el.title}>
           <ListItemButton
-            selected={current ? el.name === current : el.name === "HOME"}
+            selected={current ? el.title === current : el.title === "HOME"}
           >
             <ListItemIcon>{el.icon}</ListItemIcon>
-            <PageTitle title={el.name} fontSize={12} />
+            <PageTitle title={el.title} fontSize={12} />
           </ListItemButton>
         </Link>
       ))}

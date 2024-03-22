@@ -1,8 +1,8 @@
 import { CategoryLink } from "@/components/common/Links";
 import StyledCategoryListItem from "@/components/common/StyledCategoryListItem";
 import CategoryGroupSidebarAccordion from "@/components/categoryGroupAccordion/CategoryGroupSidebarAccordion";
-import { CategoryListApiType } from "@/types/CategoryApiType";
 import { POST_LINK } from "@/constants/links";
+import { CategoryListApiType } from "@/types/CategoryApiType";
 
 interface BlogListProps {
   categoryList: CategoryListApiType;
