@@ -4,22 +4,33 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Divider } from "@mui/material";
+import { useRouter } from "next/router";
 
 import Container from "@/components/container/Container";
 import Nav from "@/components/nav/Nav";
 import MainDrawer from "@/components/mainDrawer/MainDrawer";
 import StyledSpacing from "@/components/common/StyledSpacing";
-import { PageTitle } from "@/components/common/Titles";
-import { NAV_HEIGHT } from "@/constants";
+import StyledBreadcrumbs from "@/components/common/StyledBreadcrumbs";
+import CategoryCover from "@/components/cover/CategoryCover";
+import { NAV_HEIGHT, PAGE_PADDING_BOTTOM } from "@/constants";
+import useGetCurrentCategoryLoc from "@/hooks/apis/useGetCurrentCategoryLoc";
 import useHandleDrawer from "@/hooks/useHandleDrawer";
 
-interface MainLayoutProps {
+interface CategoryLayoutProps {
   children?: ReactNode;
-  current?: "CATEGORY" | "PROJECT";
 }
+export default function CategoryLayout({ children }: CategoryLayoutProps) {
+  const { isOpen, handleDrawerClose, handleDrawerOpen } =
+    useHandleDrawer(false);
 
-export default function MainLayout({ children, current }: MainLayoutProps) {
-  const { isOpen, handleDrawerClose, handleDrawerOpen } = useHandleDrawer(true);
+  const router = useRouter();
+  const { mainPath, subPath } = router.query;
+  const { categoryLocation, categoryLocationIsLoading } =
+    useGetCurrentCategoryLoc(
+      mainPath as string | undefined,
+      subPath as string | undefined
+    );
 
   return (
     <Box
@@ -41,19 +52,24 @@ export default function MainLayout({ children, current }: MainLayoutProps) {
           >
             <MenuIcon />
           </IconButton>
-          <PageTitle title={current ?? "HOME"} fontWeight={500} fontSize={15} />
+          {!categoryLocationIsLoading && categoryLocation && (
+            <StyledBreadcrumbs {...categoryLocation} />
+          )}
         </Toolbar>
       </Nav>
 
       <MainDrawer
-        current={current}
+        current="blogs"
         open={isOpen}
         handleDrawerClose={handleDrawerClose}
       />
 
       <Container open={isOpen}>
         <StyledSpacing height={NAV_HEIGHT} />
+        <CategoryCover {...categoryLocation} />
+        <Divider />
         {children}
+        <StyledSpacing height={PAGE_PADDING_BOTTOM} />
       </Container>
     </Box>
   );

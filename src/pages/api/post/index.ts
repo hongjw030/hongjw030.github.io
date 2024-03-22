@@ -6,38 +6,38 @@ import post from "@/db/models/post";
 export default async function handler(req: any, res: any){
   await dbConnect();
 
-  const {mainPath, subPath, count, cursor} = req.query;
+  const {mainPath, subPath, count, currentPage} = req.query;
   switch(req.method){
     case 'GET':
       if (!mainPath){
         // 전체 포스트 리스트 조회
         const totalNumber = (await post.find())?.length;
-        if (!cursor){
+        if (!currentPage){
           const totalPost = await post.find().sort({"createdAt": -1}).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }else{
-          const totalPost = await post.find({_id: {$lt: cursor}}).sort({"createdAt": -1}).limit(count);
+          const totalPost = await post.find().sort({"createdAt": -1}).skip((currentPage-1)*count).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }
       }
       else if (mainPath && !subPath){
         // 메인카테고리 포스트 리스트 조회
         const totalNumber = (await post.find({mainCategory: mainPath}))?.length;
-        if (!cursor){
+        if (!currentPage){
           const totalPost = await post.find({mainCategory: mainPath}).sort({"createdAt": -1}).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }else{
-          const totalPost = await post.find({mainCategory: mainPath, _id:  {$lt: cursor}}).sort({"createdAt": -1}).limit(count);
+          const totalPost = await post.find({mainCategory: mainPath}).sort({"createdAt": -1}).skip((currentPage-1)*count).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }
       }else if (mainPath && subPath){
         // 메인카테고리 + 서브 카테고리 포스트 리스트 조회
         const totalNumber = (await post.find({mainCategory: mainPath, subCategory: subPath}))?.length;
-        if (!cursor){
+        if (!currentPage){
           const totalPost = await post.find({mainCategory: mainPath, subCategory: subPath}).sort({"createdAt": -1}).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }else{
-          const totalPost = await post.find({mainCategory: mainPath, subCategory: subPath, _id:  {$lt: cursor}}).sort({"createdAt": -1}).limit(count);
+          const totalPost = await post.find({mainCategory: mainPath, subCategory: subPath}).sort({"createdAt": -1}).skip((currentPage-1)*count).limit(count);
           res.status(201).send({totalPost, totalNumber});
         }
       }else{
