@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 
 import StyledSpacing from "@/components/common/StyledSpacing";
 import { ImportantTitle } from "@/components/common/Titles";
-import HeaderCoverImg from "@/components/homeCover/HeadCoverImg";
+import HeaderCoverImg from "@/components/cover/HeadCoverImg";
 import { BLOG_TITLE, JOB_KOR } from "@/constants/user";
 import { GRAY_1_COLOR } from "@/constants/colors";
 

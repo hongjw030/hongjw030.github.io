@@ -12,7 +12,6 @@ const Container = styled("main", {
   minWidth: MIN_WIDTH,
   flexDirection: "column",
   alignItems: "center",
-  paddingBottom: "100px",
   flexGrow: 1,
   transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,
