@@ -13,7 +13,7 @@ export default function BlogPage() {
   const { postId } = router.query;
 
   const { data, isLoading } = useQuery({
-    queryKey: ["post", postId],
+    queryKey: ["post-postId", postId],
     queryFn: () => getPostContent(postId as string),
     retry: 3,
     staleTime: Infinity,

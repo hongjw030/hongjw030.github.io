@@ -13,7 +13,7 @@ export default function ProjectPage() {
   const { projectId } = router.query;
 
   const { data, isLoading } = useQuery({
-    queryKey: ["post", projectId],
+    queryKey: ["project-projectId", projectId],
     queryFn: () => getProjectContent(projectId as string),
     retry: 3,
     staleTime: Infinity,

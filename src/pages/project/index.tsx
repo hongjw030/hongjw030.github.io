@@ -13,7 +13,7 @@ import MainLayout from "@/layouts/MainLayout";
 export default function ProjectPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, isLoading } = useQuery({
-    queryKey: ["project-list", currentPage],
+    queryKey: ["project-index", currentPage],
     queryFn: () =>
       getProjectList({
         count: COUNT_PER_PAGE,
