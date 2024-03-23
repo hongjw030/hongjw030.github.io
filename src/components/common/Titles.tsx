@@ -46,7 +46,7 @@ export function ImportantTitle({
   fontWeight = 500,
 }: TitleProps) {
   return (
-    <Box fontSize={fontSize} fontWeight={fontWeight}>
+    <Box fontSize={fontSize} fontWeight={fontWeight} whiteSpace="nowrap">
       {title}
     </Box>
   );

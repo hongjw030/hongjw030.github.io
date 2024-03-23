@@ -41,7 +41,7 @@ export default function HeaderCoverImg({
         sx={{
           top: 0,
           backgroundImage:
-            imgUrl ?? `url(${PUBLIC_SETTING_IMPORT}/homeHeader.png)`,
+            `url(${imgUrl})` ?? `url(${PUBLIC_SETTING_IMPORT}/homeHeader.png)`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           height: HEADER_COVER_IMG_HEIGHT,
