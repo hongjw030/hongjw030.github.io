@@ -15,7 +15,7 @@ export default function BlogPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["post-list", mainPath, subPath, currentPage],
+    queryKey: ["post-index", mainPath, subPath, currentPage],
     queryFn: () =>
       getPostList({
         mainPath: mainPath as string | undefined,

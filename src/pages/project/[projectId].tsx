@@ -1,22 +1,22 @@
-/** 단일 프로젝트 리뷰글 조회
- *
- */
+/** 단일 프로젝트 리뷰글 조회 */
 
 import { useQuery } from "@tanstack/react-query";
-
-import MainLayout from "@/layouts/MainLayout";
-import React from "react";
-import ProjectHeader from "@/components/header/ProjectHeader";
 import { useRouter } from "next/router";
+
 import { getProjectContent } from "@/apis/project";
+import ProjectHeader from "@/components/header/ProjectHeader";
 import MarkdownContainer from "@/components/container/MarkdownContainer";
+import ProjectCover from "@/components/cover/ProjectCover";
+import StyledSpacing from "@/components/common/StyledSpacing";
+import ContentContainer from "@/components/container/ContentContainer";
+import ContentLayout from "@/layouts/ContentLayout";
 
 export default function ProjectPage() {
   const router = useRouter();
   const { projectId } = router.query;
 
   const { data, isLoading } = useQuery({
-    queryKey: ["post", projectId],
+    queryKey: ["project-projectId", projectId],
     queryFn: () => getProjectContent(projectId as string),
     retry: 3,
     staleTime: Infinity,
@@ -25,21 +25,17 @@ export default function ProjectPage() {
   });
 
   return (
-    <MainLayout current="PROJECT">
+    <ContentLayout current="PROJECT">
       {data && !isLoading && (
         <>
-          {/* <ProjectHeader
-            note={data.note}
-            title={data.title}
-            date={data.createdAt}
-            description={data.description}
-            coverImg={data.coverImg}
-            developmentUrl={data.developmentUrl}
-            githubUrl={data.githubUrl}
-          /> */}
-          <MarkdownContainer content={data?.content} _id={data?._id} />
+          <ProjectCover {...data} />
+          <StyledSpacing height={30} />
+          <ContentContainer>
+            <ProjectHeader {...data} />
+            <MarkdownContainer content={data.content} _id={data._id} />
+          </ContentContainer>
         </>
       )}
-    </MainLayout>
+    </ContentLayout>
   );
 }

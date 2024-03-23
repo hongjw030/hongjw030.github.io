@@ -14,14 +14,16 @@ import { PageTitle } from "@/components/common/Titles";
 import { NAV_HEIGHT } from "@/constants";
 import useHandleDrawer from "@/hooks/useHandleDrawer";
 
-interface SubLayoutProps {
+interface ContentLayoutProps {
+  current?: "POST" | "PROJECT";
   children?: ReactNode;
   headerComponent?: ReactNode;
 }
-export default function SubLayout({
+export default function ContentLayout({
+  current = "POST",
   children,
   headerComponent,
-}: SubLayoutProps) {
+}: ContentLayoutProps) {
   const { isOpen, handleDrawerClose, handleDrawerOpen } =
     useHandleDrawer(false);
 
@@ -45,12 +47,12 @@ export default function SubLayout({
           >
             <MenuIcon />
           </IconButton>
-          <PageTitle title="BLOG" fontWeight={500} fontSize={15} />
+          <PageTitle title={current} fontWeight={500} fontSize={15} />
         </Toolbar>
       </Nav>
 
       <MainDrawer
-        current="blogs"
+        current={current}
         open={isOpen}
         handleDrawerClose={handleDrawerClose}
       />

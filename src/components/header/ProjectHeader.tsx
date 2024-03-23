@@ -1,63 +1,58 @@
-import { MIN_WIDTH } from "@/constants";
-import { Box, Divider, Paper, Typography } from "@mui/material";
+import { Box, Divider, Paper } from "@mui/material";
+
+import { PageTitle } from "@/components/common/Titles";
+import { InfoDescription, LongDescription } from "@/components/common/Descriptions";
+import { POST_MAX_WIDTH, MIN_WIDTH } from "@/constants";
 import { ProjectApiType } from "@/types/ProjectApiType";
 
-export default function ProjectHeader({
-  note,
-  title,
-  term,
-  description,
-  coverImg,
-  isTeam,
-  developmentUrl,
-  githubUrl,
-  functions,
-}: ProjectApiType) {
+export default function ProjectHeader({ ...data }: ProjectApiType) {
   return (
     <Paper
       sx={{
         minWidth: MIN_WIDTH,
+        maxWidth: POST_MAX_WIDTH,
         width: "100%",
         display: "flex",
         flexDirection: "column",
         gap: "10px",
         padding: "24px",
       }}
-      elevation={2}
     >
-      <Box fontWeight={800} fontSize={35}>
-        {title}
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          gap: "5px",
-        }}
-      ></Box>
+      <PageTitle fontSize={35} fontWeight={800} title={data.title} />
 
       <Divider />
+
       <Box>
-        <Box>기간: {term ? term : "진행 중"}</Box>
-        <Box>인원: {isTeam ? isTeam : "1인 개발"}</Box>
-        <Box>
-          깃허브 링크: {githubUrl ? githubUrl : "문제가 있어 잠시 내렸습니다."}
-        </Box>
-        <Box>
-          시연 링크:
-          {developmentUrl ? developmentUrl : "문제가 있어 잠시 내렸습니다."}
-        </Box>
-        <Box>
-          주요 기능:
-          {functions ? functions : "문제가 있어 잠시 내렸습니다."}
-        </Box>
+        <InfoDescription
+          label="팀 규모: "
+          value={data.isTeam}
+          gap={1}
+          align="flex-start"
+        />
+        <InfoDescription
+          label="프로젝트 기간: "
+          value={data.term}
+          gap={1}
+          align="flex-start"
+        />
+        <InfoDescription
+          label="깃허브 링크: "
+          value={data.githubUrl}
+          gap={1}
+          align="flex-start"
+        />
+        <InfoDescription
+          label="시연 링크: "
+          value={data.developmentUrl}
+          gap={1}
+          align="flex-start"
+        />
       </Box>
 
-      {description && (
-        <>
-          <Divider />
-          <Typography variant="body2">{description}</Typography>
-        </>
-      )}
+      <Divider />
+      <LongDescription label="주요 기능: " value={data.functions} gap={1} />
+
+      <LongDescription label="개요: " value={data.description} gap={1} />
     </Paper>
   );
 }

@@ -6,7 +6,7 @@ import { CategoryListApiType } from "@/types/CategoryApiType";
 
 function useGetCategory() {
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["category-key"],
+    queryKey: ["total-category"],
     queryFn: () => getCategoryList(),
     retry: 3,
     staleTime: Infinity,
