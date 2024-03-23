@@ -40,8 +40,9 @@ export default function HeaderCoverImg({
       <Box
         sx={{
           top: 0,
-          backgroundImage:
-            `url(${imgUrl})` ?? `url(${PUBLIC_SETTING_IMPORT}/homeHeader.png)`,
+          backgroundImage: imgUrl
+            ? `url(${imgUrl})`
+            : `url(${PUBLIC_SETTING_IMPORT}/homeHeader.png)`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           height: HEADER_COVER_IMG_HEIGHT,
