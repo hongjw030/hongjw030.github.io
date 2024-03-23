@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 
 import { getPostContent } from "@/apis/post";
-import PostHeader from "@/components/header/PostHeader";
-import HeadMeta from "@/components/seo/HeadMeta";
 import Utterances from "@/components/comment/Utterances";
 import MarkdownContainer from "@/components/container/MarkdownContainer";
 import ContentLayout from "@/layouts/ContentLayout";
+import PostCover from "@/components/cover/PostCover";
+import StyledSpacing from "@/components/common/StyledSpacing";
+import ContentContainer from "@/components/container/ContentContainer";
 
 export default function BlogPage() {
   const router = useRouter();
@@ -22,22 +23,19 @@ export default function BlogPage() {
   });
 
   return (
-    <>
+    <ContentLayout current="POST">
       {data && !isLoading && (
-        <ContentLayout
-          headerComponent={
-            <PostHeader
-              title={data.title}
-              createdAt={data.createdAt}
-              updatedAt={data.updatedAt}
-              description={data.description}
-            />
-          }
-        >
-          <MarkdownContainer content={data?.content} _id={data?._id} />
-          <Utterances />
-        </ContentLayout>
+        <>
+          <PostCover {...data} />
+          <StyledSpacing height={30} />
+          <ContentContainer>
+            <MarkdownContainer content={data?.content} _id={data?._id} />
+          </ContentContainer>
+        </>
       )}
-    </>
+
+      <StyledSpacing height={30} />
+      {/* <Utterances /> */}
+    </ContentLayout>
   );
 }

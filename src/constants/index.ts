@@ -1,7 +1,7 @@
 const MAX_WIDTH = 1200;
 const MIN_WIDTH = 345;
 
-const POST_MAX_WIDTH = 800;
+const POST_MAX_WIDTH = 700;
 const DRAWER_WIDTH = 215;
 
 const IMG_WIDTH = 92;
