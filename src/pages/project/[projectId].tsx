@@ -6,9 +6,10 @@ import { useRouter } from "next/router";
 import { getProjectContent } from "@/apis/project";
 import ProjectHeader from "@/components/header/ProjectHeader";
 import MarkdownContainer from "@/components/container/MarkdownContainer";
-import ContentLayout from "@/layouts/ContentLayout";
 import ProjectCover from "@/components/cover/ProjectCover";
 import StyledSpacing from "@/components/common/StyledSpacing";
+import ContentContainer from "@/components/container/ContentContainer";
+import ContentLayout from "@/layouts/ContentLayout";
 
 export default function ProjectPage() {
   const router = useRouter();
@@ -29,8 +30,10 @@ export default function ProjectPage() {
         <>
           <ProjectCover {...data} />
           <StyledSpacing height={30} />
-          <ProjectHeader {...data} />
-          <MarkdownContainer content={data.content} _id={data._id} />
+          <ContentContainer>
+            <ProjectHeader {...data} />
+            <MarkdownContainer content={data.content} _id={data._id} />
+          </ContentContainer>
         </>
       )}
     </ContentLayout>
