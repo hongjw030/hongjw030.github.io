@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import hljs from "highlight.js";
 
 export default function Document() {
   return (
@@ -13,6 +14,13 @@ export default function Document() {
           content="2d26f45a27332a5a9f6a61f2f2739d0c557e7a61"
         />
         <link rel="shortcut icon" href="/settings/favicon.ico.png" />
+
+        <link
+          rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+        />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
       </Head>
       <body>
         <Main />

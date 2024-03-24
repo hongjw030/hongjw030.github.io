@@ -1,5 +1,4 @@
 import axiosInstance from "@/apis/libs/instance"
-import markdownToHtml from "@/utils/markdownToHtml";
 
 interface getPostListProps {
   mainPath ?: string;
@@ -23,10 +22,4 @@ export async function getPostContent (postId: string) {
   }catch(e){
     return e;
   }
-}
-
-// 포스트 내용을 md에서 html로 바꿔주는 비동기함수
-export async function getMarkdownToHtml(content: string){
-  const data = await markdownToHtml(content);
-  return data;
 }

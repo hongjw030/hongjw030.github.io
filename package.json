@@ -30,6 +30,7 @@
     "react-hook-form": "^7.51.1",
     "react-markdown": "^9.0.1",
     "react-material-ui-carousel": "^3.4.2",
+    "rehype-highlight": "^7.0.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",
     "remark-html": "^16.0.1",
