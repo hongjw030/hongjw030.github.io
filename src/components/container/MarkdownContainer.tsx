@@ -38,6 +38,7 @@ export default function MarkdownContainer({
           "& p, & ul, & ol, & li, & pre": {
             fontSize: "15px",
             paddingLeft: "10px",
+            whiteSpace: "pre-wrap",
           },
           "& li": {
             paddingLeft: "10px",
