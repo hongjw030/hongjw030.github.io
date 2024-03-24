@@ -1,12 +1,10 @@
 import type { AppProps } from "next/app";
 import { createTheme, ThemeProvider } from "@mui/material";
-
-import "@/styles/globals.scss";
 import { Provider } from "jotai";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import hljs from "highlight.js";
+import "@/styles/globals.scss";
 import "highlight.js/styles/default.css";
 
 const queryClient = new QueryClient();
