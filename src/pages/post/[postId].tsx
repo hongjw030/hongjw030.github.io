@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 import { getPostContent } from "@/apis/post";
 import Utterances from "@/components/comment/Utterances";
 import MarkdownContainer from "@/components/container/MarkdownContainer";
-import ContentLayout from "@/layouts/ContentLayout";
 import PostCover from "@/components/cover/PostCover";
 import StyledSpacing from "@/components/common/StyledSpacing";
 import ContentContainer from "@/components/container/ContentContainer";
+import ContentLayout from "@/layouts/ContentLayout";
 
 export default function BlogPage() {
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function BlogPage() {
       )}
 
       <StyledSpacing height={30} />
-      {/* <Utterances /> */}
+      <Utterances />
     </ContentLayout>
   );
 }

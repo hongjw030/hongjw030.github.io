@@ -30,6 +30,7 @@ export default function ContentLayout({
       sx={{
         display: "flex",
         justifyContent: "center",
+        paddingBottom: "100px",
       }}
     >
       <CssBaseline />
