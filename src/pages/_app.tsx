@@ -6,6 +6,9 @@ import { Provider } from "jotai";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
+import hljs from "highlight.js";
+import "highlight.js/styles/default.css";
+
 const queryClient = new QueryClient();
 
 const theme = createTheme({

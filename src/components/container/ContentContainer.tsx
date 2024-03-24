@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { ReactNode } from "react";
 
-import { MAX_WIDTH, MIN_WIDTH } from "@/constants";
+import { MIN_WIDTH, POST_MAX_WIDTH } from "@/constants";
 
 interface ContentContainerProps {
   children: ReactNode;
@@ -18,13 +18,12 @@ export default function ContentContainer({
     <Box
       display="flex"
       flexDirection="column"
-      padding="50px"
       justifyContent="flex-start"
       alignContent={align}
       gap={`${gap}px`}
       sx={{
         minWidth: MIN_WIDTH,
-        maxWidth: MAX_WIDTH,
+        maxWidth: POST_MAX_WIDTH,
         width: "100%",
       }}
     >

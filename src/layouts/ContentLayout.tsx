@@ -17,12 +17,10 @@ import useHandleDrawer from "@/hooks/useHandleDrawer";
 interface ContentLayoutProps {
   current?: "POST" | "PROJECT";
   children?: ReactNode;
-  headerComponent?: ReactNode;
 }
 export default function ContentLayout({
   current = "POST",
   children,
-  headerComponent,
 }: ContentLayoutProps) {
   const { isOpen, handleDrawerClose, handleDrawerOpen } =
     useHandleDrawer(false);
@@ -32,6 +30,7 @@ export default function ContentLayout({
       sx={{
         display: "flex",
         justifyContent: "center",
+        paddingBottom: "100px",
       }}
     >
       <CssBaseline />
@@ -59,8 +58,6 @@ export default function ContentLayout({
 
       <Container open={isOpen}>
         <StyledSpacing height={NAV_HEIGHT} />
-
-        {headerComponent}
         <Divider />
         {children}
       </Container>

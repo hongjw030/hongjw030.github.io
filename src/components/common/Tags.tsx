@@ -24,6 +24,7 @@ interface TermTagProps {
 interface CategoryTagProps {
   mainCategory: string;
   subCategory?: string;
+  additional?: string;
   fontSize?: number;
 }
 
@@ -63,13 +64,15 @@ export function CategoryTag({
   mainCategory,
   subCategory,
   fontSize = 10,
+  additional,
 }: CategoryTagProps) {
   const categoryText = subCategory
     ? `${mainCategory}, ${subCategory}`
     : `${mainCategory}`;
   return (
-    <Box fontSize={fontSize}>
+    <Box fontSize={fontSize} display="flex" gap="5px">
       <ClassIcon sx={{ fontSize: "13px" }} color="primary" />
+      {additional}
       {categoryText}
     </Box>
   );

@@ -54,7 +54,17 @@ export default function HeaderCoverImg({
           alignItems: "center",
           padding: { PADDING },
           zIndex: HEADER_COVER_IMG_Z,
-          filter: "brightness(30%)",
+          "&::after": {
+            position: "absolute",
+            background: "#000",
+            opacity: 0.8,
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            zIndex: "999",
+            content: `""`,
+          },
         }}
       ></Box>
     </Box>

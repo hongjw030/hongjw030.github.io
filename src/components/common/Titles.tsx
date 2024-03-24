@@ -46,7 +46,17 @@ export function ImportantTitle({
   fontWeight = 500,
 }: TitleProps) {
   return (
-    <Box fontSize={fontSize} fontWeight={fontWeight} whiteSpace="nowrap">
+    <Box
+      fontSize={fontSize}
+      fontWeight={fontWeight}
+      sx={{
+        wordBreak: "keep-all",
+        "@media (max-width:700px)": {
+          fontSize: "20px",
+          whiteSpace: "wrap",
+        },
+      }}
+    >
       {title}
     </Box>
   );
