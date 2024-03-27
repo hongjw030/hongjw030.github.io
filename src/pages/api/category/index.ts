@@ -38,7 +38,14 @@ export default async function handler(req: any, res: any){
 
       break;
     case 'POST':
-      res.status(202).send({message: "category create doesn't deployed"})
+      const newData = req.body;
+      if (newData.groupPath){
+        const result = await subCategory.create(req.body);
+        res.status(202).send(result)
+      }else{
+        const result = await mainCategory.create(req.body);
+        res.status(202).send(result)
+      }
       break;
   }
 
