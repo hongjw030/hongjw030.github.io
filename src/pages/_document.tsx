@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import hljs from "highlight.js";
 
 export default function Document() {
   return (
